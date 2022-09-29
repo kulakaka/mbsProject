@@ -1,0 +1,27 @@
+#success_message{ display: none;}
+
+.container{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    
+}   
+
+.form-group{
+
+    align-items: center;
+    font-size: large;
+}
+
+.button{
+    font-size: 16px;
+}
+
+@media screen and (max-width: 800px) {
+    .container{
+      width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
+    }
+  }

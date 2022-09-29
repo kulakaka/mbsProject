@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+    "@sendgrid/mail": "^7.7.0",
+    "express": "^4.18.1",
+    "http-server": "^14.1.1",
+    "sqlite": "^4.1.2",
+    "sqlite3": "^5.1.1"
+  },
+  "name": "mbs_project",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "��#\u0000 \u0000r\u0000e\u0000g\u0000i\u0000s\u0000t\u0000e\u0000r\u0000a\u0000t\u0000i\u0000o\u0000n\u0000_\u0000d\u0000e\u0000m\u0000o\u0000\r\u0000 \u0000",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kulakaka/registeration_demo.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/kulakaka/registeration_demo/issues"
+  },
+  "homepage": "https://github.com/kulakaka/registeration_demo#readme"
+}
