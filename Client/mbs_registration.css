@@ -10,6 +10,11 @@
     
 }   
 
+.img{
+    width:600 ;
+    height:300;
+}
+
 .form-group{
 
     align-items: center;
@@ -20,8 +25,15 @@
     font-size: 16px;
 }
 
-@media screen and (max-width< 800px) {
+@media only screen and (max-width: 1000px) {
     .container{
-      width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
+     position: absolute;
+     width: 600;
+     height: auto;
+    }
+
+    .img{
+        width: 500;
+        height: 250;
     }
   }
