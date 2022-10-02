@@ -20,7 +20,7 @@ emailjs.init("X-6GMIScYldEVqx-B");
 <fieldset>
 
 <!-- Form Name -->
-<legend><h2><b>Registration Form</b></h2></legend>
+<legend><h2 class="title"><b>Registration Form</b></h2></legend>
 
 <img src="Picture1.png" alt="Girl in a jacket" width="600" height="300">
 <br>
@@ -80,7 +80,7 @@ emailjs.init("X-6GMIScYldEVqx-B");
 <!-- Text input-->
        
 <div class="form-group">
-  <label class="col-md-4 control-label">Contact No.</label>  
+  <label class="col-md-4 control-label">Phone Number</label>  
     <div class="col-md-4 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
@@ -90,13 +90,13 @@ emailjs.init("X-6GMIScYldEVqx-B");
 </div>
 
 <!--Radio -->
-<div>
+<div class="form-group-radio">
   <input type="radio" id="session1" name="session" value="1"
          checked>
-  <label for="session">Session 1 (10:00am to 4:00pm )</label>
+  <label for="session">Session 1 (10:00am to 4:00pm)</label>
 </div>
 
-<div>
+<div class="form-group-radio">
   <input type="radio" id="session2" name="session" value="2">
   <label for="session">Session 2 (6:00pm to 12:00am)</label>
 </div>
@@ -104,14 +104,13 @@ emailjs.init("X-6GMIScYldEVqx-B");
 
 
 <!-- Button -->
-<div class="form-group">
+<div class="form-group-btn-confirm">
   <label class="col-md-4 control-label"></label>
   <div class="col-md-4"><br>  
 
       <button class="button" type="button" id="sendemail" onclick="confrimReg()">Confirm Registration</button> 
 
 
-   
 
   </div>
 </div>

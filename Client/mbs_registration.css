@@ -22,10 +22,36 @@
 }
 
 .button{
-    font-size: 16px;
+    font-size: 32px;
 }
 
-@media only screen and (max-width: 1000px) {
+.date{
+    font-size: 32px;
+}
+
+.title{
+    font-size: 52px;
+}
+.finishline{
+    inline-size: 610px;
+    overflow-wrap: break-word;
+    font-size: 32px;
+}
+
+.indexlable{
+    font-size: 20px;
+}
+
+.form-group{
+    margin-left: 37%;
+}
+.form-group-btn-confirm{
+    margin-left: 27%;
+}
+.form-group-radio{
+    margin-left: 33%;
+}
+/* @media only screen and (max-width: 1000px) {
     .container{
      position: absolute;
      width: 600;
@@ -36,4 +62,4 @@
         width: 500;
         height: 250;
     }
-  }
+  } */
