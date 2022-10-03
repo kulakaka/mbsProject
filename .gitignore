@@ -1,1 +1,9 @@
 .idea/
+node_modules
+build
+npm-debug.log
+.nyc
+.env
+.DS_Store
+Client/package-lock.json
+Server/package-lock.json
