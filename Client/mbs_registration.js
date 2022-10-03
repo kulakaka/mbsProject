@@ -3,13 +3,13 @@
  window.onload = function(){
     var tmno = localStorage.getItem("tm_number")
    searchinfo(tmno)
-   
+
 }
 
 function searchinfo(nm)
 {
 
-    fetch(`https://onepartyonembs.com.sg/info/${nm}`,
+    fetch(`https://onepartyonembs.com.sg/api/info/${nm}`,
     {
         method:"GET",
         header:{"Content-type": "application/json;charset=UTF-8"}
@@ -23,7 +23,7 @@ function searchinfo(nm)
             var tm = json[0].tmid;
             var contact = json[0].contact;
             var selection = json[0].selection;
-        
+
             document.getElementById("name").setAttribute('value',name)
             document.getElementById('Department').setAttribute('value',Department)
             document.getElementById('email').setAttribute('value',email)
@@ -31,19 +31,19 @@ function searchinfo(nm)
             document.getElementById('contact_no').setAttribute('value',contact)
             radiobtn1 = document.getElementById("session1");
             radiobtn2 = document.getElementById("session2");
-            
+
             if (selection == "1"){
-                
-                radiobtn1.checked = true;  
-              
+
+                radiobtn1.checked = true;
+
 
             }
             if (selection == "2"){
-                radiobtn2.checked = true;  
-         
+                radiobtn2.checked = true;
+
 
             }
-        
+
         })
         .catch(err=>console.log('Request Failed',err));
 }
@@ -55,16 +55,16 @@ function confrimReg(){
 
     val =document.querySelector('input[name="session"]:checked').value;
     //console.log(val);
-    
+
     console.log("seletion:"+val);
-     fetch(`https://onepartyonembs.com.sg/update/${tm_nm}/${val}`,{
+     fetch(`https://onepartyonembs.com.sg/api/update/${tm_nm}/${val}`,{
         method:"POST",
         headers: {"Content-type": "application/json; charset=UTF-8"}
      })
      .then(response=>response.json())
      .then(json=>console.log(json))
      .catch(err=>console.log(err));
-    
+
     if(val == "1")
     {
         session_timeslot = " From 10:00am to 4:00pm";
@@ -86,6 +86,6 @@ function confrimReg(){
         location.href = "final.html";
      })
 
-    
+
 
 }
