@@ -9,7 +9,7 @@
 function searchinfo(nm)
 {
 
-    fetch(`http://localhost:3000/info/${nm}`,
+    fetch(`https://onepartyonembs.com.sg/info/${nm}`,
     {
         method:"GET",
         header:{"Content-type": "application/json;charset=UTF-8"}
@@ -57,7 +57,7 @@ function confrimReg(){
     //console.log(val);
     
     console.log("seletion:"+val);
-     fetch(`http://localhost:3000/update/${tm_nm}/${val}`,{
+     fetch(`https://onepartyonembs.com.sg/update/${tm_nm}/${val}`,{
         method:"POST",
         headers: {"Content-type": "application/json; charset=UTF-8"}
      })
