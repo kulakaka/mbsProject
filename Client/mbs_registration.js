@@ -9,7 +9,7 @@
 function searchinfo(nm)
 {
 
-    fetch(`http://localhost:3000/info/${nm}`,
+    fetch(`https://onepartyonembs.com.sg/info/${nm}`,
     {
         method:"GET",
         header:{"Content-type": "application/json;charset=UTF-8"}
@@ -57,20 +57,30 @@ function confrimReg(){
     //console.log(val);
     
     console.log("seletion:"+val);
-     fetch(`http://localhost:3000/update/${tm_nm}/${val}`,{
+     fetch(`https://onepartyonembs.com.sg/update/${tm_nm}/${val}`,{
         method:"POST",
         headers: {"Content-type": "application/json; charset=UTF-8"}
      })
      .then(response=>response.json())
      .then(json=>console.log(json))
      .catch(err=>console.log(err));
-
+    
+    if(val == "1")
+    {
+        session_timeslot = " From 10:00am to 4:00pm";
+    }
+    if(val == "2")
+    {
+        session_timeslot = "From 6:00pm to 12:00am";
+    }
 
      var params = {
         stuff_name :document.getElementById("name").value,
-        stuff_email:document.getElementById("email").value
+        stuff_email:document.getElementById("email").value,
+        session:val,
+        session_timeslot:session_timeslot
      }
-     emailjs.send("service_l5179en","template_qijjyoh",params).then(function (res){
+     emailjs.send("service_b6rb00e","template_r8kfpav",params).then(function (res){
         alert("Email has been Sent!")
         location.href = "final.html";
      })
