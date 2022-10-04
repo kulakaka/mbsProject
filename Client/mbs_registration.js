@@ -74,6 +74,21 @@ function confrimReg(){
         session_timeslot = "From 6:00pm to 12:00am";
     }
 
+    var phno = document.getElementById("contact_no").value
+    var name = document.getElementById("name").value
+
+
+    fetch(`https://onepartyonembs.com.sg/api/sms/${phno}/${name}/${val}`,{
+        method:"GET",
+        headers: {"Content-type": "application/json; charset=UTF-8"}
+     })
+     .then(response=>response.json())
+     .then(json=>console.log(json))
+     .catch(err=>console.log(err));
+
+
+
+
      var params = {
         stuff_name :document.getElementById("name").value,
         stuff_email:document.getElementById("email").value,
