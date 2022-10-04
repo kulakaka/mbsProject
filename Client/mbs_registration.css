@@ -4,7 +4,7 @@
 
 .main_page {
     background-image: url("img/LandingPage_BG-min.png");
-    background-size: cover;
+    background-size: 100% 100%;
     background-position: center;
     background-attachment: fixed;
 }
@@ -18,6 +18,35 @@
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 
+}
+
+.main {
+    top: 80%;
+    left: 50%;
+}
+
+.main .button {
+    font-family: Bahnschrift;
+    font-size: 24px;
+    background-color: #29a8df;
+    border: none;
+    color: black;
+    padding: 8px 55px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 12px;
+}
+
+.main #tm_numebr {
+    font-family: Bahnschrift;
+    font-size: 24px;
+    color: black;
+    text-align: center;
+    background-color: white;
+    border-radius: 12px;
+    padding: 9px 180px;
+    background: rgba(255, 255, 255, 0.5);
 }
 
 .img {
@@ -64,7 +93,6 @@
 
 .form-group-btn-confirm {
     margin-left: 24%;
-
 }
 
 .form-group-radio {
@@ -83,7 +111,14 @@
         transform: translate(-50%, -50%);
     }
 
+    .main {
+        top: 80%;
+        left: 50%;
+    }
 
+    .main #tm_numebr {
+        padding: 9px 60px;
+    }
     .img {
         width: 300px;
         height: 200px;
