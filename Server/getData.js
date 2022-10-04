@@ -76,8 +76,6 @@ app.get("/api/info/:id",(req,res)=>{
 })
 
 
-
-
 //sms function
 app.get("/api/sms/:phno/:name/:val",(req,res)=>
 {
