@@ -62,7 +62,7 @@
 
 .registration input {
     font-family: Bahnschrift;
-    font-size: 12px;
+    font-size: 18px;
     color: black;
     text-align: center;
     border-radius: 12px;
@@ -72,11 +72,24 @@
 
 .registration label {
     font-family: Bahnschrift;
-    font-size: 12px;
+    font-size: 18px;
 }
 
 .registration .reminder {
     font-size: 10px;
+}
+
+.registration .button {
+    font-family: Bahnschrift;
+    font-size: 24px;
+    background-color: #29a8df;
+    border: none;
+    color: black;
+    padding: 8px 55px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 12px;
 }
 
 .img {
@@ -183,5 +196,4 @@
         margin-left: 18%;
 
     }
-
 }
