@@ -78,6 +78,11 @@ function confrimReg(){
     var phno = document.getElementById("contact_no").value
     var name = document.getElementById("name").value
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> deeaca8c2b62d7214227dcc0b75cb529857839f4
     fetch(`https://onepartyonembs.com.sg/api/sms/${phno}/${name}/${val}`,{
         method:"GET",
         headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -98,6 +103,5 @@ function confrimReg(){
         location.href = "final.html";
      })
 
-
-
 }
+ // works on localhost
