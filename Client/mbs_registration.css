@@ -121,11 +121,6 @@
     height: 300px;
 }
 
-.form-group {
-    align-items: center;
-    font-size: large;
-}
-
 .form-group1 {
     align-items: center;
     font-size: large;
@@ -137,32 +132,6 @@
 
 .date {
     font-size: 32px;
-}
-
-.title {
-    font-size: 52px;
-}
-
-.finishline {
-    inline-size: 610px;
-    overflow-wrap: break-word;
-    font-size: 32px;
-}
-
-.indexlable {
-    font-size: 20px;
-}
-
-.form-group {
-    margin-left: 29%;
-}
-
-.form-group-btn-confirm {
-    margin-left: 24%;
-}
-
-.form-group-radio {
-    margin-left: 26%;
 }
 
 .box {
@@ -206,37 +175,14 @@
         background-attachment: fixed;
     }
 
+    .confirmation_page {
+        background-image: url("ConfirmationPage_mobile-min.png");
+        background-size: 100% 100%;
+        background-position: center;
+        background-attachment: fixed;
+    }
     .img {
         width: 300px;
         height: 200px;
-    }
-
-    .title {
-        font-size: 32px;
-    }
-
-    .finishline {
-        inline-size: 320px;
-        overflow-wrap: break-word;
-        font-size: 16px;
-    }
-
-    .indexlable {
-        font-size: 10px;
-    }
-
-    .form-group {
-        margin-left: 22%;
-        margin-right: 22%;
-    }
-
-    .form-group-btn-confirm {
-        margin-left: 18%;
-        margin-right: 18%;
-    }
-
-    .form-group-radio {
-        margin-left: 18%;
-
     }
 }
