@@ -75,11 +75,12 @@ app.get("/api/info/:id",(req,res)=>{
     }
 })
 
-
+/*
 //sms function
-app.get("/api/sms/:phno/:name/:val",(req,res)=>
+app.post("https://www.onepartyonembs.com.sg/api/sms/:phno/:name/:val",(req,res)=>
 {
 
+	
     const accountSid = 'AC5903079836c0d20ab145562b6b5a0b41'; 
     const authToken = 'fa8a59146c92a9f3251c2a67399ffa36'; 
     const client = require('twilio')(accountSid, authToken); 
@@ -108,7 +109,7 @@ app.get("/api/sms/:phno/:name/:val",(req,res)=>
    
     try{
         
-        client.messages .create({ 
+        client.messages.create({ 
          body: text,  
          messagingServiceSid: 'MG216d22c854ec229d65cd09060464e761',      
          to: '+65'+phno 
@@ -128,5 +129,5 @@ app.get("/api/sms/:phno/:name/:val",(req,res)=>
 
 }
 )
-
+*/
 app.listen(3000);
