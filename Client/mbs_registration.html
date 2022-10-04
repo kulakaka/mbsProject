@@ -1,125 +1,65 @@
-<html>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <script type="text/javascript" src="mbs_registration.js"></script>
-  <link rel="stylesheet" href="mbs_registration.css">
-  <script type="text/javascript"
-  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
-</script>
-<script type="text/javascript">
-(function(){
-emailjs.init("NMpX5jOWPSxz9p0HF");
-})();
-</script>
+<html class="registration_page">
+<head>
+    <title>One Party One MBS</title>
+    <script type="text/javascript" src="mbs_registration.js"></script>
+    <link rel="stylesheet" href="mbs_registration.css">
+    <script type="text/javascript"
+            src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init("NMpX5jOWPSxz9p0HF");
+        })();
+    </script>
+</head>
+<body>
 
-<div class="container">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<div class="container registration">
+    <center>
+        <img class="logo" src="KV_Website_Separated_Logo-min.png">
+        <img class="logo" src="KV_Poster_Date.png">
 
-    
-  
-    <form class="well form-horizontal" action=" " method="post"  id="contact_form">
-<fieldset>
+        <form class="well form-horizontal" action=" " method="post" id="contact_form">
 
-<!-- Form Name -->
-<legend><h2 class="title"><b>Registration Form</b></h2></legend>
+            <label class="col-md-4 control-label">TM Number</label><br>
+            <input id="tm_numebr" name="tm_numebr" placeholder="Enter TM Number" type="text" value="" required>
+            <br><br>
 
-<img src="Picture1.png" alt="Girl in a jacket" class="img">
-<br>
+            <!-- Text input-->
+            <label class="col-md-4 control-label">Name</label><br>
+            <input id="name" placeholder="Name" type="text" value="" required><br><br>
+
+            <!-- Text input-->
+            <label class="col-md-4 control-label">Department</label><br>
+            <input id="Department" placeholder="Department" type="text" value="" required><br><br>
+
+            <!-- Text input-->
+            <label class="col-md-4 control-label">E-Mail</label><br>
+            <input id="email" placeholder="E-Mail Address" type="text" value="" required><br><br>
 
 
-<!-- Text input-->
+            <!-- Text input-->
+            <label class="col-md-4 control-label">Phone Number</label><br>
+            <input id="contact_no" placeholder="(65)" class="form-control" type="text" required><br><br>
 
+            <!-- notice -->
+            <label class="reminder">SMS confirmation will be sent to Singapore Mobile Numbers Only </label><br><br>
 
-<div class="form-group">
-  <label class="col-md-4 control-label">TM No.</label>  
-  <div class="col-md-4 inputGroupContainer">
-  <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input  id="tm_numebr"name="tm_numebr" placeholder="Key in TM No." class="form-control" type="text" value="" required> 
+            <!--Radio -->
+            <input type="radio" id="session1" name="session" value="1" checked>
+            <label for="session1">Session 1 (10:00am to 4:00pm)</label>
+            <input type="radio" id="session2" name="session" value="2">
+            <label for="session2">Session 2 (6:00pm to 12:00am)</label><br><br>
+
+            <!-- Button -->
+            <button class="button" type="button" id="sendemail" onclick="confrimReg()">Confirm Registration
+            </button>
+
+        </form>
+    </center>
 </div>
-  </div>
-</div>
+<!-- /.container -->
+</body>
 
-<!-- Text input-->
-
-<div class="form-group">
-  <label class="col-md-4 control-label" >Name</label> 
-    <div class="col-md-4 inputGroupContainer">
-    <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input id="name" placeholder="Name" class="form-control" type="text" value="" required>
-    </div>
-  </div>
-</div>
-
-<!-- Text input-->
-
-<div class="form-group">
-  <label class="col-md-4 control-label" >Department</label> 
-    <div class="col-md-4 inputGroupContainer">
-    <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input id="Department" placeholder="Department" class="form-control"  type="text"value="" required>
-    </div>
-  </div>
-</div>
-
-
-
-<!-- Text input-->
-       <div class="form-group">
-  <label class="col-md-4 control-label">E-Mail</label>  
-    <div class="col-md-4 inputGroupContainer">
-    <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-  <input id="email" placeholder="E-Mail Address" class="form-control"  type="text" value="" required>
-    </div>
-  </div>
-</div>
-
-
-<!-- Text input-->
-       
-<div class="form-group">
-  <label class="col-md-4 control-label">Phone Number</label>  
-    <div class="col-md-4 inputGroupContainer">
-    <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-  <input id="contact_no" placeholder="(65)" class="form-control" type="text" required>
-    </div>
-  </div>
-</div>
-
-<!--Radio -->
-<div class="form-group-radio">
-  <input type="radio" id="session1" name="session" value="1"
-         checked>
-  <label for="session">Session 1 (10:00am to 4:00pm)</label>
-</div>
-
-<div class="form-group-radio">
-  <input type="radio" id="session2" name="session" value="2">
-  <label for="session">Session 2 (6:00pm to 12:00am)</label>
-</div>
-<!-- Select Basic -->
-
-
-<!-- Button -->
-<div class="form-group-btn-confirm">
-  <label class="col-md-4 control-label"></label>
-  <div class="col-md-4"><br>  
-
-      <button class="button" type="button" id="sendemail" onclick="confrimReg()">Confirm Registration</button> 
-
-
-
-  </div>
-</div>
-
-
-
-</fieldset>
-</form>
-
-</div>
-    </div><!-- /.container -->
-      
 </html>

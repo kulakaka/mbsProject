@@ -8,11 +8,11 @@ const db = new sqlite.Database("./Database/mbsProjet.db" ,sqlite.OPEN_READWRITE,
     if(err) return console.error(err);
     console.log('Connected to database.');
 });
-    
-app.use(bodyParser.json()); 
+
+app.use(bodyParser.json());
 const cors=require("cors");
 const corsOptions ={
-   origin:'*', 
+   origin:'*',
    credentials:true,            //access-control-allow-credentials:true
    optionSuccessStatus:200,
 }
@@ -20,7 +20,7 @@ const corsOptions ={
 app.use(cors(corsOptions)) // Use this after the variable declaration
 
 //post request
-app.post("/update/:id/:selection",(req,res)=>
+app.post("/api/update/:id/:selection",(req,res)=>
 {
     var id = parseInt(req.params.id);
     var selection = req.params.selection;
@@ -31,11 +31,11 @@ app.post("/update/:id/:selection",(req,res)=>
         db.all(sql,[selection,id],(err,data)=>{
 
           if(err) return res.json({status:300,success:false,error:err});
-            
+
           return res.json({status:200,success:"Success input"});
-            
+
         });
-      
+
     }
     catch(error){
         return res.json({
@@ -50,10 +50,10 @@ app.post("/update/:id/:selection",(req,res)=>
 
 //get request
 
-app.get("/info/:id",(req,res)=>{
+app.get("/api/info/:id",(req,res)=>{
 
     var id = parseInt(req.params.id);
-  
+
     try{
         sql = `SELECT * FROM stuffs WHERE tmid=${id}`;
         db.all(sql,[],(err,rows)=>{
@@ -61,7 +61,7 @@ app.get("/info/:id",(req,res)=>{
 
             if(rows.length<1)
             return res.json({status:300,success:false,error:"no match"});
-            
+
             //return res.json({status:200,data:rows,success:true});
             return res.json(rows);
 
@@ -76,8 +76,7 @@ app.get("/info/:id",(req,res)=>{
 })
 
 
-<<<<<<< Updated upstream
-=======
+
 
 //sms function
 app.get("/api/sms/:phno/:name/:val",(req,res)=>
@@ -116,6 +115,7 @@ app.get("/api/sms/:phno/:name/:val",(req,res)=>
          messagingServiceSid: 'MG216d22c854ec229d65cd09060464e761',      
          to: '+65'+phno 
        }) 
+
       .then(message => console.log(message.sid))
       .done();
       return res.json({status:200,success:true});
@@ -131,6 +131,4 @@ app.get("/api/sms/:phno/:name/:val",(req,res)=>
 }
 )
 
-
->>>>>>> Stashed changes
 app.listen(3000);

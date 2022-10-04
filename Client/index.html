@@ -1,42 +1,19 @@
-<html>
-
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<div class="container">
-    <script type="text/javascript" src="index.js"></script>
+<html class="main_page">
+<head>
+    <title>One Party One MBS</title>
     <link rel="stylesheet" href="mbs_registration.css">
-      <form class="well form-horizontal" action="/register" method="post"  id="register_form">
-  <fieldset>
-  
-  <!-- Form Name -->
-  <legend><h1 class="title"><b>Registration Form</b></h1></legend>
-  
-  <!-- Text input-->
-  <img src="Picture1.png" alt="Girl in a jacket"  class="img">
-  <h2 class="date">Date of the event - 15 December 2022</h2>
-  <div class="form-group1">
-    <label class="indexlable">TM No.</label>  
-    <div class="col-md-4 inputGroupContainer">
-    <div class="input-group">
-    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-    <input  id="tm_numebr"name="tm_numebr" placeholder="Key in TM No." class="form-control" type="text" size="15"> 
-   
-  </div>
-    </div>
-  </div>
-  
-  <div class="form-group-btn-reg">
-    <label class="col-md-4 control-label"></label>
-    <div class="col-md-4"><br>
-    
-     <button class="button" type="button" onclick="pass()">Register</button>
-    </div>
-  </div>
-  
-  
-  
-  </fieldset>
-  </form>
-  </div>
-      </div><!-- /.container -->
-
-      </html>
+    <script type="text/javascript" src="index.js"></script>
+</head>
+<body>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<div class="container main">
+    <form class="well form-horizontal" action="/register" method="post" id="register_form"><center>
+        <input id="tm_numebr" name="tm_numebr" placeholder="Enter TM Number"
+               type="text" size="15"><br/><br/>
+        <button class="button" type="button" onclick="pass()">Register</button>
+        </center>
+    </form>
+</div>
+<!-- /.container -->
+</body>
+</html>
