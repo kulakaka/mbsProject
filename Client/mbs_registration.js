@@ -60,7 +60,7 @@ function confrimReg(){
      fetch(`https://onepartyonembs.com.sg/api/update/${tm_nm}/${val}`,{
         method:"POST",
         headers: {"Content-type": "application/json; charset=UTF-8"}
-     })
+     })	
      .then(response=>response.json())
      .then(json=>console.log(json))
      .catch(err=>console.log(err));
@@ -78,11 +78,12 @@ function confrimReg(){
     var phno = document.getElementById("contact_no").value
     var name = document.getElementById("name").value
 
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> deeaca8c2b62d7214227dcc0b75cb529857839f4
     fetch(`https://onepartyonembs.com.sg/api/sms/${phno}/${name}/${val}`,{
-
-
         method:"GET",
         headers: {"Content-type": "application/json; charset=UTF-8"}
      })
@@ -98,7 +99,7 @@ function confrimReg(){
         url:"https://www.onepartyonembs.com.sg/index"
      }
      emailjs.send("service_b6rb00e","template_r8kfpav",params).then(function (res){
-        alert("Email has been Sent!")
+        alert("Email has been Sent!")	
         location.href = "final.html";
      })
 
