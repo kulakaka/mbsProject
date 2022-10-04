@@ -10,11 +10,11 @@
 }
 
 .registration_page {
-    /*background-image: url("LandingPage_BG-min.png");*/
-    background-color: black;
+    background-image: url("KV_Website_Separated_BG-min.jpg");
     background-size: 100% 100%;
     background-position: center;
     background-attachment: fixed;
+    color: white;
 }
 
 .container {
@@ -33,8 +33,11 @@
     left: 50%;
 }
 
-.registration {
-    color: white;
+.registration .logo {
+    width: 100%;
+    height: 5%;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 .main .button {
@@ -98,7 +101,6 @@
 }
 
 .form-group {
-
     align-items: center;
     font-size: large;
 }
