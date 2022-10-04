@@ -2,6 +2,11 @@
     display: none;
 }
 
+#main_page {
+    background-image: url("img/KV_Website_Separated_BG-min.jpg");
+    background-size: cover;
+}
+
 .container {
     font-family: Bahnschrift;
     margin: 0;
