@@ -80,7 +80,8 @@ function confrimReg(){
 
 
 
-    fetch(`http://onepartyonembs.com.sg/api/sms/${phno}/${name}/${val}`,{
+
+    fetch(`https://onepartyonembs.com.sg/api/sms/${phno}/${name}/${val}`,{
 
 
         method:"GET",
