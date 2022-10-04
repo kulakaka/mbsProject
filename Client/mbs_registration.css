@@ -17,6 +17,13 @@
     color: white;
 }
 
+.confirmation_page {
+    background-image: url("ConfirmationPage-min.png");
+    background-size: 100% 100%;
+    background-position: center;
+    background-attachment: fixed;
+}
+
 .container {
     font-family: Bahnschrift;
     margin: 0;
