@@ -9,6 +9,14 @@
     background-attachment: fixed;
 }
 
+.registration_page {
+    /*background-image: url("LandingPage_BG-min.png");*/
+    background-color: black;
+    background-size: 100% 100%;
+    background-position: center;
+    background-attachment: fixed;
+}
+
 .container {
     font-family: Bahnschrift;
     margin: 0;
@@ -23,6 +31,10 @@
 .main {
     top: 80%;
     left: 50%;
+}
+
+.registration {
+    color: white;
 }
 
 .main .button {
@@ -119,6 +131,7 @@
     .main #tm_numebr {
         padding: 9px 60px;
     }
+
     .img {
         width: 300px;
         height: 200px;
