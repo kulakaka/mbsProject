@@ -158,14 +158,14 @@
     margin-left: 26%;
 }
 
-@media only screen and (max-width: 475px) {
-    .registration .logo {
-        width: 100%;
-        height: 0.5%;
-        background-position: center;
-        background-attachment: fixed;
-    }
+.box {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+}
 
+@media only screen and (max-width: 475px) {
     .container {
         font-family: Bahnschrift;
         margin: 0;
@@ -183,6 +183,13 @@
 
     .main #tm_numebr {
         padding: 9px 40px;
+    }
+
+    .registration .logo {
+        width: 100%;
+        height: 0.5%;
+        background-position: center;
+        background-attachment: fixed;
     }
 
     .img {
