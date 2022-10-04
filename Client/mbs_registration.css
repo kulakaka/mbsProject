@@ -1,102 +1,221 @@
-#success_message{ display: none;}
+#success_message {
+    display: none;
+}
 
-.container{
+.main_page {
+    background-image: url("LandingPage_BG-min.png");
+    background-size: 100% 100%;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.registration_page {
+    background-image: url("KV_Website_Separated_BG-min.jpg");
+    background-size: 100% 100%;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+}
+
+.confirmation_page {
+    background-image: url("ConfirmationPage-min.png");
+    background-size: 100% 100%;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.container {
+    font-family: Bahnschrift;
     margin: 0;
     position: absolute;
     top: 50%;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    
-    }   
 
-    .img{
-        width:600px ;
-        height:300px;
+}
+
+.main {
+    top: 80%;
+    left: 50%;
+}
+
+.main .button {
+    font-family: Bahnschrift;
+    font-size: 24px;
+    background-color: #29a8df;
+    border: none;
+    color: black;
+    padding: 8px 55px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 12px;
+}
+
+.main #tm_numebr {
+    font-family: Bahnschrift;
+    font-size: 24px;
+    color: black;
+    text-align: center;
+    border-radius: 12px;
+    padding: 9px 180px;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.registration {
+    top: 65%;
+    left: 50%;
+}
+
+.registration .logo {
+    width: 100%;
+    height: 2%;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.registration input {
+    font-family: Bahnschrift;
+    font-size: 18px;
+    color: black;
+    text-align: center;
+    border-radius: 12px;
+    padding: 9px 50px;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.registration label {
+    font-family: Bahnschrift;
+    font-size: 18px;
+}
+
+.registration .reminder {
+    font-size: 10px;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+
+}
+
+.registration .button {
+    font-family: Bahnschrift;
+    font-size: 24px;
+    background-color: #29a8df;
+    border: none;
+    color: black;
+    padding: 8px 55px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 12px;
+}
+
+.img {
+    width: 600px;
+    height: 300px;
+}
+
+.form-group {
+    align-items: center;
+    font-size: large;
+}
+
+.form-group1 {
+    align-items: center;
+    font-size: large;
+}
+
+.button {
+    font-size: 32px;
+}
+
+.date {
+    font-size: 32px;
+}
+
+.title {
+    font-size: 52px;
+}
+
+.finishline {
+    inline-size: 610px;
+    overflow-wrap: break-word;
+    font-size: 32px;
+}
+
+.indexlable {
+    font-size: 20px;
+}
+
+.form-group {
+    margin-left: 29%;
+}
+
+.form-group-btn-confirm {
+    margin-left: 24%;
+}
+
+.form-group-radio {
+    margin-left: 26%;
+}
+
+@media only screen and (max-width: 475px) {
+    .registration .logo {
+        width: 100%;
+        height: 0.5%;
+        background-position: center;
+        background-attachment: fixed;
     }
 
-    .form-group{
-
-        align-items: center;
-        font-size: large;
+    .container {
+        font-family: Bahnschrift;
+        margin: 0;
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
     }
-    .form-group1{
 
-        align-items: center;
-        font-size: large;
+    .main {
+        top: 85%;
+        left: 50%;
     }
-    .button{
+
+    .main #tm_numebr {
+        padding: 9px 40px;
+    }
+
+    .img {
+        width: 300px;
+        height: 200px;
+    }
+
+    .title {
         font-size: 32px;
     }
 
-    .date{
-        font-size: 32px;
-    }
-
-    .title{
-        font-size: 52px;
-    }
-    .finishline{
-        inline-size: 610px;
+    .finishline {
+        inline-size: 320px;
         overflow-wrap: break-word;
-        font-size: 32px;
+        font-size: 16px;
     }
 
-    .indexlable{
-        font-size: 20px;
+    .indexlable {
+        font-size: 10px;
     }
 
-    .form-group{
-        margin-left: 29%;
-    }
-    .form-group-btn-confirm{
-        margin-left: 24%;
-        
-    }
-    .form-group-radio{
-        margin-left: 26%;
+    .form-group {
+        margin-left: 22%;
+        margin-right: 22%;
     }
 
-    @media only screen and (max-width: 475px) {
+    .form-group-btn-confirm {
+        margin-left: 18%;
+        margin-right: 18%;
+    }
 
-        .container{
-            margin: 0;
-            position: absolute;
-            top: 60%;
-            left: 50%;
-            -ms-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-        }
-            
-   
-        .img{
-            width: 300px;
-            height: 200px;
-        }
-        .title{
-            font-size: 32px;
-        }
-        .finishline{
-            inline-size: 320px;
-            overflow-wrap: break-word;
-            font-size: 16px;
-        }
-    
-        .indexlable{
-            font-size: 10px;
-        }
-    
-        .form-group{
-            margin-left: 22%;
-            margin-right: 22%;
-        }
-        .form-group-btn-confirm{
-            margin-left: 18%;
-            margin-right: 18%;
-        }
-        .form-group-radio{
-            margin-left: 18%;
-            
-        }
-   
-  }
+    .form-group-radio {
+        margin-left: 18%;
+
+    }
+}
