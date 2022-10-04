@@ -2,9 +2,11 @@
     display: none;
 }
 
-#main_page {
-    background-image: url("img/KV_Website_Separated_BG-min.jpg");
+.main_page {
+    background-image: url("img/LandingPage_BG-min.png");
     background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 .container {
