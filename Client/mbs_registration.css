@@ -55,10 +55,28 @@
     font-size: 24px;
     color: black;
     text-align: center;
-    background-color: white;
     border-radius: 12px;
     padding: 9px 180px;
     background: rgba(255, 255, 255, 0.5);
+}
+
+.registration input {
+    font-family: Bahnschrift;
+    font-size: 12px;
+    color: black;
+    text-align: center;
+    border-radius: 12px;
+    padding: 9px 50px;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.registration label {
+    font-family: Bahnschrift;
+    font-size: 12px;
+}
+
+.registration .reminder {
+    font-size: 10px;
 }
 
 .img {

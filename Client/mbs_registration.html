@@ -13,8 +13,9 @@
 </head>
 <body>
 <div class="container registration">
-    <form class="well form-horizontal" action=" " method="post" id="contact_form">
-        <div class="form-group">
+    <center>
+        <form class="well form-horizontal" action=" " method="post" id="contact_form">
+
             <label class="col-md-4 control-label">TM Number</label>
             <div class="col-md-4 inputGroupContainer">
                 <div class="input-group">
@@ -23,11 +24,9 @@
                            type="text" value="" required>
                 </div>
             </div>
-        </div>
+            <br>
 
-        <!-- Text input-->
-
-        <div class="form-group">
+            <!-- Text input-->
             <label class="col-md-4 control-label">Name</label>
             <div class="col-md-4 inputGroupContainer">
                 <div class="input-group">
@@ -35,11 +34,10 @@
                     <input id="name" placeholder="Name" class="form-control" type="text" value="" required>
                 </div>
             </div>
-        </div>
 
-        <!-- Text input-->
+            <br>
 
-        <div class="form-group">
+            <!-- Text input-->
             <label class="col-md-4 control-label">Department</label>
             <div class="col-md-4 inputGroupContainer">
                 <div class="input-group">
@@ -47,12 +45,9 @@
                     <input id="Department" placeholder="Department" class="form-control" type="text" value=""
                            required>
                 </div>
-            </div>
-        </div>
+            </div><br>
 
-
-        <!-- Text input-->
-        <div class="form-group">
+            <!-- Text input-->
             <label class="col-md-4 control-label">E-Mail</label>
             <div class="col-md-4 inputGroupContainer">
                 <div class="input-group">
@@ -60,13 +55,10 @@
                     <input id="email" placeholder="E-Mail Address" class="form-control" type="text" value=""
                            required>
                 </div>
-            </div>
-        </div>
+            </div><br>
 
 
-        <!-- Text input-->
-
-        <div class="form-group">
+            <!-- Text input-->
             <label class="col-md-4 control-label">Phone Number</label>
             <div class="col-md-4 inputGroupContainer">
                 <div class="input-group">
@@ -74,36 +66,22 @@
                     <input id="contact_no" placeholder="(65)" class="form-control" type="text" required>
                 </div>
             </div>
-        </div>
 
-        <!--Radio -->
-        <div class="form-group-radio">
-            <input type="radio" id="session1" name="session" value="1"
-                   checked>
-            <label for="session">Session 1 (10:00am to 4:00pm)</label>
-        </div>
+            <!-- notice -->
+            <label class="reminder">SMS confirmation will be sent to Singapore Mobile Numbers Only </label><br><br>
 
-        <div class="form-group-radio">
+            <!--Radio -->
+            <input type="radio" id="session1" name="session" value="1" checked>
+            <label for="session1">Session 1 (10:00am to 4:00pm)</label>
             <input type="radio" id="session2" name="session" value="2">
-            <label for="session">Session 2 (6:00pm to 12:00am)</label>
-        </div>
-        <!-- Select Basic -->
+            <label for="session2">Session 2 (6:00pm to 12:00am)</label><br><br>
 
+            <!-- Button -->
+            <button class="button" type="button" id="sendemail" onclick="confrimReg()">Confirm Registration
+            </button>
 
-        <!-- Button -->
-        <div class="form-group-btn-confirm">
-            <label class="col-md-4 control-label"></label>
-            <div class="col-md-4"><br>
-
-                <button class="button" type="button" id="sendemail" onclick="confrimReg()">Confirm Registration
-                </button>
-
-
-            </div>
-        </div>
-
-    </form>
-
+        </form>
+    </center>
 </div>
 <!-- /.container -->
 </body>
