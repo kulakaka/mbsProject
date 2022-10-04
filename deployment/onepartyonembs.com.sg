@@ -16,6 +16,7 @@ server {
         location /static/ {
                 root /var/www/onepartyonembs.com.sg/html/static;
                 proxy_pass http://127.0.0.1:3000/static/;
+                autoindex on;
         }
 
     listen [::]:443 ssl ipv6only=on; # managed by Certbot
