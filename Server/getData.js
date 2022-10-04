@@ -77,6 +77,7 @@ app.get("/api/info/:id",(req,res)=>{
 
 
 
+
 //sms function
 app.get("/api/sms/:phno/:name/:val",(req,res)=>
 {
@@ -114,8 +115,10 @@ app.get("/api/sms/:phno/:name/:val",(req,res)=>
          messagingServiceSid: 'MG216d22c854ec229d65cd09060464e761',      
          to: '+65'+phno 
        }) 
-      .then(message => console.log(message.sid)) 
+
+      .then(message => console.log(message.sid))
       .done();
+      return res.json({status:200,success:true});
 
     }
     catch(error){
@@ -127,6 +130,5 @@ app.get("/api/sms/:phno/:name/:val",(req,res)=>
 
 }
 )
-
 
 app.listen(3000);
