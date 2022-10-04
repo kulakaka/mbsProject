@@ -76,4 +76,61 @@ app.get("/info/:id",(req,res)=>{
 })
 
 
+<<<<<<< Updated upstream
+=======
+
+//sms function
+app.get("/api/sms/:phno/:name/:val",(req,res)=>
+{
+
+    const accountSid = 'AC5903079836c0d20ab145562b6b5a0b41'; 
+    const authToken = 'fa8a59146c92a9f3251c2a67399ffa36'; 
+    const client = require('twilio')(accountSid, authToken); 
+    var phno = req.params.phno;
+    var name = req.params.name;
+    var val = req.params.val;
+
+    if(val == "1")
+    {
+        session_timeslot = " From 10:00am to 4:00pm";
+    }
+    if(val == "2")
+    {
+        session_timeslot = "From 6:00pm to 12:00am";
+    }
+
+    var text = "Dear "+name+"\n"+"Your RSVP for One Party, One MBS – Endless Possibilities Session " +val+"is confirmed."+"\n"+
+    "Date: 15 December 2022\n"+
+    "Time: Session "+val+" "+session_timeslot+"\n"+
+    "Venue: Sands Expo and Convention Centre, Level 5, Sands Grand Ballroom\n"+
+    "\n"+
+    "See you on 15 December 2022! \n" +"-------"+
+    "If you wish to amend the session you have selected, please click on the link below \n"+
+    "https://onepartyonembs.com.sg"
+
+   
+    try{
+        
+        client.messages .create({ 
+         body: text,  
+         messagingServiceSid: 'MG216d22c854ec229d65cd09060464e761',      
+         to: '+65'+phno 
+       }) 
+      .then(message => console.log(message.sid))
+      .done();
+      return res.json({status:200,success:true});
+
+    }
+    catch(error){
+        return res.json({
+            status:400,
+            success:false,
+        });
+    }
+
+}
+)
+
+
+>>>>>>> Stashed changes
 app.listen(3000);
