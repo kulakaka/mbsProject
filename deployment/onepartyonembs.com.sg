@@ -13,9 +13,9 @@ server {
                 proxy_pass http://127.0.0.1:3000/api/;
         }
 
-        location /static/img/ {
-                alias /var/www/onepartyonembs.com.sg/html/static/img;
-                proxy_pass http://127.0.0.1:3000/static/img/;
+        location /static/ {
+                root /var/www/onepartyonembs.com.sg/html/static;
+                proxy_pass http://127.0.0.1:3000/static/;
         }
 
     listen [::]:443 ssl ipv6only=on; # managed by Certbot
