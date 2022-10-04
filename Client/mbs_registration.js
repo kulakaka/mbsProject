@@ -9,7 +9,7 @@
 function searchinfo(nm)
 {
 
-    fetch(`https://onepartyonembs.com.sg/api/info/${nm}`,
+    fetch(`http://localhost:3000/api/info/${nm}`,
     {
         method:"GET",
         header:{"Content-type": "application/json;charset=UTF-8"}
@@ -57,7 +57,7 @@ function confrimReg(){
     //console.log(val);
 
     console.log("seletion:"+val);
-     fetch(`https://onepartyonembs.com.sg/api/update/${tm_nm}/${val}`,{
+     fetch(`http://localhost:3000/api/update/${tm_nm}/${val}`,{
         method:"POST",
         headers: {"Content-type": "application/json; charset=UTF-8"}
      })
@@ -80,9 +80,8 @@ function confrimReg(){
 
 
 
-    fetch(`https://onepartyonembs.com.sg/api/sms/${phno}/${name}/${val}`,{
-
-
+    fetch(`http://localhost:3000/api/sms/${phno}/${name}/${val}`,
+    {
         method:"GET",
         headers: {"Content-type": "application/json; charset=UTF-8"}
      })
@@ -103,4 +102,4 @@ function confrimReg(){
      })
 
 }
- // works on localhost
+ // works on localhost now....

@@ -27,7 +27,7 @@ app.post("/api/update/:id/:selection",(req,res)=>
     // console.log(id);
     // console.log(selection);
     try{
-        const sql = `UPDATE stuffs SET selection= ? WHERE tmid=?`;
+        const sql = `UPDATE stuffs SET selection= ? WHERE tmid=?`;  
         db.all(sql,[selection,id],(err,data)=>{
 
           if(err) return res.json({status:300,success:false,error:err});
