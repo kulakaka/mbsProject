@@ -47,10 +47,19 @@
             <label class="reminder">SMS confirmation will be sent to Singapore Mobile Numbers Only </label><br><br>
 
             <!--Radio -->
-            <input type="radio" id="session1" name="session" value="1" checked>
-            <label for="session1">Session 1 (10:00am to 4:00pm)</label>
-            <input type="radio" id="session2" name="session" value="2">
-            <label for="session2">Session 2 (6:00pm to 12:00am)</label><br><br>
+
+            <div class="box">
+                <div>
+                    <input type="radio" id="session1" name="session" value="1" checked>
+                    <label for="session1">Session 1 (10:00am to 4:00pm)</label>
+                </div>
+                <div>
+                    <input type="radio" id="session2" name="session" value="2">
+                    <label for="session2">Session 2 (6:00pm to 12:00am)</label>
+                </div>
+            </div>
+            <br><br>
+
 
             <!-- Button -->
             <button class="button" type="button" id="sendemail" onclick="confrimReg()">Confirm Registration
