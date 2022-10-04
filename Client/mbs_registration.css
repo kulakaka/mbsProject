@@ -80,6 +80,8 @@
 
 .registration .reminder {
     font-size: 10px;
+      text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+
 }
 
 .registration .button {
