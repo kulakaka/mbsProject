@@ -74,13 +74,11 @@ function confrimReg(){
         session_timeslot = "From 6:00pm to 12:00am";
     }
 
-<<<<<<< Updated upstream
-=======
     var phno = document.getElementById("contact_no").value
     var name = document.getElementById("name").value
 
 
-    fetch(`http://onepartyonembs.com.sg/api/sms/${phno}/${name}/${val}`,{
+    fetch(`https://onepartyonembs.com.sg/api/sms/${phno}/${name}/${val}`,{
         method:"GET",
         headers: {"Content-type": "application/json; charset=UTF-8"}
      })
@@ -89,9 +87,6 @@ function confrimReg(){
      .catch(err=>console.log(err));
 
 
-
-
->>>>>>> Stashed changes
      var params = {
         stuff_name :document.getElementById("name").value,
         stuff_email:document.getElementById("email").value,
@@ -104,6 +99,5 @@ function confrimReg(){
         location.href = "final.html";
      })
 
-    
 
 }

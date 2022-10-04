@@ -76,8 +76,6 @@ app.get("/info/:id",(req,res)=>{
 })
 
 
-<<<<<<< Updated upstream
-=======
 
 //sms function
 app.get("/api/sms/:phno/:name/:val",(req,res)=>
@@ -132,5 +130,4 @@ app.get("/api/sms/:phno/:name/:val",(req,res)=>
 )
 
 
->>>>>>> Stashed changes
 app.listen(3000);
