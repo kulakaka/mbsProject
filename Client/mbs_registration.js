@@ -80,7 +80,6 @@ function confrimReg(){
 
 
 
-
     fetch(`https://onepartyonembs.com.sg/api/sms/${phno}/${name}/${val}`,{
 
 
@@ -96,13 +95,12 @@ function confrimReg(){
         stuff_email:document.getElementById("email").value,
         session:val,
         session_timeslot:session_timeslot,
-        url:"http://www.onepartyonembs.ecom.sg/index"
+        url:"https://www.onepartyonembs.com.sg/index"
      }
      emailjs.send("service_b6rb00e","template_r8kfpav",params).then(function (res){
         alert("Email has been Sent!")
         location.href = "final.html";
      })
 
-
-
 }
+ // works on localhost
