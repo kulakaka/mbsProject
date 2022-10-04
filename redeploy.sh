@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo "Execute redeployment script"
 echo "Changing directory to mbsProject folder"
 cd ~/mbsProject
 echo "Pullig git from main repo"
