@@ -4,10 +4,6 @@ const bodyParser = require("body-parser");
 const sqlite = require("sqlite3").verbose();
 const app = express();
 const res = require("express/lib/response");
-const db = new sqlite.Database("./Database/mbsProjet.db" ,sqlite.OPEN_READWRITE,(err)=>{
-    if(err) return console.error(err);
-    console.log('Connected to database.');
-});
 
 app.use(bodyParser.json());
 const cors=require("cors");
@@ -27,6 +23,12 @@ app.post("/api/update/:id/:selection",(req,res)=>
     // console.log(id);
     // console.log(selection);
     try{
+        // Open Database
+        const db = new sqlite.Database("./Database/mbsProjet.db" ,sqlite.OPEN_READWRITE,(err)=>{
+            if(err) return console.error(err);
+            console.log('Connected to database.');
+        });
+        // Execute query 
         const sql = `UPDATE stuffs SET selection= ? WHERE tmid=?`;
         db.all(sql,[selection,id],(err,data)=>{
 
@@ -35,8 +37,16 @@ app.post("/api/update/:id/:selection",(req,res)=>
           return res.json({status:200,success:"Success input"});
 
         });
+        // Close database
+        db.close((err) => {
+            if (err)
+              console.log(err.message);
+            else
+              console.log('Close the database connection.')
+          });
 
     }
+    
     catch(error){
         return res.json({
             status:400,
@@ -55,6 +65,13 @@ app.get("/api/info/:id",(req,res)=>{
     var id = parseInt(req.params.id);
 
     try{
+       // Open Database
+       const db = new sqlite.Database("./Database/mbsProjet.db" ,sqlite.OPEN_READWRITE,(err)=>{
+        if(err) return console.error(err);
+        console.log('Connected to database.');
+        });
+
+        // Execute query
         sql = `SELECT * FROM stuffs WHERE tmid=${id}`;
         db.all(sql,[],(err,rows)=>{
             if(err) return res.json({status:300,success:false,error:err});
@@ -66,7 +83,16 @@ app.get("/api/info/:id",(req,res)=>{
             return res.json(rows);
 
         })
+        
+    // Close database
+        db.close((err) => {
+            if (err)
+              console.log(err.message);
+            else
+              console.log('Close the database connection.')
+          });
     }
+  
     catch(error){
         return res.json({
             status:400,
@@ -75,12 +101,11 @@ app.get("/api/info/:id",(req,res)=>{
     }
 })
 
-/*
+
 //sms function
-app.post("https://www.onepartyonembs.com.sg/api/sms/:phno/:name/:val",(req,res)=>
+app.get("/api/sms/:phno/:name/:val",(req,res)=>
 {
 
-	
     const accountSid = 'AC5903079836c0d20ab145562b6b5a0b41'; 
     const authToken = 'fa8a59146c92a9f3251c2a67399ffa36'; 
     const client = require('twilio')(accountSid, authToken); 
@@ -129,5 +154,5 @@ app.post("https://www.onepartyonembs.com.sg/api/sms/:phno/:name/:val",(req,res)=
 
 }
 )
-*/
+
 app.listen(3000);
