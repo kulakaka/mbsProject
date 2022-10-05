@@ -20,16 +20,16 @@ app.post("/api/update/:id/:selection",(req,res)=>
 {
     var id = parseInt(req.params.id);
     var selection = req.params.selection;
-    // console.log(id);
-    // console.log(selection);
+    console.log(id);
+    console.log(selection);
     try{
         // Open Database
-        const db = new sqlite.Database("./Database/mbsProjet.db" ,sqlite.OPEN_READWRITE,(err)=>{
+        const db = new sqlite.Database("./Database/mbsStuff.db" ,sqlite.OPEN_READWRITE,(err)=>{
             if(err) return console.error(err);
             console.log('Connected to database.');
         });
         // Execute query 
-        const sql = `UPDATE stuffs SET selection= ? WHERE tmid=?`;
+        const sql = `UPDATE stuff SET SelectedSession= ? WHERE TeamMember=?`;
         db.all(sql,[selection,id],(err,data)=>{
 
           if(err) return res.json({status:300,success:false,error:err});
@@ -54,6 +54,19 @@ app.post("/api/update/:id/:selection",(req,res)=>
         });
     }
 
+    // axios({
+    //     method: "PATCH",
+    //     url: `https://api.baserow.io/api/database/rows/table/104714/${id}/?user_field_names=true`,
+    //     headers: {
+    //       Authorization: "3glrmUodv0seXwUsYZKrYRqaNA68jGtc",
+    //       "Content-Type": "application/json"
+    //     },
+    //     data: {
+    //         "Selected Session":selection
+    //     }
+    //   })
+
+
 }
 )
 
@@ -66,13 +79,13 @@ app.get("/api/info/:id",(req,res)=>{
 
     try{
        // Open Database
-       const db = new sqlite.Database("./Database/mbsProjet.db" ,sqlite.OPEN_READWRITE,(err)=>{
+       const db = new sqlite.Database("./Database/mbsStuff.db" ,sqlite.OPEN_READWRITE,(err)=>{
         if(err) return console.error(err);
         console.log('Connected to database.');
         });
 
         // Execute query
-        sql = `SELECT * FROM stuffs WHERE tmid=${id}`;
+        sql = `SELECT * FROM stuff WHERE TeamMember=${id}`;
         db.all(sql,[],(err,rows)=>{
             if(err) return res.json({status:300,success:false,error:err});
 

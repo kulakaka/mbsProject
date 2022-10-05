@@ -79,7 +79,6 @@ function confrimReg(){
     var phno = document.getElementById("contact_no").value
     var name = document.getElementById("name").value
 
-
     fetch(`https://onepartyonembs.com.sg/api/sms/${phno}/${name}/${val}`,{
         method:"GET",
         headers: {"Content-type": "application/json; charset=UTF-8"}
