@@ -197,17 +197,7 @@ app.get("/debug-sentry", function mainHandler(req, res) {
 });
 
 // The error handler must be before any other error middleware and after all controllers
-app.use(
-  Sentry.Handlers.errorHandler({
-    shouldHandleError(error) {
-      // Capture all 404 and 500 errors
-      if (error.status === 404 || error.status === 500) {
-        return true;
-      }
-      return false;
-    },
-  })
-);
+api.use(Sentry.Handlers.errorHandler());
 
 // Optional fallthrough error handler
 app.use(function onError(err, req, res, next) {
