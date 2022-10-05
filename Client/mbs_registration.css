@@ -18,7 +18,7 @@
 }
 
 .confirmation_page {
-    background-image: url("ConfirmationPage-min.png");
+    background-image: url("KV_Website_Separated_BG-min.jpg");
     background-size: 100% 100%;
     background-position: center;
     background-attachment: fixed;
@@ -76,8 +76,8 @@
 }
 
 .registration .logo {
-    width: 100%;
-    height: 2%;
+    width: 70%;
+    height: 0.5%;
     background-position: center;
     background-attachment: fixed;
 }
@@ -116,21 +116,29 @@
     border-radius: 12px;
 }
 
+.confirm {
+    top: 45%;
+    left: 50%;
+    font-family: Bahnschrift;
+    font-size: 24px;
+    color: white;
+
+}
+
+.confirm .logo {
+    width: 70%;
+    height: 0.5%;
+    background-position: center;
+    background-attachment: fixed;
+}
+
 .img {
     width: 600px;
     height: 300px;
 }
 
-.form-group1 {
-    align-items: center;
-    font-size: large;
-}
 
 .button {
-    font-size: 32px;
-}
-
-.date {
     font-size: 32px;
 }
 
@@ -139,6 +147,7 @@
     flex-flow: row wrap;
     align-items: center;
     justify-content: center;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 @media only screen and (max-width: 475px) {
@@ -150,6 +159,11 @@
         left: 50%;
         -ms-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
+    }
+
+    .img {
+        width: 300px;
+        height: 200px;
     }
 
     .main {
@@ -175,14 +189,19 @@
         background-attachment: fixed;
     }
 
-    .confirmation_page {
-        background-image: url("ConfirmationPage_mobile.png");
-        background-size: 100% 100%;
+    .confirm {
+        top: 50%;
+        left: 50%;
+    }
+
+    .confirm .logo {
+        width: 100%;
+        height: 0.5%;
         background-position: center;
         background-attachment: fixed;
     }
-    .img {
-        width: 300px;
-        height: 200px;
+
+    .confirm .box {
+        text-align: justify;
     }
 }
