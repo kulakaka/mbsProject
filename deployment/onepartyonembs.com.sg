@@ -4,7 +4,7 @@ server {
         index index.html index.htm index.nginx-debian.html;
 
         server_name onepartyonembs.com.sg www.onepartyonembs.com.sg;
-	access_log /var/log/nginx/mbs-access.log timed;
+	    access_log /var/log/nginx/mbs-access.log timed;
     	error_log /var/log/nginx/mbs-error.log;
 
         location / {
