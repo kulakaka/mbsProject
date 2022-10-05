@@ -18,12 +18,12 @@ function searchinfo(nm)
         .then(response=>response.json())
         .then(json => {
             console.log(json)
-            var name = json[0].name;
-            var Department = json[0].department;
-            var email = json[0].email;
-            var tm = json[0].tmid;
-            var contact = json[0].contact;
-            var selection = json[0].selection;
+            var name = json[0].Name;
+            var Department = json[0].DepartmentName;
+            var email = json[0].Email;
+            var tm = json[0].TeamMember;
+            var contact = json[0].PhoneNo;
+            var selection = json[0].SelectedSession;
 
             document.getElementById("name").setAttribute('value',name)
             document.getElementById('Department').setAttribute('value',Department)
