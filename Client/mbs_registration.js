@@ -78,11 +78,16 @@ function confrimReg(){
 
     var phno = document.getElementById("contact_no").value
     var name = document.getElementById("name").value
+<<<<<<< Updated upstream
 
 
 
 
     fetch(`https://onepartyonembs.com.sg/api/sms/${phno}/${name}/${val}`,{
+=======
+    var sel  = document.querySelector('input[name="session"]:checked').value;
+    fetch(`https://onepartyonembs.com.sg/api/sms/${phno}/${name}/${sel}`,{
+>>>>>>> Stashed changes
         method:"GET",
         headers: {"Content-type": "application/json; charset=UTF-8"}
      })
@@ -102,3 +107,7 @@ function confrimReg(){
         location.href = "final.html";
      })
 }
+<<<<<<< Updated upstream
+=======
+ // works on localhost
+>>>>>>> Stashed changes
