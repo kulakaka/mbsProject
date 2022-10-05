@@ -4,6 +4,8 @@ server {
         index index.html index.htm index.nginx-debian.html;
 
         server_name onepartyonembs.com.sg www.onepartyonembs.com.sg;
+	access_log /var/log/nginx/MBS-access.log;
+    	error_log /var/log/nginx/MBS-error.log;
 
         location / {
                 try_files $uri $uri/ =404;
@@ -11,6 +13,12 @@ server {
 
         location /api/ {
                 proxy_pass http://127.0.0.1:3000/api/;
+        }
+
+        location /static/ {
+                try_files /var/www/onepartyonembs.com.sg/html/static/ =404;
+                proxy_pass http://127.0.0.1:3000/static/img/;
+                autoindex on;
         }
 
     listen [::]:443 ssl ipv6only=on; # managed by Certbot
