@@ -103,11 +103,7 @@ app.get("/api/info/:id",(req,res)=>{
 
 
 //sms function
-<<<<<<< Updated upstream
 app.get("/api/sms/:phno/:name/:val",(req,res)=>
-=======
-app.get("/api/sms/:phno/:name/:sel",(req,res)=>
->>>>>>> Stashed changes
 {
 
     const accountSid = 'AC5903079836c0d20ab145562b6b5a0b41'; 
@@ -115,13 +111,13 @@ app.get("/api/sms/:phno/:name/:sel",(req,res)=>
     const client = require('twilio')(accountSid, authToken); 
     var phno = req.params.phno;
     var name = req.params.name;
-    var sel = req.params.sel;
+    var val = req.params.val;
 
-    if(sel == "1")
+    if(val == "1")
     {
         session_timeslot = " From 10:00am to 4:00pm";
     }
-    if(sel == "2")
+    if(val == "2")
     {
         session_timeslot = "From 6:00pm to 12:00am";
     }
