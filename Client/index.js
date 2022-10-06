@@ -13,7 +13,7 @@ function check_tm_number(tm_number) {
         .then(response => response.json())
         .then(json => {
                 console.log(json)
-                let tm = json[0].TeamMember;
+                let tm = String(json[0].TeamMember);
 
                 if (tm_number === tm) {
                     window.location.href = "mbs_registration.html";
