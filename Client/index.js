@@ -13,7 +13,13 @@ function check_tm_number(tm_number) {
         .then(response => response.json())
         .then(json => {
                 console.log(json)
-                window.location.href = "mbs_registration.html";
+                let tm = json[0].TeamMember;
+
+                if (tm_number === tm) {
+                    window.location.href = "mbs_registration.html";
+                } else {
+                    window.location.href = "https://onepartyonembs.com.sg/";
+                }
             }
         )
         .catch(
