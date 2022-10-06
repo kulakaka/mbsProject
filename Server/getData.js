@@ -169,13 +169,6 @@ app.get("/api/sms/:phno/:name/:val",(req,res)=>
 }
 )
 
-app.get("/debug-sentry", function mainHandler(req, res) {
-  throw new Error("My first Sentry error!");
-});
-
-// The error handler must be before any other error middleware and after all controllers
-api.use(Sentry.Handlers.errorHandler());
-
 // Optional fallthrough error handler
 app.use(function onError(err, req, res, next) {
   // The error id is attached to `res.sentry` to be returned
