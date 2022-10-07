@@ -162,7 +162,7 @@
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
-@media only screen and (max-width: 475px) {
+@media only screen and (max-width: 500px) {
     .container {
         font-family: Bahnschrift;
         margin: 0;
