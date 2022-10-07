@@ -44,3 +44,14 @@
 //   }
 // })
 
+// axios({
+//   method: "PATCH",
+//   url: `https://api.baserow.io/api/database/rows/table/104714/10311/?user_field_names=true`,
+//   headers: {
+//     Authorization : "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq",
+//     "Content-Type": "application/json"
+//   },
+//   data: {
+//       "Selected Session": 1
+//   }
+// })
