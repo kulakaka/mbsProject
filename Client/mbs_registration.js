@@ -57,8 +57,33 @@ function confrimReg(){
     val =document.querySelector('input[name="session"]:checked').value;
     //console.log(val);
 
-    console.log("seletion:"+val);
-     fetch(`https://onepartyonembs.com.sg/api/update/${tm_nm}/${val}`,{
+    //console.log("seletion:"+val);
+
+    //update admin panel api
+    //get rowid
+    var tm_nm = 10010
+    var rowid;
+
+    fetch(`https://api.baserow.io/api/database/rows/table/104714/?user_field_names=true&filter__field_656863__contains=${tm_nm}`,
+    {
+        method:"GET",
+        headers:{"Authorization":"Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"}
+    })
+        .then(response=>response.json())
+        .then(json => {
+            console.log(json)
+            var results = json.results;
+            rowid = results[0].id
+            //console.log("this is id ",id)
+        })
+        .catch(err=>console.log('Request Failed',err));
+    //update selection in baserow
+
+    
+    
+
+    // calling update api
+     fetch(`https://onepartyonembs.com.sg/api/update/${tm_nm}/${val}/${rowid}`,{
         method:"POST",
         headers: {"Content-type": "application/json; charset=UTF-8"}
      })
@@ -98,4 +123,12 @@ function confrimReg(){
         alert("Email has been Sent!")
         location.href = "final.html";
      })
+
+
+
+
+
 }
+
+
+

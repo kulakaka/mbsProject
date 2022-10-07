@@ -16,9 +16,10 @@ const corsOptions = {
 app.use(cors(corsOptions)) // Use this after the variable declaration
 
 //post request
-app.post("/api/update/:id/:selection", (req, res) => {
+app.post("/api/update/:id/:selection/:rowid", (req, res) => {
         var id = parseInt(req.params.id);
         var selection = req.params.selection;
+        var rowid = parseInt(req.params.rowid)
         console.log(id);
         console.log(selection);
         try {
@@ -52,18 +53,20 @@ app.post("/api/update/:id/:selection", (req, res) => {
                 success: false,
             });
         }
-
-        // axios({
-        //     method: "PATCH",
-        //     url: `https://api.baserow.io/api/database/rows/table/104714/${id}/?user_field_names=true`,
-        //     headers: {
-        //       Authorization: "3glrmUodv0seXwUsYZKrYRqaNA68jGtc",
-        //       "Content-Type": "application/json"
-        //     },
-        //     data: {
-        //         "Selected Session":selection
-        //     }
-        //   })
+        
+        // update selection baserow for admin panel 
+        axios({
+            method: "PATCH",
+            url: `https://api.baserow.io/api/database/rows/table/104714/${rowid}/?user_field_names=true`,
+            headers: {
+              "Authorization": "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq",
+              "Content-Type": "application/json"
+            },
+            data: {
+                "Selected Session": selection
+            }
+          })
+          
 
 
     }
