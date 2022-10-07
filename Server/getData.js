@@ -60,7 +60,7 @@ app.post("/api/update/:id/:selection/:rowid", (req, res) => {
             method: "PATCH",
             url: `https://api.baserow.io/api/database/rows/table/104714/${rowid}/?user_field_names=true`,
             headers: {
-              "Authorization": "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq",
+              Authorization : "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq",
               "Content-Type": "application/json"
             },
             data: {
