@@ -61,7 +61,7 @@ function confrimReg(){
 
     //update admin panel api
     //get rowid
-    var tm_nm = 10010
+    
     var rowid;
 
     fetch(`https://api.baserow.io/api/database/rows/table/104714/?user_field_names=true&filter__field_656863__contains=${tm_nm}`,
@@ -74,10 +74,9 @@ function confrimReg(){
             console.log(json)
             var results = json.results;
             rowid = results[0].id
-            //console.log("this is id ",id)
+            console.log("this is id ",id)
         })
         .catch(err=>console.log('Request Failed',err));
-    //update selection in baserow
 
     
     
@@ -90,6 +89,9 @@ function confrimReg(){
      .then(response=>response.json())
      .then(json=>console.log(json))
      .catch(err=>console.log(err));
+
+
+     // call sms api
 
     if(val == "1")
     {
@@ -112,6 +114,8 @@ function confrimReg(){
      .then(json=>console.log(json))
      .catch(err=>console.log(err));
 
+
+    // send email function
      var params = {
         stuff_name :document.getElementById("name").value,
         stuff_email:document.getElementById("email").value,

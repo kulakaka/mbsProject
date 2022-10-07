@@ -22,6 +22,7 @@ app.post("/api/update/:id/:selection/:rowid", (req, res) => {
         var rowid = parseInt(req.params.rowid)
         console.log(id);
         console.log(selection);
+        console.log(rowid);
         try {
             // Open Database
             const db = new sqlite.Database("./Database/mbsStuff.db", sqlite.OPEN_READWRITE, (err) => {
