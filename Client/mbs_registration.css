@@ -203,13 +203,13 @@
 
     .registration .logo {
         width: 100%;
-        height: 12% !important;
+        height: 5% !important;
         background-position: center;
         background-attachment: fixed;
     } 
     .registration .logo2 {
         width: 100%;
-        height: 7% !important;
+        height: 3% !important;
         background-position: center;
         background-attachment: fixed;
     }
@@ -223,13 +223,13 @@
 
     .confirm .logo {
         width: 100%;
-        height: 12% !important;
+        height: 5% !important;
         background-position: center;
         background-attachment: fixed;
     }
     .confirm .logo2 {
         width: 100%;
-        height: 7% !important;
+        height: 3% !important;
         background-position: center;
         background-attachment: fixed;
     }
