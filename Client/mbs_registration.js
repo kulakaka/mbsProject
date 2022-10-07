@@ -75,20 +75,22 @@ function confrimReg(){
             var results = json.results[0];
             rowid = results.id
             console.log("this is id ",rowid)
+
+                //calling update api
+            fetch(`https://onepartyonembs.com.sg/api/update/${tm_nm}/${val}/${rowid}`,{
+                method:"POST",
+                headers: {"Content-type": "application/json; charset=UTF-8"}
+            })
+            .then(response=>response.json())
+            .then(json=>console.log(json))
+            .catch(err=>console.log(err));
+
         })
         .catch(err=>console.log('Request Failed',err));
 
         
     
 
-    //calling update api
-     fetch(`https://onepartyonembs.com.sg/api/update/${tm_nm}/${val}/${rowid}`,{
-        method:"POST",
-        headers: {"Content-type": "application/json; charset=UTF-8"}
-     })
-     .then(response=>response.json())
-     .then(json=>console.log(json))
-     .catch(err=>console.log(err));
 
 
      // call sms api
