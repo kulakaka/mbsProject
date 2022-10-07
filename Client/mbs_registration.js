@@ -72,16 +72,16 @@ function confrimReg(){
         .then(response=>response.json())
         .then(json => {
             console.log(json)
-            var results = json.results;
-            rowid = results[0].id
-            console.log("this is id ",id)
+            var results = json.results[0];
+            rowid = results.id
+            console.log("this is id ",rowid)
         })
         .catch(err=>console.log('Request Failed',err));
 
-    
+        
     
 
-    // calling update api
+    //calling update api
      fetch(`https://onepartyonembs.com.sg/api/update/${tm_nm}/${val}/${rowid}`,{
         method:"POST",
         headers: {"Content-type": "application/json; charset=UTF-8"}
