@@ -137,8 +137,11 @@
     font-family: Bahnschrift;
     font-size: 24px;
     color: white;
+    text-align: center;
 
 }
+
+
 
 .confirm .logo {
     width: 70%;
@@ -210,10 +213,6 @@
         background-attachment: fixed;
     }
 
-    .registration .box{
-        align-items: center;
-        width: 100%;
-    }
     .registration .box label{
        margin-left: 0px !important;
     }
@@ -231,11 +230,11 @@
         background-attachment: fixed;
     }
 
-    
 
     .confirm {
         top: 35%;
-        left: 50%;  
+        left: 50%; 
+        font-size: 16px; 
 
     }
 
@@ -251,5 +250,5 @@
         background-position: center;
         background-attachment: fixed;
     }
-   
+ 
 }
