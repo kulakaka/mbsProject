@@ -227,11 +227,8 @@
         background: rgba(255, 255, 255, 0.5);
     }
     
-    .registration .box input-session1{
-        width: auto;
-    }
-    .registration .box input-session2{
-        width: auto;
+    .registration .box {
+        padding: 9px 10px;
     }
 
     .registration .logo {
