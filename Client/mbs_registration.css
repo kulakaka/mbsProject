@@ -234,7 +234,8 @@
     .confirm {
         top: 35%;
         left: 50%; 
-        font-size: 16px; 
+        font-size: 22px; 
+        width: 80px;;
 
     }
 
