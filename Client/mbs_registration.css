@@ -217,6 +217,11 @@
     
         margin-right:10%;
     } */
+
+    .registration{
+        position: relative;
+        width: 80%;
+    }
     .registration input {
         font-family: Bahnschrift;
         font-size: 18px;
