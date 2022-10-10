@@ -152,9 +152,6 @@
     background-position: center;
     background-attachment: fixed;
 }
-.confirm .paragraph {
-  text-align: center;
-}
 
 .img {
     width: 600px;
@@ -220,7 +217,7 @@
     .registration .box label{
        margin-left: 0px !important;
     }
-        
+
     .registration .logo {
         width: 100%;
         height: 20% !important;
@@ -233,15 +230,12 @@
         background-position: center;
         background-attachment: fixed;
     }
-    .registration .box .input[type="radio"]{
-        margin-right: 0;
-    }
+
     
 
     .confirm {
         top: 35%;
-        left: 50%;
-       
+        left: 50%;  
 
     }
 
@@ -257,5 +251,7 @@
         background-position: center;
         background-attachment: fixed;
     }
-   
+   .confirm .box .paragraph{
+    font-size: 20px;
+   }
 }
