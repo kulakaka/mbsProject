@@ -225,9 +225,10 @@
         background-position: center;
         background-attachment: fixed;
     }
-    .registration .box input{
-        width: auto;
+    .registration .box .input[type="radio"]{
+        margin-right: 0;
     }
+    
 
     .confirm {
         top: 35%;
@@ -250,9 +251,8 @@
     }
     .confirm .box {
         text-align: center;
-        font-size: 40px;
     }
     .confirm .box .paragraph{
-        font-size: 40px;
+        font-size: 16px;
     }
 }
