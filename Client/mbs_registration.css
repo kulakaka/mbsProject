@@ -213,8 +213,9 @@
         background-attachment: fixed;
     }
 
-    .registration .box label{
-       margin-left: 0px !important;
+    .registration .box input[type=radio]{
+        margin-left:10%;
+        margin-right:10%;
     }
 
     .registration .logo {
