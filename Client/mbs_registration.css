@@ -84,7 +84,7 @@
 }
 
 .registration .logo {
-    width: 70%;
+    width: 75%;
     height: 0.5%;
     background-position: center;
     background-attachment: fixed;
@@ -233,7 +233,7 @@
     .confirm {
         top: 35%;
         left: 50%;
-        font-size: 14px;
+       
 
     }
 
@@ -253,6 +253,6 @@
         text-align: center;
     }
     .confirm .box .paragraph{
-        font-size: 16px;
+        font-size: 24px;
     }
 }
