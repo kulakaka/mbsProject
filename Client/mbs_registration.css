@@ -225,9 +225,12 @@
         background-position: center;
         background-attachment: fixed;
     }
+    .registration .box input{
+        width: auto;
+    }
 
     .confirm {
-        top: 30%;
+        top: 35%;
         left: 50%;
         font-size: 14px;
 
@@ -247,6 +250,9 @@
     }
     .confirm .box {
         text-align: center;
-        font-size: 16px;
+        font-size: 40px;
+    }
+    .confirm .box .paragraph{
+        font-size: 40px;
     }
 }
