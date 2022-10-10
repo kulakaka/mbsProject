@@ -90,6 +90,13 @@
     background-attachment: fixed;
 }
 
+.registration .logo2 {
+    width: 70%;
+    height: 0.5%;
+    background-position: center;
+    background-attachment: fixed;
+}
+
 .registration input {
     font-family: Bahnschrift;
     font-size: 18px;
@@ -139,7 +146,12 @@
     background-position: center;
     background-attachment: fixed;
 }
-
+.confirm .logo2 {
+    width: 70%;
+    height: 0.5%;
+    background-position: center;
+    background-attachment: fixed;
+}
 .confirm .paragraph {
   text-align: center;
 }
@@ -215,7 +227,7 @@
     }
 
     .confirm {
-        top: 50%;
+        top: 30%;
         left: 50%;
         font-size: 14px;
 
@@ -235,5 +247,6 @@
     }
     .confirm .box {
         text-align: center;
+        font-size: 16px;
     }
 }
