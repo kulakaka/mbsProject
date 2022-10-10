@@ -83,7 +83,7 @@
     left: 50%;
 }
 
-.registration .logo {
+.registration .logo { 
     width: 75%;
     height: 0.5%;
     background-position: center;
@@ -216,6 +216,13 @@
     .registration .box input[type=radio]{
         margin-left:10%;
         margin-right:10%;
+    }
+
+    .registration .box input-session1{
+        width: auto;
+    }
+    .registration .box input-session2{
+        width: auto;
     }
 
     .registration .logo {
