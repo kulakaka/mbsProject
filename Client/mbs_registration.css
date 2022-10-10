@@ -217,7 +217,16 @@
     
         margin-right:10%;
     } */
-
+    .registration input {
+        font-family: Bahnschrift;
+        font-size: 18px;
+        color: black;
+        text-align: center;
+        border-radius: 12px;
+        padding: 9px 30px;
+        background: rgba(255, 255, 255, 0.5);
+    }
+    
     .registration .box input-session1{
         width: auto;
     }
