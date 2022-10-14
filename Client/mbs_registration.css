@@ -353,10 +353,10 @@
 
 .box {
     display: flex;
-    flex-flow: row wrap;
     align-items: center;
     justify-content: center;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    flex-direction: column;
 }
 
     
