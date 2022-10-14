@@ -181,6 +181,7 @@
         width: 1740px;
         align-items: center;
         justify-content: center;
+        flex-direction: column;
     }
 
     
