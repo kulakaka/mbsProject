@@ -3,6 +3,7 @@ function pass() {
     localStorage.setItem("tm_number", tm_number)
     check_tm_number(tm_number)
 }
+  
 
 function check_tm_number(tm_number) {
     fetch(`https://onepartyonembs.com.sg/api/info/${tm_number}`,
@@ -13,7 +14,7 @@ function check_tm_number(tm_number) {
         .then(response => response.json())
         .then(json => {
                 console.log(json)
-                let tm = String(json[0].TeamMember);
+                let tm = String(json.TeamMember);
 
                 if (tm_number === tm) {
                     window.location.href = "mbs_registration.html";

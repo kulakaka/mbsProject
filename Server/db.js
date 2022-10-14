@@ -34,7 +34,6 @@
 //     console.log('Close the database connection.');
 //   });
 
-//const axios = require('axios').default;
 
 // axios({
 //   method: "GET",
@@ -55,3 +54,78 @@
 //       "Selected Session": 1
 //   }
 // })
+
+
+
+// axios({
+//     method: "GET",
+//     url: `https://api.baserow.io/api/database/rows/table/104714/${rowid}/?user_field_names=true`,
+//     headers: {
+//       Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq"
+//     }
+//   })
+//   .then(response=>{
+//     console.log(response.data)})
+
+// fetch(`https://api.baserow.io/api/database/rows/table/104714/?user_field_names=true&filter__field_656863__contains=${nm}`,
+// {
+//     method:"GET",
+//     headers:{"Authorization":"Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq"}
+// })
+//     .then(response=>response.json())
+//     .then(json => {
+//         console.log(json)
+//         var results = json.results[0];
+//         rowid = results.id;
+//         console.log("this is id ",rowid);
+//         return res.json({rowid:rowid});
+        
+//     })
+//     .catch(err);
+
+
+//var tm_nm = 10010;
+// axios({
+//     method: "GET",
+//     url: `https://api.baserow.io/api/database/rows/table/104714/?user_field_names=true&filter__field_656863__contains=10010`,
+//     headers: {
+//       Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
+//     }
+//   })
+ 
+//     //.then(response=>response.json())
+//     .then(json => {
+//         //console.log(json)
+//         var results = json.results;
+//         console.log(JSON.parse(JSON.stringify(results)))
+//         // rowid = results.id;
+//         // console.log("this is id ",rowid);
+//         // return res.json({rowid:rowid});
+        
+//     });
+// import fetch from 'node-fetch';
+// var rowid = 10311
+
+
+// fetch(`https://api.baserow.io/api/database/rows/table/104714/${rowid}/?user_field_names=true`,
+// {
+//     method:"GET",
+//     headers:{"Authorization":"Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"}
+// })
+// .then(response=>response.json())
+// .then(json =>{
+//     console.log(json)
+// });
+var rowid = 10311;
+import axios from 'axios';
+axios({
+    method: "PATCH",
+    url: `https://api.baserow.io/api/database/rows/table/104714/${rowid}/?user_field_names=true`,
+    headers: {
+    Authorization : "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq",
+    "Content-Type": "application/json"
+    },
+    data: {
+        "SelectedSession": 1
+    }
+})

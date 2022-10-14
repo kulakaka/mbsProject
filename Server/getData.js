@@ -1,13 +1,25 @@
-const express = require("express");
-const bodyParser = require("body-parser");
+import fetch from 'node-fetch';
+import axios from 'axios';
+import express from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import AppPage from 'twilio';
 
-const sqlite = require("sqlite3").verbose();
+//const express = require("express");
+//const bodyParser = require("body-parser");
+
+//const sqlite = require("sqlite3").verbose();
 const app = express();
-const res = require("express/lib/response");
-const axios = require('axios').default;
+//const res = require("express/lib/response");
+//const axios = require('axios').default;
+
+
+
 
 app.use(bodyParser.json());
-const cors = require("cors");
+//const cors = require("cors");
+//const { response } = require("express");
+//const { AppPage } = require("twilio/lib/rest/microvisor/v1/app");
 const corsOptions = {
     origin: '*',
     credentials: true,            //access-control-allow-credentials:true
@@ -17,37 +29,69 @@ const corsOptions = {
 app.use(cors(corsOptions)) // Use this after the variable declaration
 
 //post request
-app.post("/api/update/:id/:selection/:rowid", (req, res) => {
+app.post("/api/update/:id/:selection", (req, res) => {
+
         var id = parseInt(req.params.id);
         var selection = req.params.selection;
-        var rowid = parseInt(req.params.rowid)
+        var rowid;
         console.log(id);
         console.log(selection);
-        console.log(rowid);
+        
         try {
-            // Open Database
-            const db = new sqlite.Database("./Database/mbsStuff.db", sqlite.OPEN_READWRITE, (err) => {
-                if (err) return console.error(err);
-                console.log('Connected to database.');
-            });
-            // Execute query
-            const sql = `UPDATE stuff
-                         SET SelectedSession= ?
-                         WHERE TeamMember = ?`;
-            db.all(sql, [selection, id], (err, data) => {
+            // // Open Database
+            // const db = new sqlite.Database("./Database/mbsStuff.db", sqlite.OPEN_READWRITE, (err) => {
+            //     if (err) return console.error(err);
+            //     console.log('Connected to database.');
+            // });
+            // // Execute query
+            // const sql = `UPDATE stuff
+            //              SET SelectedSession= ?
+            //              WHERE TeamMember = ?`;
+            // db.all(sql, [selection, id], (err, data) => {
 
-                if (err) return res.json({status: 300, success: false, error: err});
+            //     if (err) return res.json({status: 300, success: false, error: err});
 
-                return res.json({status: 200, success: "Success input"});
+            //     return res.json({status: 200, success: "Success input"});
 
-            });
-            // Close database
-            db.close((err) => {
-                if (err)
-                    console.log(err.message);
-                else
-                    console.log('Close the database connection.')
-            });
+            // });
+            // // Close database
+            // db.close((err) => {
+            //     if (err)
+            //         console.log(err.message);
+            //     else
+            //         console.log('Close the database connection.')
+            // });
+
+            fetch(`https://api.baserow.io/api/database/rows/table/104714/?user_field_names=true&filter__field_656863__contains=${id}`,
+            {
+                method:"GET",
+                headers:{"Authorization":"Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"}
+            })
+                .then(response=>response.json())
+                .then(json => {
+                    //console.log(json)
+                    var results = json.results[0];
+                    rowid = results.id
+                    console.log("this is id from update api",rowid)
+    
+                   // update selection baserow for admin panel 
+                        axios({
+                            method: "PATCH",
+                            url: `https://api.baserow.io/api/database/rows/table/104714/${rowid}/?user_field_names=true`,
+                            headers: {
+                            Authorization : "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq",
+                            "Content-Type": "application/json"
+                            },
+                            data: {
+                                "SelectedSession": selection
+                            }
+                        })
+
+    
+                })
+                .catch(err=>console.log('Request Failed',err));
+
+
 
         } catch (error) {
             return res.json({
@@ -56,67 +100,90 @@ app.post("/api/update/:id/:selection/:rowid", (req, res) => {
             });
         }
         
-        // update selection baserow for admin panel 
-        axios({
-            method: "PATCH",
-            url: `https://api.baserow.io/api/database/rows/table/104714/${rowid}/?user_field_names=true`,
-            headers: {
-              Authorization : "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq",
-              "Content-Type": "application/json"
-            },
-            data: {
-                "Selected Session": selection
-            }
-          })
-          
-
-
     }
 )
 
-
 //get request
 
-app.get("/api/info/:id", (req, res) => {
+app.get("/api/info/:nm", (req, res) => {
 
-    var id = parseInt(req.params.id);
+    var nm = parseInt(req.params.nm);
+    var rowid;
 
     try {
-        // Open Database
-        const db = new sqlite.Database("./Database/mbsStuff.db", sqlite.OPEN_READWRITE, (err) => {
-            if (err) return console.error(err);
-            console.log('Connected to database.');
-        });
+        // // Open Database
+        // const db = new sqlite.Database("./Database/mbsStuff.db", sqlite.OPEN_READWRITE, (err) => {
+        //     if (err) return console.error(err);
+        //     console.log('Connected to database.');
+        // });
 
-        // Execute query
-        sql = `SELECT *
-               FROM stuff
-               WHERE TeamMember = ${id}`;
-        db.all(sql, [], (err, rows) => {
-            if (err) return res.json({status: 300, success: false, error: err});
+        // // Execute query
+        // sql = `SELECT *
+        //        FROM stuff
+        //        WHERE TeamMember = ${id}`;
+        // db.all(sql, [], (err, rows) => {
+        //     if (err) return res.json({status: 300, success: false, error: err});
 
-            if (rows.length < 1)
-                return res.json({status: 300, success: false, error: "no match"});
+        //     if (rows.length < 1)
+        //         return res.json({status: 300, success: false, error: "no match"});
 
-            //return res.json({status:200,data:rows,success:true});
-            return res.json(rows);
+        //     //return res.json({status:200,data:rows,success:true});
+        //     return res.json(rows);
+        //)}
 
+        //get rowid from baserow
+        fetch(`https://api.baserow.io/api/database/rows/table/104714/?user_field_names=true&filter__field_656863__contains=${nm}`,
+        {
+            method:"GET",
+            headers:{"Authorization":"Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"}
         })
+            .then(response=>response.json())
+            .then(json => {
+                //console.log(json)
+                var results = json.results[0];
+                rowid = results.id;
+                console.log("this is id ",rowid)
 
-        // Close database
-        db.close((err) => {
-            if (err)
-                console.log(err.message);
-            else
-                console.log('Close the database connection.')
-        });
-    } catch (error) {
+                        // get user info from baserow
+                fetch(`https://api.baserow.io/api/database/rows/table/104714/${rowid}/?user_field_names=true`,
+                {
+                    method:"GET",
+                    headers:{"Authorization":"Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"}
+                })
+                .then(response=>response.json())
+                .then(json =>{
+                    //console.log(json)
+                    return res.json(json)
+                });
+
+            })
+            .catch(err=>console.log('Request Failed',err));
+
+}
+
+    catch (error) {
         return res.json({
             status: 400,
             success: false,
         });
     }
 })
+
+
+        // Close database
+    //     db.close((err) => {
+    //         if (err)
+    //             console.log(err.message);
+    //         else
+    //             console.log('Close the database connection.')
+    //     });
+    // } catch (error) {
+    //     return res.json({
+    //         status: 400,
+    //         success: false,
+    //     });
+    // }
+// })
 
 
 //sms function
@@ -167,12 +234,6 @@ app.get("/api/sms/:phno/:name/:val", (req, res) => {
     }
 )
 
-// Optional fallthrough error handler
-app.use(function onError(err, req, res, next) {
-    // The error id is attached to `res.sentry` to be returned
-    // and optionally displayed to the user for support.
-    res.statusCode = 500;
-    res.end(res.sentry + "\n");
-});
+
 
 app.listen(3000);
