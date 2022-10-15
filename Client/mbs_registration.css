@@ -115,7 +115,6 @@
 .registration .reminder {
     font-size: 10px;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-    top:5%;
 
 }
 
@@ -381,11 +380,11 @@
         top: 30%;
         left: 50%;
         position: relative;
-        width: 85%;
+        width: 80%;
     }
 
     .main #tm_numebr {
-        padding: 9px 25px;
+        padding: 9px 40px;
     }
 
     .main .logo {
@@ -409,7 +408,7 @@
 
     .registration{
         position: relative;
-        width: 85%;
+        width: 80%;
     }
     .registration input {
         font-family: Bahnschrift;
@@ -417,11 +416,14 @@
         color: black;
         text-align: center;
         border-radius: 12px;
-        padding: 9px 25px;
+        padding: 9px 40px;
         background: rgba(255, 255, 255, 0.5);
     }
     
-  
+    .registration .box input{
+        padding: 5px 0px;
+    }
+
     .registration .logo {
         width: 100%;
         height: 20% !important;
@@ -441,7 +443,7 @@
         left: 50%; 
         font-size: 17px; 
         position: relative;
-        width: 100%;
+        width: 80%;
 
     }
 
@@ -458,29 +460,4 @@
         background-attachment: fixed;
     }
  
-    .confirm .p1{
-        width: 80%;
-    }
-
-    .confirm .p2{
-        width: 60%;
-
-    }
-}
-
-
-@media only screen and (max-width: 380px)
-{
-    .confirm {
-        top: 35%;
-        left: 50%; 
-        font-size: 17px; 
-        position: relative;
-        width: 85%;
-
-    }
-    .confirm .p2{
-        width: 63%;
-
-    }
 }
