@@ -7,7 +7,7 @@ function pass() {
   
 
 function check_tm_number(tm_number) {
-    fetch(`http://localhost:3000/api/info/${tm_number}`,
+    fetch(`https://onepartyonembs.com.sg/api/info/${tm_number}`,
         {
             method: "GET",
             header: {"Content-type": "application/json;charset=UTF-8"}
