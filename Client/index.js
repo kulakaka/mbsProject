@@ -11,7 +11,7 @@ function check_tm_number(tm_number) {
             method: "GET",
             header: {"Content-type": "application/json;charset=UTF-8"}
         })
-        //.then(response => response.json())
+        .then(response => response.json())
         .then(json => {
                 console.log(json)
                 let tm = String(json.TeamMember);
