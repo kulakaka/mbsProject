@@ -2,12 +2,12 @@ function pass() {
     let tm_number = document.getElementById('tm_numebr').value;
     localStorage.setItem("tm_number", tm_number)
     window.location.href = "mbs_registration.html";
-    //check_tm_number(tm_number)
+    check_tm_number(tm_number)
 }
   
 
 function check_tm_number(tm_number) {
-    fetch(`https://onepartyonembs.com.sg/api/info/${tm_number}`,
+    fetch(`http://localhost:3000/api/info/${tm_number}`,
         {
             method: "GET",
             header: {"Content-type": "application/json;charset=UTF-8"}

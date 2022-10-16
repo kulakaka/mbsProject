@@ -1,25 +1,25 @@
-import fetch from 'node-fetch';
-import axios from 'axios';
-import express from 'express';
-import bodyParser from 'body-parser';
-import cors from 'cors';
-import AppPage from 'twilio';
+// import fetch from 'node-fetch';
+// import axios from 'axios';
+// import express from 'express';
+// import bodyParser from 'body-parser';
+// import cors from 'cors';
+// import AppPage from 'twilio';
 
-//const express = require("express");
-//const bodyParser = require("body-parser");
+const express = require("express");
+const bodyParser = require("body-parser");
 
-//const sqlite = require("sqlite3").verbose();
+const sqlite = require("sqlite3").verbose();
 const app = express();
-//const res = require("express/lib/response");
-//const axios = require('axios').default;
+const res = require("express/lib/response");
+const axios = require('axios').default;
 
 
 
 
 app.use(bodyParser.json());
-//const cors = require("cors");
-//const { response } = require("express");
-//const { AppPage } = require("twilio/lib/rest/microvisor/v1/app");
+const cors = require("cors");
+const { response } = require("express");
+const { AppPage } = require("twilio/lib/rest/microvisor/v1/app");
 const corsOptions = {
     origin: '*',
     credentials: true,            //access-control-allow-credentials:true
@@ -62,16 +62,16 @@ app.post("/api/update/:id/:selection", (req, res) => {
             //         console.log('Close the database connection.')
             // });
 
-            fetch(`https://api.baserow.io/api/database/rows/table/104714/?user_field_names=true&filter__field_656863__contains=${id}`,
-            {
-                method:"GET",
-                headers:{"Authorization":"Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"}
-            })
-                .then(response=>response.json())
+            axios({
+                method: "GET",
+                url: `https://api.baserow.io/api/database/rows/table/104714/?user_field_names=true&filter__field_656863__contains=${id}`,
+                headers: {
+                  Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
+                }
+              })
                 .then(json => {
                     //console.log(json)
-                    var results = json.results[0];
-                    rowid = results.id
+                    var rowid = json.data.results[0].id
                     console.log("this is id from update api",rowid)
     
                    // update selection baserow for admin panel 
@@ -132,28 +132,30 @@ app.get("/api/info/:nm", (req, res) => {
         //)}
 
         //get rowid from baserow
-        fetch(`https://api.baserow.io/api/database/rows/table/104714/?user_field_names=true&filter__field_656863__contains=${nm}`,
-        {
-            method:"GET",
-            headers:{"Authorization":"Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"}
-        })
-            .then(response=>response.json())
+        axios({
+            method: "GET",
+            url: `https://api.baserow.io/api/database/rows/table/104714/?user_field_names=true&filter__field_656863__contains=${nm}`,
+            headers: {
+              Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
+            }
+          })
             .then(json => {
                 //console.log(json)
-                var results = json.results[0];
-                rowid = results.id;
-                console.log("this is id ",rowid)
+                var rowid = json.data.results[0].id
+                console.log("this is id from update api",rowid)
 
                         // get user info from baserow
-                fetch(`https://api.baserow.io/api/database/rows/table/104714/${rowid}/?user_field_names=true`,
-                {
-                    method:"GET",
-                    headers:{"Authorization":"Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"}
-                })
-                .then(response=>response.json())
+                axios({
+                    method: "GET",
+                    url: `https://api.baserow.io/api/database/rows/table/104714/${rowid}/?user_field_names=true`,
+                    headers: {
+                        Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
+                    }
+                    })
+                //.then(response=>response.json())
                 .then(json =>{
                     //console.log(json)
-                    return res.json(json)
+                    return res.json(json.data)
                 });
 
             })

@@ -116,16 +116,17 @@
 // .then(json =>{
 //     console.log(json)
 // });
-var rowid = 10311;
-import axios from 'axios';
+const axios = require('axios').default;
+
+var rowid = 10010;
+
 axios({
-    method: "PATCH",
+    method: "GET",
     url: `https://api.baserow.io/api/database/rows/table/104714/${rowid}/?user_field_names=true`,
     headers: {
-    Authorization : "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq",
-    "Content-Type": "application/json"
-    },
-    data: {
-        "SelectedSession": 1
+      Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
     }
-})
+  })
+  .then(response=>response.json())
+    .then(json => {
+        console.log(json.data)})
