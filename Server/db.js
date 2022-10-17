@@ -116,17 +116,17 @@
 // .then(json =>{
 //     console.log(json)
 // });
-const axios = require('axios').default;
+//const axios = require('axios').default;
 
-var rowid = 10010;
+// var rowid = 10010;
 
-axios({
-    method: "GET",
-    url: `https://api.baserow.io/api/database/rows/table/104714/${rowid}/?user_field_names=true`,
-    headers: {
-      Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
-    }
-  })
-  .then(response=>response.json())
-    .then(json => {
-        console.log(json.data)})
+// axios({
+//     method: "GET",
+//     url: `https://api.baserow.io/api/database/rows/table/104714/${rowid}/?user_field_names=true`,
+//     headers: {
+//       Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
+//     }
+//   })
+//   .then(response=>response.json())
+//     .then(json => {
+//         console.log(json.data)})

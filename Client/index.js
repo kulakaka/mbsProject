@@ -17,8 +17,10 @@ function check_tm_number(tm_number) {
                 let tm = String(json.TeamMember);
 
                 if (tm_number === tm) {
+                    console.log("match")
                     window.location.href = "mbs_registration.html";
                 } else {
+                    console.log("not match")
                     window.location.href = "https://onepartyonembs.com.sg/";
                 }
             }

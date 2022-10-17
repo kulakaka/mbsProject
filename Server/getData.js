@@ -154,12 +154,17 @@ app.get("/api/info/:nm", (req, res) => {
                     })
                 //.then(response=>response.json())
                 .then(json =>{
+                    console.log("return json from api getinfo")
                     //console.log(json)
                     return res.json(json.data)
                 });
 
             })
-            .catch(err=>console.log('Request Failed',err));
+            .catch(err=>{
+                console.log('Request Failed',err)
+                return res.json("Not Match")
+        
+        });
 
 }
 
