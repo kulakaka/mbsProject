@@ -132,11 +132,11 @@ function confrimReg(){
 
     if(val == "1")
     {
-        session_timeslot = " From 10:00am to 4:00pm";
+        session_timeslot = "(10:00am to 4:00pm)";
     }
     if(val == "2")
     {
-        session_timeslot = "From 6:00pm to 12:00am";
+        session_timeslot = "(6:00pm to 12:00am)";
     }
 
 
