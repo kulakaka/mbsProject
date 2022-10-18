@@ -327,14 +327,14 @@
 
 
 .confirm .logo {
-    width: 70%;
-    height: 15%;
+    width: 60%;
+    height: 13%;
     background-position: center;
     background-attachment: fixed;
 }   
 .confirm .logo2 {
-    width: 60%;
-    height: 5%;
+    width: 50%;
+    height: 3%;
     background-position: center;
     background-attachment: fixed;
 }
@@ -356,7 +356,7 @@
     justify-content: center;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
     flex-direction: column;
-    font-size: 20px;
+    font-size: 32px;
 
 }
 
