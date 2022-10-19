@@ -204,7 +204,7 @@ app.get("/api/sms/:phno/:name/:val", (req, res) => {
         var val = req.params.val;
 
         if (val == "1") {
-            session_timeslot = "(10:00am to 4:00pm)";
+            session_timeslot = "(11:00am to 4:00pm)";
         }
         if (val == "2") {
             session_timeslot = "(6:00pm to 12:00am)";
