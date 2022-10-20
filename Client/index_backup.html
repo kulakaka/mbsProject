@@ -2,6 +2,7 @@
 <head>
     <title>One Party One MBS</title>
     <link rel="stylesheet" href="mbs_registration.css">
+    <script type="text/javascript" src="index.js"></script>
 </head>
 <body>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -10,17 +11,11 @@
         <img class="logo" src="KV_Website_Separated_Logo-min.png" alt="One MBS One Party Logo">
         <img class="logo2" src="KV_Poster_Date-min.png" alt="One MBS One Party Logo Date 15th December 2022">
 
-        <h3 class="maintenance">
-            This site is currently under maintenance.<br/><br/>
-
-            Please visit this site on Sunday, 23 October 2022, to register for One Party, One MBS - Endless
-            Possibilities.<br/><br/>
-
-            We apologise for any inconvenience caused.<br/><br/>
-
-            Thank you.
-        </h3>
-
+        <form class="well form-horizontal" action="/register" method="post" id="register_form">
+            <input id="tm_numebr" name="tm_numebr" placeholder="Enter TM Number"
+                   type="text" size="15"><br/><br/>
+            <button class="button" type="button" onclick="pass()">Register</button>
+        </form>
     </center>
 </div>
 <!-- /.container -->
