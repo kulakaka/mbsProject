@@ -66,23 +66,23 @@ function searchinfo(nm)
                 // var email = json.Email;
                 var tm = json.TeamMember;
                 // var contact = json.PhoneNo;
-                // var selection = json.SelectedSession;
+                var selection = json.SelectedSession;
 
                 //document.getElementById("name").setAttribute('value',name)
                 document.getElementById('Department').setAttribute('value',Department)
                 //document.getElementById('email').setAttribute('value',email)
                 document.getElementById('tm_numebr').setAttribute('value',tm)
                 //document.getElementById('contact_no').setAttribute('value',contact)
-                //radiobtn1 = document.getElementById("session1");
-                //radiobtn2 = document.getElementById("session2");
+                radiobtn1 = document.getElementById("session1");
+                radiobtn2 = document.getElementById("session2");
 
-                // if (selection == "1"){
+                if (selection == "1"){
 
-                //     radiobtn1.checked = true;
-                // }
-                // if (selection == "2"){
-                //     radiobtn2.checked = true;
-                // }     
+                    radiobtn1.checked = true;
+                }
+                if (selection == "2"){
+                    radiobtn2.checked = true;
+                }     
             })
             .catch(err=>console.log(err));
 }
@@ -166,9 +166,6 @@ function confrimReg(){
         alert("Email has been Sent!")
         location.href = "final.html";
      })
-
-
-
 
 
 }

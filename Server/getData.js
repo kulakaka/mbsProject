@@ -72,7 +72,7 @@ app.post("/api/update/:id/:selection", (req, res) => {
                 .then(json => {
                     //console.log(json)
                     var rowid = json.data.results[0].id
-                    console.log("this is id from update api",rowid)
+                    //console.log("this is id from update api",rowid)
     
                    // update selection baserow for admin panel 
                         axios({
@@ -136,8 +136,8 @@ app.get("/api/info/:nm", (req, res) => {
         axios({
             method: "GET",
             //use staffinfo table for retreive data.
-            //url: `https://api.baserow.io/api/database/rows/table/104714/?user_field_names=true&filter__field_656863__contains=${nm}`,
-            url: `https://api.baserow.io/api/database/rows/table/108961/?user_field_names=true&filter__field_687023__contains=${nm}`,
+            url: `https://api.baserow.io/api/database/rows/table/104714/?user_field_names=true&filter__field_656863__contains=${nm}`,
+            //url: `https://api.baserow.io/api/database/rows/table/108961/?user_field_names=true&filter__field_687023__contains=${nm}`,
             headers: {
               Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
             }
@@ -150,8 +150,8 @@ app.get("/api/info/:nm", (req, res) => {
                         // get user info from baserow
                 axios({
                     method: "GET",
-                    //url: `https://api.baserow.io/api/database/rows/table/104714/${rowid}/?user_field_names=true`,
-                    url: `https://api.baserow.io/api/database/rows/table/108961/${rowid}/?user_field_names=true`,
+                    url: `https://api.baserow.io/api/database/rows/table/104714/${rowid}/?user_field_names=true`,
+                    //url: `https://api.baserow.io/api/database/rows/table/108961/${rowid}/?user_field_names=true`,
                     headers: {
                         Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
                     }
@@ -168,7 +168,7 @@ app.get("/api/info/:nm", (req, res) => {
                 console.log('Request Failed',err)
                 return res.json("Not Match")
         
-        });
+        }); 
 
 }
 
