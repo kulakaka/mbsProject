@@ -30,12 +30,15 @@ function check_tm_number(tm_number) {
                 }
             }
         )
-        .catch(
-            (error) => {
-                
-                console.log("Error occur",error);
-                window.location.href = "https://onepartyonembs.com.sg/";
-            });
+        .catch(err=>{
+            console.log(err)
+            window.location.href = "https://onepartyonembs.com.sg/";
+        });
+        // .catch(
+        //     (error) => {
+        //         console.log("Error occur",error);
+        //         window.location.href = "https://onepartyonembs.com.sg/";
+        //     });
 
     }
     else{
