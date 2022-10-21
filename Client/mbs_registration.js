@@ -93,11 +93,15 @@ function searchinfo(nm)
         
 
 function confrimReg(){
-    var val;
+   
     var tm_nm = document.getElementById("tm_numebr").value;
 
-    val =document.querySelector('input[name="session"]:checked').value;
+    var val =document.querySelector('input[name="session"]:checked').value;
 
+    var dep = document.getElementById("Department").value;
+    var email = document.getElementById("email").value;
+    var phno = document.getElementById("contact_no").value
+    var name = document.getElementById("name").value
 
     //console.log(val);
 
@@ -120,7 +124,7 @@ function confrimReg(){
     //         console.log("this is id ",rowid)
 
                 //calling update api
-            fetch(`https://onepartyonembs.com.sg/api/update/${tm_nm}/${val}`,{
+            fetch(`https://onepartyonembs.com.sg/api/update/${tm_nm}/${val}/${phon}/${dep}/${email}/${name}`,{
                 method:"POST",
                 headers: {"Content-type": "application/json; charset=UTF-8"}
             })

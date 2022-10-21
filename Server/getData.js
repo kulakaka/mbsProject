@@ -24,10 +24,14 @@ const corsOptions = {
 app.use(cors(corsOptions)) // Use this after the variable declaration
 
 //post request
-app.post("/api/update/:id/:selection", (req, res) => {
+app.post("/api/update/:id/:selection/:phno/:dep/:email/:name", (req, res) => {
 
         var id = parseInt(req.params.id);
         var selection = req.params.selection;
+        var phno = req.params.phno;
+        var dep = req.params.dep;
+        var email = req.params.email;
+        var name = req.params.name;
         var rowid;
         console.log(id);
         console.log(selection);
@@ -59,7 +63,7 @@ app.post("/api/update/:id/:selection", (req, res) => {
 
             axios({
                 method: "GET",
-                url: `https://api.baserow.io/api/database/rows/table/104714/?user_field_names=true&filter__field_656863__contains=${id}`,
+                url: `https://api.baserow.io/api/database/rows/table/109026/?user_field_names=true&filter__field_687419__contains=${id}`,
                 headers: {
                   Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
                 }
@@ -72,14 +76,19 @@ app.post("/api/update/:id/:selection", (req, res) => {
                    // update selection baserow for admin panel 
                         axios({
                             method: "PATCH",
-                            url: `https://api.baserow.io/api/database/rows/table/104714/${rowid}/?user_field_names=true`,
+                            url: `https://api.baserow.io/api/database/rows/table/109026/${rowid}/?user_field_names=true`,
             
                             headers: {
                             Authorization : "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq",
                             "Content-Type": "application/json"
                             },
                             data: {
-                                "SelectedSession": selection
+                                "SelectedSession": selection,
+                                "Email":email,
+                                "PhoneNo":phno,
+                                "Name":name,
+                                "Department":dep
+                                
                             }
                         })
 
