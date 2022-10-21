@@ -26,24 +26,20 @@ function check_tm_number(tm_number) {
                     window.location.href = "mbs_registration.html";
                 } else {
                     console.log("not match")
-                    //window.location.href = "https://onepartyonembs.com.sg/index_backup.html";
+                    window.location.href = "https://onepartyonembs.com.sg";
                 }
             }
         )
         .catch(err=>{
             console.log(err)
-            //window.location.href = "https://onepartyonembs.com.sg/index_backup.html";
+            window.location.href = "https://onepartyonembs.com.sg";
         });
-        // .catch(
-        //     (error) => {
-        //         console.log("Error occur",error);
-        //         window.location.href = "https://onepartyonembs.com.sg/";
-        //     });
+
 
     }
     else{
         console.log("not match 2")
-        //window.location.href = "https://onepartyonembs.com.sg/index_backup.html"
+        window.location.href = "https://onepartyonembs.com.sg"
     }
 
 
