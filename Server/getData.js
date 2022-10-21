@@ -110,7 +110,7 @@ app.get("/api/info/:nm", (req, res) => {
 
     var nm = parseInt(req.params.nm);
     var rowid;
-
+    console.log("getinfo api")
     try {
         // // Open Database
         // const db = new sqlite.Database("./Database/mbsStuff.db", sqlite.OPEN_READWRITE, (err) => {
@@ -136,8 +136,8 @@ app.get("/api/info/:nm", (req, res) => {
         axios({
             method: "GET",
             //use staffinfo table for retreive data.
-            url: `https://api.baserow.io/api/database/rows/table/104714/?user_field_names=true&filter__field_656863__contains=${nm}`,
-            //url: `https://api.baserow.io/api/database/rows/table/108961/?user_field_names=true&filter__field_687023__contains=${nm}`,
+            //url: `https://api.baserow.io/api/database/rows/table/104714/?user_field_names=true&filter__field_656863__contains=${nm}`,
+            url: `https://api.baserow.io/api/database/rows/table/108961/?user_field_names=true&filter__field_687023__contains=${nm}`,
             headers: {
               Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
             }
