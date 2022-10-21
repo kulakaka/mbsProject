@@ -116,7 +116,7 @@
 // .then(json =>{
 //     console.log(json)
 // });
-//const axios = require('axios').default;
+const axios = require('axios').default;
 
 // var rowid = 10010;
 
@@ -130,3 +130,4 @@
 //   .then(response=>response.json())
 //     .then(json => {
 //         console.log(json.data)})
+
