@@ -123,19 +123,55 @@ function confrimReg(){
     //         rowid = results.id
     //         console.log("this is id ",rowid)
 
-                //calling update api
-            fetch(`https://onepartyonembs.com.sg/api/update/${tm_nm}/${val}/${phno}/${dep}/${email}/${name}/${tm_nm}`,{
-                method:"POST",
-                headers: {"Content-type": "application/json; charset=UTF-8"}
-            })
-            .then(response=>response.json())
-            //.then(json=>console.log(json))
-            .catch(err=>console.log(err));
+    if(phno.length==0)
+    {
+        console.log("Without phonenumber");
+        //calling update api
+          fetch(`https://onepartyonembs.com.sg/api/updatenopho/${tm_nm}/${val}/${dep}/${email}/${name}`,{
+            method:"POST",
+            headers: {"Content-type": "application/json; charset=UTF-8"}
+        })
+        .then(response=>response.json())
+        //.then(json=>console.log(json))
+        .catch(err=>console.log(err));
 
-        // })
-        // .catch(err=>console.log('Request Failed',err));
+        if(val == "1")
+        {
+            session_timeslot = "(11:00am to 4:00pm)";
+        }
+        if(val == "2")
+        {
+            session_timeslot = "(6:00pm to 12:00am)";
+        }
+    
+
+            // send email function
+            
+        var params = {
+            stuff_name :document.getElementById("name").value,
+            stuff_email:document.getElementById("email").value,
+            session:val,
+            session_timeslot:session_timeslot,
+            url:"https://www.onepartyonembs.com.sg/index"
+        }
+        emailjs.send("service_b6rb00e","template_r8kfpav",params).then(function (res){
+            alert("Email has been Sent!")
+            location.href = "final.html";
+        })
 
 
+    }
+    else{
+        console.log(" with phonenumber");
+         //calling update api
+         fetch(`https://onepartyonembs.com.sg/api/update/${tm_nm}/${val}/${phno}/${dep}/${email}/${name}`,{
+            method:"POST",
+            headers: {"Content-type": "application/json; charset=UTF-8"}
+        })
+        .then(response=>response.json())
+        //.then(json=>console.log(json))
+        .catch(err=>console.log(err));
+        
 
      // call sms api
 
@@ -173,6 +209,9 @@ function confrimReg(){
         alert("Email has been Sent!")
         location.href = "final.html";
      })
+
+    }
+
 
 
 }

@@ -25,7 +25,7 @@ const corsOptions = {
 app.use(cors(corsOptions)) // Use this after the variable declaration
 
 //post request
-app.post("/api/update/:id/:selection/:phno/:dep/:email/:name/:tmn", (req, res) => {
+app.post("/api/update/:id/:selection/:phno/:dep/:email/:name", (req, res) => {
 
         var id = parseInt(req.params.id);
         var selection = req.params.selection;
@@ -92,10 +92,6 @@ app.post("/api/update/:id/:selection/:phno/:dep/:email/:name/:tmn", (req, res) =
                       })
 });
 
-
-
-
-
         } catch (error) {
             return res.json({
                 status: 400,
@@ -105,6 +101,88 @@ app.post("/api/update/:id/:selection/:phno/:dep/:email/:name/:tmn", (req, res) =
         
     }
 )
+
+
+
+//post request without phone number
+app.post("/api/updatenopho/:id/:selection/:dep/:email/:name", (req, res) => {
+
+    var id = parseInt(req.params.id);
+    var selection = req.params.selection;
+    var dep = req.params.dep;
+    var email = req.params.email;
+    var name = req.params.name;
+
+    var rowid;
+    console.log(id);
+    console.log(selection);
+    
+    try {
+
+        axios({
+            method: "GET",
+            url: `https://api.baserow.io/api/database/rows/table/109032/?user_field_names=true&filter__field_687456__contains=${id}`,
+            headers: {
+              Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
+            }
+          })
+            .then(json => {
+                //console.log(json)
+                var rowid = json.data.results[0].id
+                // update selection baserow for admin panel 
+                     axios({
+                         method: "PATCH",
+                         url: `https://api.baserow.io/api/database/rows/table/109032/${rowid}/?user_field_names=true`,
+         
+                         headers: {
+                         Authorization : "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq",
+                         "Content-Type": "application/json"
+                         },
+                         data: {
+                             "SelectedSession": selection,
+                             "Email":email,
+                             "Name":name,
+                             "Department":dep,
+                             
+
+                             
+                         }
+                     })
+            
+                 }
+    
+            )
+            .catch(err=>{                  
+                axios({
+                    method: "POST",
+                    url: "https://api.baserow.io/api/database/rows/table/109032/?user_field_names=true",
+                    headers: {
+                      Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq",
+                      "Content-Type": "application/json"
+                    },
+                    data: {
+                      "TeamMember": tm_nm,
+                      "Name": name,
+                      "Department": dep,
+                      "Email": email,
+                      "SelectedSession": selection,
+                      "PhoneNo":""
+                    }
+                  })
+});
+
+
+
+    } catch (error) {
+        return res.json({
+            status: 400,
+            success: false,
+        });
+    }
+    
+}
+)
+
 
 //get request
 
