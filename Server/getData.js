@@ -143,30 +143,32 @@ app.get("/api/info/:nm", (req, res) => {
             }
           })
             .then(json => {
+                       //console.log(json.data.results[0])
+                  return res.json(json.data.results[0])
                 //console.log(json)
-                var rowid = json.data.results[0].id
-                console.log("this is id from update api",rowid)
+                //var rowid = json.data.results[0].id
+                //console.log("this is id from update api",rowid)
                 
-                       // get user info from baserow
-                axios({
-                    method: "GET",
-                    url: `https://api.baserow.io/api/database/rows/table/104714/${rowid}/?user_field_names=true`,
-                    //url: `https://api.baserow.io/api/database/rows/table/108961/${rowid}/?user_field_names=true`,
-                    headers: {
-                        Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
-                    }
-                    })
-                //.then(response=>response.json())
-                .then(json =>{
-                    console.log("return json from api getinfo")
-                    //console.log(json)
-                    return res.json(json.data)
-                });
+                //        // get user info from baserow
+                // axios({
+                //     method: "GET",
+                //     //url: `https://api.baserow.io/api/database/rows/table/104714/${rowid}/?user_field_names=true`,
+                //     //url: `https://api.baserow.io/api/database/rows/table/108961/${rowid}/?user_field_names=true`,
+                //     headers: {
+                //         Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
+                //     }
+                //     })
+                // //.then(response=>response.json())
+                // .then(json =>{
+                //     console.log("return json from api getinfo")
+                //     //console.log(json)
+                //     return res.json(json.data)
+                // });
 
             })
             .catch(err=>{
                 console.log('Request Failed',err)
-                return res.json("Not Match")
+                return res.json("Not Match from server")
         
         }); 
 
