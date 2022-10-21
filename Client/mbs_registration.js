@@ -52,7 +52,7 @@ function searchinfo(nm)
 
         
 
-            fetch(`http://localhost:3000/api/info/${nm}`,
+            fetch(`https://onepartyonembs.com.sg/api/info/${nm}`,
             {
                 method:"GET",
                 header:{"Content-type": "application/json;charset=UTF-8"}
@@ -117,7 +117,7 @@ function confrimReg(){
     //         console.log("this is id ",rowid)
 
                 //calling update api
-            fetch(`http://localhost:3000/api/update/${tm_nm}/${val}`,{
+            fetch(`https://onepartyonembs.com.sg/api/update/${tm_nm}/${val}`,{
                 method:"POST",
                 headers: {"Content-type": "application/json; charset=UTF-8"}
             })
@@ -145,7 +145,7 @@ function confrimReg(){
     var phno = document.getElementById("contact_no").value
     var name = document.getElementById("name").value
 
-    fetch(`http://localhost:3000/api/sms/${phno}/${name}/${val}`,{
+    fetch(`https://onepartyonembs.com.sg/api/sms/${phno}/${name}/${val}`,{
         method:"GET",
         headers: {"Content-type": "application/json; charset=UTF-8"}
      })
