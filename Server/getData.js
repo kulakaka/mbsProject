@@ -33,7 +33,6 @@ app.post("/api/update/:id/:selection/:phno/:dep/:email/:name", (req, res) => {
         var dep = req.params.dep;
         var email = req.params.email;
         var name = req.params.name;
-        var tm_nm = req.params.tmn;
         var rowid;
         console.log(id);
         console.log(selection);
@@ -64,7 +63,8 @@ app.post("/api/update/:id/:selection/:phno/:dep/:email/:name", (req, res) => {
                                  "Email":email,
                                  "PhoneNo":phno,
                                  "Name":name,
-                                 "Department":dep
+                                 "Department":dep,
+                                 "TeamMember":id
                                  
                              }
                          })
@@ -82,7 +82,7 @@ app.post("/api/update/:id/:selection/:phno/:dep/:email/:name", (req, res) => {
                           "Content-Type": "application/json"
                         },
                         data: {
-                          "TeamMember": tm_nm,
+                          "TeamMember": id,
                           "Name": name,
                           "Department": dep,
                           "Email": email,
