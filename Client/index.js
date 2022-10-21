@@ -11,7 +11,7 @@ function check_tm_number(tm_number) {
     let tmn = parseInt(tm_number);
     if(tmn>=810000 && tmn <=845000)
     {
-        fetch(`https://onepartyonembs.com.sg/api/info/${tm_number}`,
+        fetch(`https://onepartyonembs.com.sg/api/info/${tmn}`,
         {
             method: "GET",
             header: {"Content-type": "application/json;charset=UTF-8"}
