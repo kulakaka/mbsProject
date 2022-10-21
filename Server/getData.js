@@ -146,8 +146,8 @@ app.get("/api/info/:nm", (req, res) => {
                 //console.log(json)
                 var rowid = json.data.results[0].id
                 console.log("this is id from update api",rowid)
-
-                        // get user info from baserow
+                
+                       // get user info from baserow
                 axios({
                     method: "GET",
                     url: `https://api.baserow.io/api/database/rows/table/104714/${rowid}/?user_field_names=true`,
