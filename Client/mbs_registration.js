@@ -184,7 +184,6 @@ function confrimReg(){
         session_timeslot = "(6:00pm to 12:00am)";
     }
 
-
     var phno = document.getElementById("contact_no").value
     var name = document.getElementById("name").value
 
