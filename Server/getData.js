@@ -161,7 +161,7 @@ app.post("/api/updatenopho/:id/:selection/:dep/:email/:name", (req, res) => {
                       "Content-Type": "application/json"
                     },
                     data: {
-                      "TeamMember": tm_nm,
+                      "TeamMember": id,
                       "Name": name,
                       "Department": dep,
                       "Email": email,
