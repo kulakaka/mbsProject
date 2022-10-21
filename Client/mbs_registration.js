@@ -124,7 +124,7 @@ function confrimReg(){
     //         console.log("this is id ",rowid)
 
                 //calling update api
-            fetch(`https://onepartyonembs.com.sg/api/update/${tm_nm}/${val}/${phon}/${dep}/${email}/${name}`,{
+            fetch(`https://onepartyonembs.com.sg/api/update/${tm_nm}/${val}/${phno}/${dep}/${email}/${name}`,{
                 method:"POST",
                 headers: {"Content-type": "application/json; charset=UTF-8"}
             })
