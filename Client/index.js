@@ -6,7 +6,12 @@ function pass() {
   
 
 function check_tm_number(tm_number) {
-    fetch(`https://onepartyonembs.com.sg/api/info/${tm_number}`,
+    //check number if in the range
+
+    let tmn = parseInt(tm_number);
+    if(tmn>=810000 && tmn <=845000)
+    {
+        fetch(`https://onepartyonembs.com.sg/api/info/${tm_number}`,
         {
             method: "GET",
             header: {"Content-type": "application/json;charset=UTF-8"}
@@ -30,4 +35,13 @@ function check_tm_number(tm_number) {
                 console.error('Error:', error);
                 window.location.href = "https://onepartyonembs.com.sg/";
             });
+
+    }
+    else{
+        //console.log("out range")
+        window.location.href = "https://onepartyonembs.com.sg/"
+    }
+
+
+
 }
