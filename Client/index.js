@@ -32,7 +32,7 @@ function check_tm_number(tm_number) {
         )
         .catch(
             (error) => {
-                console.error('Error:', error);
+                console.error("Error:", error);
                 window.location.href = "https://onepartyonembs.com.sg/";
             });
 
