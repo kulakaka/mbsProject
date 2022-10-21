@@ -9,6 +9,7 @@
 // https://onepartyonembs.com.sg/
 function searchinfo(nm)
 {
+    var tm = nm;
 
     //Get data from local server database
 
@@ -52,39 +53,41 @@ function searchinfo(nm)
 
         
 
-            fetch(`https://onepartyonembs.com.sg/api/info/${nm}`,
-            {
-                method:"GET",
-                header:{"Content-type": "application/json;charset=UTF-8"}
-            })
-            .then(response=>response.json())
-            .then(json=>{
+            // fetch(`https://onepartyonembs.com.sg/api/info/${nm}`,
+            // {
+            //     method:"GET",
+            //     header:{"Content-type": "application/json;charset=UTF-8"}
+            // })
+            // .then(response=>response.json())
+            // .then(json=>{
             
-                //console.log(json)
-                // var name = json.Name;
-                var Department = json.DepartmentName;
-                // var email = json.Email;
-                var tm = json.TeamMember;
-                // var contact = json.PhoneNo;
-                var selection = json.SelectedSession;
+            //     //console.log(json)
+            //     // var name = json.Name;
+            //     //var Department = json.DepartmentName;
+            //     // var email = json.Email;
+            //     var tm = json.TeamMember;
+            //     // var contact = json.PhoneNo;
+            //     var selection = json.SelectedSession;
 
-                //document.getElementById("name").setAttribute('value',name)
-                document.getElementById('Department').setAttribute('value',Department)
-                //document.getElementById('email').setAttribute('value',email)
-                document.getElementById('tm_numebr').setAttribute('value',tm)
-                //document.getElementById('contact_no').setAttribute('value',contact)
-                radiobtn1 = document.getElementById("session1");
-                radiobtn2 = document.getElementById("session2");
+            //     //document.getElementById("name").setAttribute('value',name)
+            //     //document.getElementById('Department').setAttribute('value',Department)
+            //     //document.getElementById('email').setAttribute('value',email)
+            //     document.getElementById('tm_numebr').setAttribute('value',tm)
+            //     //document.getElementById('contact_no').setAttribute('value',contact)
+            //     radiobtn1 = document.getElementById("session1");
+            //     radiobtn2 = document.getElementById("session2");
 
-                if (selection == "1"){
+            //     if (selection == "1"){
 
-                    radiobtn1.checked = true;
-                }
-                if (selection == "2"){
-                    radiobtn2.checked = true;
-                }     
-            })
-            .catch(err=>console.log(err));
+            //         radiobtn1.checked = true;
+            //     }
+            //     if (selection == "2"){
+            //         radiobtn2.checked = true;
+            //     }     
+            // })
+            // .catch(err=>console.log(err));
+
+            document.getElementById('tm_numebr').setAttribute('value',tm)
 }
 
         

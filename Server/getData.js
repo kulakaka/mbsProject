@@ -101,78 +101,78 @@ app.post("/api/update/:id/:selection", (req, res) => {
 
 //get request
 
-app.get("/api/info/:nm", (req, res) => {
+// app.get("/api/info/:nm", (req, res) => {
 
-    var nm = parseInt(req.params.nm);
-    var rowid;
-    console.log("getinfo api")
-    try {
-        // // Open Database
-        // const db = new sqlite.Database("./Database/mbsStuff.db", sqlite.OPEN_READWRITE, (err) => {
-        //     if (err) return console.error(err);
-        //     console.log('Connected to database.');
-        // });
+//     var nm = parseInt(req.params.nm);
+//     var rowid;
+//     console.log("getinfo api")
+//     try {
+//         // // Open Database
+//         // const db = new sqlite.Database("./Database/mbsStuff.db", sqlite.OPEN_READWRITE, (err) => {
+//         //     if (err) return console.error(err);
+//         //     console.log('Connected to database.');
+//         // });
 
-        // // Execute query
-        // sql = `SELECT *
-        //        FROM stuff
-        //        WHERE TeamMember = ${id}`;
-        // db.all(sql, [], (err, rows) => {
-        //     if (err) return res.json({status: 300, success: false, error: err});
+//         // // Execute query
+//         // sql = `SELECT *
+//         //        FROM stuff
+//         //        WHERE TeamMember = ${id}`;
+//         // db.all(sql, [], (err, rows) => {
+//         //     if (err) return res.json({status: 300, success: false, error: err});
 
-        //     if (rows.length < 1)
-        //         return res.json({status: 300, success: false, error: "no match"});
+//         //     if (rows.length < 1)
+//         //         return res.json({status: 300, success: false, error: "no match"});
 
-        //     //return res.json({status:200,data:rows,success:true});
-        //     return res.json(rows);
-        //)}
+//         //     //return res.json({status:200,data:rows,success:true});
+//         //     return res.json(rows);
+//         //)}
 
-        //get rowid from baserow
-        axios({
-            method: "GET",
-            //use staffinfo table for retreive data.
-            //url: `https://api.baserow.io/api/database/rows/table/104714/?user_field_names=true&filter__field_656863__contains=${nm}`,
-            url: `https://api.baserow.io/api/database/rows/table/108961/?user_field_names=true&filter__field_687023__contains=${nm}`,
-            headers: {
-              Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
-            }
-          })
-            .then(json => {
-                       //console.log(json.data.results[0])
-                  return res.json(json.data.results[0])
+//         //get rowid from baserow
+//         axios({
+//             method: "GET",
+//             //use staffinfo table for retreive data.
+//             //url: `https://api.baserow.io/api/database/rows/table/104714/?user_field_names=true&filter__field_656863__contains=${nm}`,
+//             url: `https://api.baserow.io/api/database/rows/table/108961/?user_field_names=true&filter__field_687023__contains=${nm}`,
+//             headers: {
+//               Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
+//             }
+//           })
+//             .then(json => {
+//                        //console.log(json.data.results[0])
+//                   return res.json(json.data.results[0])
       
-            })
-            .catch(err=>{
-                console.log('Request Failed',err)
-                return res.json("Not Match from server")
+//             })
+//             .catch(err=>{
+//                 console.log('Request Failed',err)
+//                 return res.json("Not Match from server")
         
-        }); 
+//         }); 
 
-}
+// }
 
-    catch (error) {
-        return res.json({
-            status: 400,
-            success: false,
-        });
-    }
-})
-
-
-        // Close database
-    //     db.close((err) => {
-    //         if (err)
-    //             console.log(err.message);
-    //         else
-    //             console.log('Close the database connection.')
-    //     });
-    // } catch (error) {
-    //     return res.json({
-    //         status: 400,
-    //         success: false,
-    //     });
-    // }
+//     catch (error) {
+//         return res.json({
+//             status: 400,
+//             success: false,
+//         });
+//     }
 // })
+
+
+//         // Close database
+//     //     db.close((err) => {
+//     //         if (err)
+//     //             console.log(err.message);
+//     //         else
+//     //             console.log('Close the database connection.')
+//     //     });
+//     // } catch (error) {
+//     //     return res.json({
+//     //         status: 400,
+//     //         success: false,
+//     //     });
+//     // }
+// // })
 
 
 //sms function
