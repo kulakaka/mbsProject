@@ -1,133 +1,166 @@
-// const sqlite3 = require('sqlite3').verbose();
+// API documentation
 
-
-// const db = new sqlite3.Database('./Server/Database/mbsProjet.db', (err) => {
-//     if (err) {
-//       return console.error(err.message);
-//     }
-//     console.log('Connected to database.');
-//   });
-
-
-// // const sql = "INSERT INTO stuffs(tmid,name,department,email,contact) VALUES (?,?,?,?,?)";
-
-// // db.run(sql,[10010,"Simon Fan","HUMAN RESOURCES","simonfans0928@gmail.com","84600021"],(err)=>
-// // {
-// //   if (err) return console.error(err.message);
-// //   console.log("A new row has been created");
-// // })
-
-
-// const sql = "SELECT * FROM stuffs";
-// //const sql = "UPDATE stuffs SET selection='1' WHERE tmid=10010;"
-// db.all(sql,[],(err,row)=>{
-//   if(err) return console.error(err.message);
-//   row.forEach((row)=>{
-//     console.log(row);  
-//   });
-// });
-
-//   db.close((err) => {
-//     if (err) {
-//       return console.error(err.message);
-//     }
-//     console.log('Close the database connection.');
-//   });
-
-
-// axios({
-//   method: "GET",
-//   url: "https://api.baserow.io/api/database/rows/table/104714/?user_field_names=true",
-//   headers: {
-//     Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
-//   }
-// })
-
-// axios({
-//   method: "PATCH",
-//   url: `https://api.baserow.io/api/database/rows/table/104714/10311/?user_field_names=true`,
-//   headers: {
-//     Authorization : "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq",
-//     "Content-Type": "application/json"
-//   },
-//   data: {
-//       "Selected Session": 1
-//   }
-// })
+// GET USER INFO 
 
 
 
-// axios({
-//     method: "GET",
-//     url: `https://api.baserow.io/api/database/rows/table/104714/${rowid}/?user_field_names=true`,
-//     headers: {
-//       Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq"
-//     }
-//   })
-//   .then(response=>{
-//     console.log(response.data)})
+//get request 
 
-// fetch(`https://api.baserow.io/api/database/rows/table/104714/?user_field_names=true&filter__field_656863__contains=${nm}`,
-// {
-//     method:"GET",
-//     headers:{"Authorization":"Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq"}
-// })
-//     .then(response=>response.json())
-//     .then(json => {
-//         console.log(json)
-//         var results = json.results[0];
-//         rowid = results.id;
-//         console.log("this is id ",rowid);
-//         return res.json({rowid:rowid});
+app.get("/api/info/:nm", (req, res) => {
+
+    var nm = parseInt(req.params.nm);
+    var rowid;
+    console.log("getinfo api")
+    try {
+      
+        //get rowid from baserow
+        axios({
+            method: "GET",
+            //use staffinfo table for retreive data.
+            url: `https://api.baserow.io/api/database/rows/table/108961/?user_field_names=true&filter__field_687023__contains=${nm}`,
+            headers: {
+              Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
+            }
+          })
+            .then(json => {
+                  return res.json(json.data.results[0])
+      
+            })
+            .catch(err=>{
+                console.log('Request Failed',err)
+                return res.json("Not Match from server")
         
-//     })
-//     .catch(err);
+        }); 
+
+}
+
+    catch (error) {
+        return res.json({
+            status: 400,
+            success: false,
+        });
+    }
+})
 
 
-//var tm_nm = 10010;
-// axios({
-//     method: "GET",
-//     url: `https://api.baserow.io/api/database/rows/table/104714/?user_field_names=true&filter__field_656863__contains=10010`,
-//     headers: {
-//       Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
-//     }
-//   })
- 
-//     //.then(response=>response.json())
-//     .then(json => {
-//         //console.log(json)
-//         var results = json.results;
-//         console.log(JSON.parse(JSON.stringify(results)))
-//         // rowid = results.id;
-//         // console.log("this is id ",rowid);
-//         // return res.json({rowid:rowid});
+
+
+//post request with phno 
+app.post("/api/update/:id/:selection/:phno/:dep/:email/:name", (req, res) => {
+
+        var id = parseInt(req.params.id);
+        var selection = req.params.selection;
+        var phno = req.params.phno;
+        var dep = req.params.dep;
+        var email = req.params.email;
+        var name = req.params.name;
+        var rowid;
+        console.log(id);
+        console.log(selection);
         
-//     });
-// import fetch from 'node-fetch';
-// var rowid = 10311
+        try {
+
+            axios({
+                method: "GET",
+                url: `https://api.baserow.io/api/database/rows/table/109032/?user_field_names=true&filter__field_687456__contains=${id}`,
+                headers: {
+                  Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
+                }
+              })
+                .then(json => {
+                    //console.log(json)
+                    var rowid = json.data.results[0].id
+                    // update selection baserow for admin panel 
+                         axios({
+                             method: "PATCH",
+                             url: `https://api.baserow.io/api/database/rows/table/109032/${rowid}/?user_field_names=true`,
+             
+                             headers: {
+                             Authorization : "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq",
+                             "Content-Type": "application/json"
+                             },
+                             data: {
+                                 "SelectedSession": selection,
+                                 "Email":email,
+                                 "PhoneNo":phno,
+                                 "Name":name,
+                                 "Department":dep,
+                                 "TeamMember":id
+                                 
+                             }
+                         })
+                
+                     }
+                
+                
+                )
+                .catch(err=>{                  
+                    axios({
+                        method: "POST",
+                        url: "https://api.baserow.io/api/database/rows/table/109032/?user_field_names=true",
+                        headers: {
+                          Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq",
+                          "Content-Type": "application/json"
+                        },
+                        data: {
+                          "TeamMember": id,
+                          "Name": name,
+                          "Department": dep,
+                          "Email": email,
+                          "PhoneNo": phno,
+                          "SelectedSession": selection
+                        }
+                      })
+});
+
+        } catch (error) {
+            return res.json({
+                status: 400,
+                success: false,
+            });
+        }
+        
+    }
+)
 
 
-// fetch(`https://api.baserow.io/api/database/rows/table/104714/${rowid}/?user_field_names=true`,
-// {
-//     method:"GET",
-//     headers:{"Authorization":"Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"}
-// })
-// .then(response=>response.json())
-// .then(json =>{
-//     console.log(json)
-// });
-//const axios = require('axios').default;
+// check if is valid user from register
 
-// var rowid = 10010;
 
-// axios({
-//     method: "GET",
-//     url: `https://api.baserow.io/api/database/rows/table/104714/${rowid}/?user_field_names=true`,
-//     headers: {
-//       Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
-//     }
-//   })
-//   .then(response=>response.json())
-//     .then(json => {
-//         console.log(json.data)})
 
+
+app.get("/api/info/:nm", (req, res) => {
+
+    var nm = parseInt(req.params.nm);
+    var rowid;
+    console.log("getinfo api")
+    try {
+      
+        //get rowid from baserow
+        axios({
+            method: "GET",
+            //use staffinfo table for retreive data.
+            url: `https://api.baserow.io/api/database/rows/table/108961/?user_field_names=true&filter__field_687023__contains=${nm}`,
+            headers: {
+              Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
+            }
+          })
+            .then(json => {
+                  return res.json(json.data.results[0])
+      
+            })
+            .catch(err=>{
+                console.log('Request Failed',err)
+                return res.json("Not Match from server")
+        
+        }); 
+
+}
+
+    catch (error) {
+        return res.json({
+            status: 400,
+            success: false,
+        });
+    }
+})

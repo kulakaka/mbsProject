@@ -225,3 +225,14 @@ Redeploy the server by executing the `redeploy_server.sh` script:
 1. - Check-in system
 2. - Lucky draw system
 3. - Alcohol Redempetion System
+
+# Combine Old & New Databse for SelectedSession
+*Steps*
+
+1. Download old database name as staff1.csv
+2. Download new database name as staffCombine.csv
+3. Check if these two field name are the same. Make changes if not.
+4. Run the python script. 
+```commandline
+python combine.py
+```
