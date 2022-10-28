@@ -110,7 +110,8 @@ function confrimReg(){
         session_timeslot:session_timeslot,
         url:"https://www.onepartyonembs.com.sg/index"
      }
-     emailjs.send("service_b6rb00e","template_r8kfpav",params).then(function (res){
+     emailjs.send("service_b6rb00e","template_r8kfpav",params)
+        .then(function (res){
         alert("Email has been Sent!")
         location.href = "final.html";
      })
