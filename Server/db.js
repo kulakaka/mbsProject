@@ -209,75 +209,75 @@ const axios = require('axios').default;
 // API for Redemption
 //check vaild user from checked in
 
-axios({
-    method: "GET",
-    url: `https://api.baserow.io/api/database/rows/table/109032/?user_field_names=true&filter__field_687456__contains=${nm}`,
-    headers: {
-        Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
-    }
-    })
-    .then(json => {
-        const date = new Date();
+// axios({
+//     method: "GET",
+//     url: `https://api.baserow.io/api/database/rows/table/109032/?user_field_names=true&filter__field_687456__contains=${nm}`,
+//     headers: {
+//         Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
+//     }
+//     })
+//     .then(json => {
+//         const date = new Date();
 
-        // check if is exising user in redemption table
-        axios({
-            method: "GET",
-            url: `https://api.baserow.io/api/database/rows/table/109803/?user_field_names=true&filter__field_692441__contains=${nm}`,
-            headers: {
-            Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
-            }
-        })
-        .then(json=>{
-            if (json.data.results[0].FristDrink==true &&json.data.results[0].SecondDrink==true )
-            {
-                return res.json("Your have been fully redeemed")
-            }
-            else{
+//         // check if is exising user in redemption table
+//         axios({
+//             method: "GET",
+//             url: `https://api.baserow.io/api/database/rows/table/109803/?user_field_names=true&filter__field_692441__contains=${nm}`,
+//             headers: {
+//             Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
+//             }
+//         })
+//         .then(json=>{
+//             if (json.data.results[0].FristDrink==true &&json.data.results[0].SecondDrink==true )
+//             {
+//                 return res.json("Your have been fully redeemed")
+//             }
+//             else{
 
-            axios({
-                method: "PATCH",
-                url: `https://api.baserow.io/api/database/rows/table/109803/?user_field_names=true&filter__field_692441__contains=${nm}`,
-                headers: {
-                  Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua",
-                  "Content-Type": "application/json"
-                },
-                data: {
-                  "TeamMember": nm,
-                  "Name": name,
-                  "SecondDrink": true,
-                  "SecondDrinkTime": date
+//             axios({
+//                 method: "PATCH",
+//                 url: `https://api.baserow.io/api/database/rows/table/109803/?user_field_names=true&filter__field_692441__contains=${nm}`,
+//                 headers: {
+//                   Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua",
+//                   "Content-Type": "application/json"
+//                 },
+//                 data: {
+//                   "TeamMember": nm,
+//                   "Name": name,
+//                   "SecondDrink": true,
+//                   "SecondDrinkTime": date
             
-                }
-              })
-            }
+//                 }
+//               })
+//             }
 
 
-        })
-        .catch(err=>{
-            axios({
-                method: "POST",
-                url: "https://api.baserow.io/api/database/rows/table/109803/?user_field_names=true",
-                headers: {
-                  Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua",
-                  "Content-Type": "application/json"
-                },
-                data: {
-                  "TeamMember": nm,
-                  "Name": name,
-                  "FristDrink":true,
-                  "FirstDrinkTime":date
+//         })
+//         .catch(err=>{
+//             axios({
+//                 method: "POST",
+//                 url: "https://api.baserow.io/api/database/rows/table/109803/?user_field_names=true",
+//                 headers: {
+//                   Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua",
+//                   "Content-Type": "application/json"
+//                 },
+//                 data: {
+//                   "TeamMember": nm,
+//                   "Name": name,
+//                   "FristDrink":true,
+//                   "FirstDrinkTime":date
                   
-                }
-              })
+//                 }
+//               })
 
-        })
+//         })
 
  
 
-    })
-    .catch(err=>{
-        console.log('Request Failed',err)
-        return res.json("Not Match from server")
+//     })
+//     .catch(err=>{
+//         console.log('Request Failed',err)
+//         return res.json("Not Match from server")
 
-}); 
+// }); 
 

@@ -37,7 +37,7 @@ app.post("/api/update/:id/:selection/:phno/:dep/:email/:name", (req, res) => {
             //check if StaffReg table contain exsiting user
             axios({
                 method: "GET",
-                url: `https://api.baserow.io/api/database/rows/table/109032/?user_field_names=true&filter__field_687456__contains=${id}`,
+                url: `https://api.baserow.io/api/database/rows/table/110728/?user_field_names=true&filter__field_699773__contains=${id}`,
                 headers: {
                   Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
                 }
@@ -48,7 +48,7 @@ app.post("/api/update/:id/:selection/:phno/:dep/:email/:name", (req, res) => {
                     // if has existing user then update info to baserow
                          axios({
                              method: "PATCH",
-                             url: `https://api.baserow.io/api/database/rows/table/109032/${rowid}/?user_field_names=true`,
+                             url: `https://api.baserow.io/api/database/rows/table/110728/${rowid}/?user_field_names=true`,
              
                              headers: {
                              Authorization : "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq",
@@ -72,7 +72,7 @@ app.post("/api/update/:id/:selection/:phno/:dep/:email/:name", (req, res) => {
                     // if StaffReg table cannot find the user then create a new row for it. 
                     axios({
                         method: "POST",
-                        url: "https://api.baserow.io/api/database/rows/table/109032/?user_field_names=true",
+                        url: "https://api.baserow.io/api/database/rows/table/110728/?user_field_names=true",
                         headers: {
                           Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq",
                           "Content-Type": "application/json"
@@ -115,7 +115,7 @@ app.post("/api/updatenopho/:id/:selection/:dep/:email/:name", (req, res) => {
         //check if StaffReg table contain exsiting user
         axios({
             method: "GET",
-            url: `https://api.baserow.io/api/database/rows/table/109032/?user_field_names=true&filter__field_687456__contains=${id}`,
+            url: `https://api.baserow.io/api/database/rows/table/110728/?user_field_names=true&filter__field_699773__contains=${id}`,
             headers: {
               Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
             }
@@ -126,7 +126,7 @@ app.post("/api/updatenopho/:id/:selection/:dep/:email/:name", (req, res) => {
                     // if has existing user then update info to baserow
                     axios({
                          method: "PATCH",
-                         url: `https://api.baserow.io/api/database/rows/table/109032/${rowid}/?user_field_names=true`,
+                         url: `https://api.baserow.io/api/database/rows/table/110728/${rowid}/?user_field_names=true`,
          
                          headers: {
                          Authorization : "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq",
@@ -148,7 +148,7 @@ app.post("/api/updatenopho/:id/:selection/:dep/:email/:name", (req, res) => {
                 // if StaffReg table cannot find the user then create a new row for it. 
                 axios({
                     method: "POST",
-                    url: "https://api.baserow.io/api/database/rows/table/109032/?user_field_names=true",
+                    url: "https://api.baserow.io/api/database/rows/table/110728/?user_field_names=true",
                     headers: {
                       Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq",
                       "Content-Type": "application/json"
