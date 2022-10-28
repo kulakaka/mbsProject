@@ -5,9 +5,9 @@ function pass() {
 }
   
 
+//check number if within the range from 810000 to 845000
 function check_tm_number(tm_number) {
-    //check number if in the range
-
+    
     let tmn = parseInt(tm_number);
     if(tmn>=810000 && tmn <=845000)
     {

@@ -1,16 +1,11 @@
 
-
+// define package
 const express = require("express");
 const bodyParser = require("body-parser");
-
-const sqlite = require("sqlite3").verbose();
+//const sqlite = require("sqlite3").verbose();
 const app = express();
 const res = require("express/lib/response");
 const axios = require('axios').default;
-
-
-
-
 app.use(bodyParser.json());
 const cors = require("cors");
 const { response } = require("express");
@@ -24,7 +19,9 @@ const corsOptions = {
 
 app.use(cors(corsOptions)) // Use this after the variable declaration
 
-//post request
+
+
+// API post with phone number
 app.post("/api/update/:id/:selection/:phno/:dep/:email/:name", (req, res) => {
 
         var id = parseInt(req.params.id);
@@ -33,12 +30,11 @@ app.post("/api/update/:id/:selection/:phno/:dep/:email/:name", (req, res) => {
         var dep = req.params.dep;
         var email = req.params.email;
         var name = req.params.name;
-        var rowid;
-        console.log(id);
-        console.log(selection);
+        // console.log(id);
+        // console.log(selection);
         
         try {
-
+            //check if StaffReg table contain exsiting user
             axios({
                 method: "GET",
                 url: `https://api.baserow.io/api/database/rows/table/109032/?user_field_names=true&filter__field_687456__contains=${id}`,
@@ -49,7 +45,7 @@ app.post("/api/update/:id/:selection/:phno/:dep/:email/:name", (req, res) => {
                 .then(json => {
                     //console.log(json)
                     var rowid = json.data.results[0].id
-                    // update selection baserow for admin panel 
+                    // if has existing user then update info to baserow
                          axios({
                              method: "PATCH",
                              url: `https://api.baserow.io/api/database/rows/table/109032/${rowid}/?user_field_names=true`,
@@ -64,7 +60,6 @@ app.post("/api/update/:id/:selection/:phno/:dep/:email/:name", (req, res) => {
                                  "PhoneNo":phno,
                                  "Name":name,
                                  "Department":dep,
-                                 "TeamMember":id
                                  
                              }
                          })
@@ -74,6 +69,7 @@ app.post("/api/update/:id/:selection/:phno/:dep/:email/:name", (req, res) => {
                 
                 )
                 .catch(err=>{                  
+                    // if StaffReg table cannot find the user then create a new row for it. 
                     axios({
                         method: "POST",
                         url: "https://api.baserow.io/api/database/rows/table/109032/?user_field_names=true",
@@ -104,7 +100,7 @@ app.post("/api/update/:id/:selection/:phno/:dep/:email/:name", (req, res) => {
 
 
 
-//post request without phone number
+//API post request without phone number
 app.post("/api/updatenopho/:id/:selection/:dep/:email/:name", (req, res) => {
 
     var id = parseInt(req.params.id);
@@ -112,13 +108,11 @@ app.post("/api/updatenopho/:id/:selection/:dep/:email/:name", (req, res) => {
     var dep = req.params.dep;
     var email = req.params.email;
     var name = req.params.name;
-
-    var rowid;
-    console.log(id);
-    console.log(selection);
+    // console.log(id);
+    // console.log(selection);
     
     try {
-
+        //check if StaffReg table contain exsiting user
         axios({
             method: "GET",
             url: `https://api.baserow.io/api/database/rows/table/109032/?user_field_names=true&filter__field_687456__contains=${id}`,
@@ -129,8 +123,8 @@ app.post("/api/updatenopho/:id/:selection/:dep/:email/:name", (req, res) => {
             .then(json => {
                 //console.log(json)
                 var rowid = json.data.results[0].id
-                // update selection baserow for admin panel 
-                     axios({
+                    // if has existing user then update info to baserow
+                    axios({
                          method: "PATCH",
                          url: `https://api.baserow.io/api/database/rows/table/109032/${rowid}/?user_field_names=true`,
          
@@ -144,8 +138,6 @@ app.post("/api/updatenopho/:id/:selection/:dep/:email/:name", (req, res) => {
                              "Name":name,
                              "Department":dep,
                              
-
-                             
                          }
                      })
             
@@ -153,6 +145,7 @@ app.post("/api/updatenopho/:id/:selection/:dep/:email/:name", (req, res) => {
     
             )
             .catch(err=>{                  
+                // if StaffReg table cannot find the user then create a new row for it. 
                 axios({
                     method: "POST",
                     url: "https://api.baserow.io/api/database/rows/table/109032/?user_field_names=true",
@@ -184,7 +177,7 @@ app.post("/api/updatenopho/:id/:selection/:dep/:email/:name", (req, res) => {
 )
 
 
-//sms function
+//sms function api
 app.get("/api/sms/:phno/:name/:val", (req, res) => {
 
         const accountSid = 'AC5903079836c0d20ab145562b6b5a0b41';
@@ -201,6 +194,7 @@ app.get("/api/sms/:phno/:name/:val", (req, res) => {
             session_timeslot = "(6:00pm to 12:00am)";
         }
 
+        // sms text
         var text = "Dear " + name + "\n" + "Your RSVP for One Party, One MBS – Endless Possibilities Session " + val +
             " is confirmed." + "\n" + "Date: 15 December 2022\n" + "Time: Session " + val + " " + session_timeslot +
             "\n" + "Venue: Sands Expo and Convention Centre, Level 5, Sands Grand Ballroom\n" +"\n"+"\n"+"GREATEST PARTY OF THE YEAR! "+" Gear up for One Party, One MBS – Endless Possibilities, a day filled with ENDLESS food, entertainment, fun & laughter" +"\n" +"\n"+

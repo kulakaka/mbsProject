@@ -1,12 +1,14 @@
 
-
+// get tm number from local storage
  window.onload = function(){
     var tmno = localStorage.getItem("tm_number")
    searchinfo(tmno)
-
 }
 // http://localhost:3000/
 // https://onepartyonembs.com.sg/
+
+
+// set tm number input value from the parameter
 function searchinfo(nm)
 {
     var tm = nm;
@@ -16,12 +18,11 @@ function searchinfo(nm)
 
         
 
+// pass input values to server
 function confrimReg(){
    
     var tm_nm = document.getElementById("tm_numebr").value;
-
     var val =document.querySelector('input[name="session"]:checked').value;
-
     var dep = document.getElementById("Department").value;
     var email = document.getElementById("email").value;
     var phno = document.getElementById("contact_no").value
@@ -29,17 +30,20 @@ function confrimReg(){
 
   
 
+
+//phone number is optional 
     if(phno.length==0)
     {
         console.log("Without phonenumber");
-        //calling update api
+        //calling nophno api
           fetch(`https://onepartyonembs.com.sg/api/updatenopho/${tm_nm}/${val}/${dep}/${email}/${name}`,{
             method:"POST",
             headers: {"Content-type": "application/json; charset=UTF-8"}
         })
         .then(response=>response.json())
-        //.then(json=>console.log(json))
         .catch(err=>console.log(err));
+
+
 
         if(val == "1")
         {
@@ -49,7 +53,8 @@ function confrimReg(){
         {
             session_timeslot = "(6:00pm to 12:00am)";
         }
-            // send email function   
+
+    // send email function   
         var params = {
             stuff_name :document.getElementById("name").value,
             stuff_email:document.getElementById("email").value,
@@ -62,11 +67,10 @@ function confrimReg(){
             location.href = "final.html";
         })
 
-
     }
     else{
         console.log(" with phonenumber");
-         //calling update api
+         //calling withphno api
          fetch(`https://onepartyonembs.com.sg/api/update/${tm_nm}/${val}/${phno}/${dep}/${email}/${name}`,{
             method:"POST",
             headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -77,7 +81,6 @@ function confrimReg(){
         
 
      // call sms api
-
     if(val == "1")
     {
         session_timeslot = "(11:00am to 4:00pm)";
