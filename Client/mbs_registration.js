@@ -29,7 +29,14 @@ function confrimReg(){
     var name = document.getElementById("name").value
 
   
+if(email.length==0 || tm_nm.length==0 || dep.length==0 || name.length==0)
+{
 
+    alert("Please fill up your infomation")
+    
+}
+
+else{
 
 //phone number is optional 
     if(phno.length==0)
@@ -64,7 +71,7 @@ function confrimReg(){
         }
         emailjs.send("service_b6rb00e","template_r8kfpav",params).then(function (res){
             alert("Email has been Sent!")
-            location.href = "final.html";
+            //location.href = "final.html";
         })
 
     }
@@ -113,12 +120,13 @@ function confrimReg(){
      emailjs.send("service_b6rb00e","template_r8kfpav",params)
         .then(function (res){
         alert("Email has been Sent!")
-        location.href = "final.html";
+        
      })
 
     }
+    location.href = "final.html";
 
-
+}
 
 }
 
