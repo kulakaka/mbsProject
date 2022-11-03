@@ -71,7 +71,7 @@ else{
         }
         emailjs.send("service_b6rb00e","template_r8kfpav",params).then(function (res){
             alert("Email has been Sent!")
-            //location.href = "final.html";
+            location.href = "final.html";
         })
 
     }
@@ -120,11 +120,11 @@ else{
      emailjs.send("service_b6rb00e","template_r8kfpav",params)
         .then(function (res){
         alert("Email has been Sent!")
-        
+        location.href = "final.html";
      })
 
     }
-    location.href = "final.html";
+    
 
 }
 
