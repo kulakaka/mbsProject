@@ -42,6 +42,8 @@ function check_tm_number(tm_number) {
     else{
         console.log("not match")
         window.location.href = "https://onepartyonembs.com.sg"
+        //window.location.href = "http://localhost:3000/index.html"
+
     }
 
 

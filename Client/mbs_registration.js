@@ -14,9 +14,10 @@ function searchinfo(nm)
     var tm = nm;
 
     document.getElementById('tm_numebr').setAttribute('value',tm)
+    
 }
+let click = false;
 
-        
 
 // pass input values to server
 function confrimReg(){
@@ -25,10 +26,12 @@ function confrimReg(){
     var val =document.querySelector('input[name="session"]:checked').value;
     var dep = document.getElementById("Department").value;
     var email = document.getElementById("email").value;
-    var phno = document.getElementById("contact_no").value
-    var name = document.getElementById("name").value
+    var phno = document.getElementById("contact_no").value;
+    var name = document.getElementById("name").value;
 
-  
+if (click == false)
+
+{
 if(email.length==0 || tm_nm.length==0 || dep.length==0 || name.length==0)
 {
 
@@ -36,7 +39,8 @@ if(email.length==0 || tm_nm.length==0 || dep.length==0 || name.length==0)
     
 }
 
-else{
+else
+{
 
 //phone number is optional 
     if(phno.length==0)
@@ -123,12 +127,14 @@ else{
         location.href = "final.html";
      })
 
-    }
-    
+    }   
+}
+ 
+click = true
 
 }
-
+else{
+    alert("Do not submit multiple times!")
+    click =false
 }
-
-
-
+}
