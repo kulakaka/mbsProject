@@ -11,6 +11,9 @@ const cors = require("cors");
 const { response } = require("express");
 const { AppPage } = require("twilio/lib/rest/microvisor/v1/app");
 const { jsonp } = require("express/lib/response");
+const multer = require("multer");
+const upload = multer({dest:"uploads/"});
+var fs = require('fs');
 const corsOptions = {
     origin: '*',
     credentials: true,            //access-control-allow-credentials:true
@@ -18,7 +21,7 @@ const corsOptions = {
 }
 
 app.use(cors(corsOptions)) // Use this after the variable declaration
-
+app.use(bodyParser.json());
 
 
 // API post with phone number
@@ -241,6 +244,20 @@ app.post("/api/luckydraw",  (req, res) => {
 })
 
 
+app.put("/api/tmdetection", upload.single("tmcard"),uploadFiles);
+
+
+function uploadFiles(req,res)
+{
+    //console.log(req.body);
+    //console.log(req.file);
+    scan(req.file.path);
+    res.json({message:"Successfully upload files"});
+}
+
+
+
+
 
 
 var totalnum;
@@ -332,6 +349,33 @@ function validationcheck(tm){
   
   }
 
+
+  async function scan(dataurl) {
+    // Imports the Google Cloud client library
+    const vision = require('@google-cloud/vision');
+  
+    // Creates a client
+    const client = new vision.ImageAnnotatorClient();
+  
+    // Performs label detection on the image file
+    const [result] = await client.textDetection(dataurl);
+    const detection = result.textAnnotations;
+    //console.log('Text:');
+    //detection.forEach(text => console.log(text.description));
+    console.log(detection[0].description)
+    var output = detection[0].description;
+    try {
+        fs.unlinkSync(dataurl);
+      
+        //console.log("Delete File successfully.");
+      } catch (error) {
+        console.log(error);
+      }
+
+
+    
+  }
+  
 
 app.listen(3000);
     

@@ -1,0 +1,32 @@
+button {
+    width: 120px;
+    padding: 10px;
+    display: block;
+    margin: 20px auto;
+    border: 2px solid #111111;
+    cursor: pointer;
+    background-color: white;
+}
+
+#start-camera {
+    margin-top: 50px;
+}
+
+#video {
+    display: none;
+    margin: 50px auto 0 auto;
+}
+
+#click-photo {
+    display: none;
+}
+
+#dataurl-container {
+    display: none;
+}
+
+#canvas {
+    display: block;
+    margin: 0 auto 20px auto;
+}
+
