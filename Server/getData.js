@@ -235,6 +235,7 @@ app.post("/api/luckydraw",  (req, res) => {
 
     try{
         draw()
+        return res.json({status: 200, success: true});
     }
     catch (error) {
         return res.json({
@@ -249,14 +250,43 @@ app.put("/api/tmdetection", upload.single("tmcard"),uploadFiles);
 
 
 
+app.post("/api/manualcheck/:tmnm",(req,res)=>{
+   
+        var nm = req.params.tmnm;
+        try
+        {
+            // if(OnSitecheckin(nm))
+            // {
+            // console.log("check true");
+            // return res.json({
+            //     status: 200, 
+            //     success: true
+            // });
+            // }
+            console.log(OnSitecheckin(nm))
+           
+        }
+        catch{
+            return res.json({
+                status: 400,
+                success: false
+            });
+        }
+ 
+  
+})
+
+
+
 var totalnum;
 let winnerindex;
 function draw()
-{
+{ 
  
+            //GET TOTAL COUNT OF USERS FROM CEHCKIN TABLE AND GET RAMDOM INDEX NUMBER
             axios({
             method: "GET",
-            url: "https://api.baserow.io/api/database/rows/table/112685/?user_field_names=true",
+            url: "https://api.baserow.io/api/database/rows/table/109802/?user_field_names=true",
             headers: {
                 Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq"
             }
@@ -268,10 +298,10 @@ function draw()
             winnerindex = Math.floor(Math.random()*totalnum-1) + 1;
 
             console.log("This is the winner",winnerindex);
-
+            //GET WINNER INFO 
             axios({
                 method: "GET",
-                url: `https://api.baserow.io/api/database/rows/table/112685/${winnerindex}/?user_field_names=true`,
+                url: `https://api.baserow.io/api/database/rows/table/109802/${winnerindex}/?user_field_names=true`,
                 headers: {
                 Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq"
                 }
@@ -283,6 +313,7 @@ function draw()
                     winnerDep = json.data.Department;
                     winnerEmail = json.data.Email;
                     luckydrawvalidationcheck(winnertm)
+                    //Check user if they are belong to hr department
                     if (winnerDep == "Human Resources" || winnerDep =="HR" || winnerDep =="Human Resource")
                     {
                         draw()
@@ -302,13 +333,23 @@ function draw()
                             "Email": winnerEmail
                             }
                         })
+                        .catch(err=>{
+                            console.log(err);
+                        })   
                     }
                 }
             )
+            .catch(err=>{
+                console.log(err);
+            })   
         }
-    )        
+    )
+    .catch(err=>{
+        console.log(err);
+    })        
 }
 
+//CHECK USER IF WIN BEFORE
 function luckydrawvalidationcheck(tm){
     var tmn = tm;
     axios({
@@ -359,7 +400,7 @@ function luckydrawvalidationcheck(tm){
     const detection = result.textAnnotations;
     //console.log('Text:');
     //detection.forEach(text => console.log(text.description));
-    console.log(detection[0].description)
+    //console.log(detection[0].description)
     var output = detection[0].description;
     var cleanoutput = output.replace(output[0],"");
     console.log("cleanedoutput",cleanoutput);
@@ -381,6 +422,17 @@ function luckydrawvalidationcheck(tm){
 
   function OnSitecheckin(output)
   {
+    //check checkin list prevent multiple check in
+    axios({
+        method: "GET",
+        url: `https://api.baserow.io/api/database/rows/table/109802/?user_field_names=true&filter__field_692434__contains=${output}`,
+        headers: {
+          Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
+        }
+      })
+      .then(json=>{
+
+    //get info from regsiter list
     axios({
         method: "GET",
         url: `https://api.baserow.io/api/database/rows/table/110728/?user_field_names=true&filter__field_699773__contains=${output}`,
@@ -389,6 +441,8 @@ function luckydrawvalidationcheck(tm){
         }
       })
         .then(json => {
+            //console.log(json.data)
+         
             axios({
                 method: "POST",
                 url: "https://api.baserow.io/api/database/rows/table/109802/?user_field_names=true",
@@ -398,21 +452,33 @@ function luckydrawvalidationcheck(tm){
                 },
                 data: {
                   "TeamMember": output,
-                  "Name": json.data.results.Name,
-                  "PhoneNo": json.data.results.PhoneNo,
-                  "Email": json.data.results.Email,
-                  "Department": json.data.results.Department
+                  "Name": json.data.results[0].Name,
+                  "PhoneNo": json.data.results[0].PhoneNo,
+                  "Email": json.data.results[0].Email,
+                  "Department": json.data.results[0].Department
                 }
-              })    
-             }
+              })
+              .then((response)=>{
+                //console.log(response);
+                console.log("good");
+               // checkstatus(true);
+               return Boolean(true);
+              })
+            }
         )
         .catch(err=>{                  
-            console.log(err)
-      
-
-  })}
-
-
+           console.log("errro1",err);
+           //checkstatus(false);
+           return Boolean(false);
+       })
+    })
+    .catch(err=>{
+        console.log("errro2",err);
+        //checkstatus(false);
+        return Boolean(false);
+    })
+   return "";
+}
 
 
 app.listen(3000);
