@@ -71,8 +71,9 @@ document.addEventListener('DOMContentLoaded', (ev)=>{
                 window.location.href = "checkin.html";
               })
               .catch((error) => {
-                console.error('Error:', error)
-                
+                console.error('Error:', error);
+                alert("User need to Register!");
+                window.location.href = "checkin.html";
         
         });
         

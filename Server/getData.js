@@ -14,6 +14,7 @@ const { jsonp } = require("express/lib/response");
 const multer = require("multer");
 const upload = multer({dest:"uploads/"});
 var fs = require('fs');
+const { checkServerIdentity } = require("tls");
 const corsOptions = {
     origin: '*',
     credentials: true,            //access-control-allow-credentials:true
@@ -247,18 +248,6 @@ app.post("/api/luckydraw",  (req, res) => {
 app.put("/api/tmdetection", upload.single("tmcard"),uploadFiles);
 
 
-function uploadFiles(req,res)
-{
-    //console.log(req.body);
-    //console.log(req.file);
-    scan(req.file.path);
-    res.json({message:"Successfully upload files"});
-}
-
-
-
-
-
 
 var totalnum;
 let winnerindex;
@@ -293,7 +282,7 @@ function draw()
                     winnertm = json.data.TeamMember;
                     winnerDep = json.data.Department;
                     winnerEmail = json.data.Email;
-                    validationcheck(winnertm)
+                    luckydrawvalidationcheck(winnertm)
                     if (winnerDep == "Human Resources" || winnerDep =="HR" || winnerDep =="Human Resource")
                     {
                         draw()
@@ -320,7 +309,7 @@ function draw()
     )        
 }
 
-function validationcheck(tm){
+function luckydrawvalidationcheck(tm){
     var tmn = tm;
     axios({
       method: "GET",
@@ -349,7 +338,15 @@ function validationcheck(tm){
   
   }
 
-
+  function uploadFiles(req,res)
+  {
+      //console.log(req.body);
+      //console.log(req.file);
+      scan(req.file.path);
+      res.json({message:"Successfully upload files"});
+  }
+  
+  
   async function scan(dataurl) {
     // Imports the Google Cloud client library
     const vision = require('@google-cloud/vision');
@@ -364,11 +361,15 @@ function validationcheck(tm){
     //detection.forEach(text => console.log(text.description));
     console.log(detection[0].description)
     var output = detection[0].description;
+    var cleanoutput = output.replace(output[0],"");
+    console.log("cleanedoutput",cleanoutput);
+
+    OnSitecheckin(cleanoutput);
+
+    //delete image data file
     try {
         fs.unlinkSync(dataurl);
-      
-        //console.log("Delete File successfully.");
-      } catch (error) {
+            } catch (error) {
         console.log(error);
       }
 
@@ -376,6 +377,43 @@ function validationcheck(tm){
     
   }
   
+
+
+  function OnSitecheckin(output)
+  {
+    axios({
+        method: "GET",
+        url: `https://api.baserow.io/api/database/rows/table/110728/?user_field_names=true&filter__field_699773__contains=${output}`,
+        headers: {
+          Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
+        }
+      })
+        .then(json => {
+            axios({
+                method: "POST",
+                url: "https://api.baserow.io/api/database/rows/table/109802/?user_field_names=true",
+                headers: {
+                  Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua",
+                  "Content-Type": "application/json"
+                },
+                data: {
+                  "TeamMember": output,
+                  "Name": json.data.results.Name,
+                  "PhoneNo": json.data.results.PhoneNo,
+                  "Email": json.data.results.Email,
+                  "Department": json.data.results.Department
+                }
+              })    
+             }
+        )
+        .catch(err=>{                  
+            console.log(err)
+      
+
+  })}
+
+
+
 
 app.listen(3000);
     
