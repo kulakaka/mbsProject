@@ -254,17 +254,22 @@ app.post("/api/manualcheck/:tmnm",(req,res)=>{
    
         var nm = req.params.tmnm;
         try
-        {
-            // if(OnSitecheckin(nm))
-            // {
-            // console.log("check true");
-            // return res.json({
-            //     status: 200, 
-            //     success: true
-            // });
-            // }
-            console.log(OnSitecheckin(nm))
-           
+        {   
+           let pro = new Promise((resolve,reject)=>{
+            let output = OnSitecheckin(nm);
+            if(output){
+                resolve('good123');
+            }
+            else{
+                reject('bad123');
+            }
+        })
+        pro.then(()=>{
+            console.log("return good");
+        })
+        .catch(()=>{
+            console.log("return bad");
+        })
         }
         catch{
             return res.json({
@@ -422,7 +427,13 @@ function luckydrawvalidationcheck(tm){
 
   function OnSitecheckin(output)
   {
+
+    let p = new Promise((resolve,reject)=>{
+
+    
+   var status;
     //check checkin list prevent multiple check in
+
     axios({
         method: "GET",
         url: `https://api.baserow.io/api/database/rows/table/109802/?user_field_names=true&filter__field_692434__contains=${output}`,
@@ -461,23 +472,29 @@ function luckydrawvalidationcheck(tm){
               .then((response)=>{
                 //console.log(response);
                 console.log("good");
-               // checkstatus(true);
-               return Boolean(true);
-              })
+                resolve("Success");
+            })
             }
         )
         .catch(err=>{                  
            console.log("errro1",err);
-           //checkstatus(false);
-           return Boolean(false);
-       })
+           reject("Failed");
+        })
     })
     .catch(err=>{
         console.log("errro2",err);
-        //checkstatus(false);
-        return Boolean(false);
+        reject("Failed");
     })
-   return "";
+})
+
+p.then(result=>{
+    console.log("result",result);
+    return true;
+})
+.catch((result=>{
+    console.log("result",result);
+    return false;
+}))
 }
 
 
