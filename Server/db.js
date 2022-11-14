@@ -1,5 +1,7 @@
 // // API documentation
 
+const res = require('express/lib/response');
+
 const axios = require('axios').default;
 
 
@@ -281,41 +283,62 @@ const axios = require('axios').default;
 
 // }); 
 
-var output = 845000;
-axios({
-    method: "GET",
-    url: `https://api.baserow.io/api/database/rows/table/110728/?user_field_names=true&filter__field_699773__contains=${output}`,
-    headers: {
-      Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
-    }
-  })
-    .then(json => {
-        //console.log(json.data)
+// var output = 845000;
+// axios({
+//     method: "GET",
+//     url: `https://api.baserow.io/api/database/rows/table/110728/?user_field_names=true&filter__field_699773__contains=${output}`,
+//     headers: {
+//       Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
+//     }
+//   })
+//     .then(json => {
+//         //console.log(json.data)
      
-        axios({
-            method: "POST",
-            url: "https://api.baserow.io/api/database/rows/table/109802/?user_field_names=true",
-            headers: {
-              Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua",
-              "Content-Type": "application/json"
-            },
-            data: {
-              "TeamMember": output,
-              "Name": json.data.results[0].Name,
-              "PhoneNo": json.data.results[0].PhoneNo,
-              "Email": json.data.results[0].Email,
-              "Department": json.data.results[0].Department
-            }
-          })    
-         }
-    )
-    .catch(err=>{                  
-       console.log(err)
-        return res.json({
-            status:400,
-            success:false,
-            body: "User not register!"
-        })
+//         axios({
+//             method: "POST",
+//             url: "https://api.baserow.io/api/database/rows/table/109802/?user_field_names=true",
+//             headers: {
+//               Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua",
+//               "Content-Type": "application/json"
+//             },
+//             data: {
+//               "TeamMember": output,
+//               "Name": json.data.results[0].Name,
+//               "PhoneNo": json.data.results[0].PhoneNo,
+//               "Email": json.data.results[0].Email,
+//               "Department": json.data.results[0].Department
+//             }
+//           })    
+//          }
+//     )
+//     .catch(err=>{                  
+//        console.log(err)
+//         return res.json({
+//             status:400,
+//             success:false,
+//             body: "User not register!"
+//         })
   
 
-})
+// })
+
+function one(a,b){
+  c = a+b;
+  return two(c);
+  
+}
+
+function two(a)
+{
+  d = c+1;
+  return d;
+
+}
+
+
+function good(status)
+{
+  return !status
+}
+//console.log(one(1,2))
+console.log(good(false))

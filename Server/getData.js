@@ -255,21 +255,11 @@ app.post("/api/manualcheck/:tmnm",(req,res)=>{
         var nm = req.params.tmnm;
         try
         {   
-           let pro = new Promise((resolve,reject)=>{
-            let output = OnSitecheckin(nm);
-            if(output){
-                resolve('good123');
-            }
-            else{
-                reject('bad123');
-            }
-        })
-        pro.then(()=>{
-            console.log("return good");
-        })
-        .catch(()=>{
-            console.log("return bad");
-        })
+            OnSitecheckin(nm).then((message)=>{
+                console.log(message);
+            }).catch((message)=>{
+                console.log(message);
+            })
         }
         catch{
             return res.json({
@@ -427,11 +417,12 @@ function luckydrawvalidationcheck(tm){
 
   function OnSitecheckin(output)
   {
+    var status;
 
-    let p = new Promise((resolve,reject)=>{
-
+    return new Promise(function (resolve,reject){
+        
+ 
     
-   var status;
     //check checkin list prevent multiple check in
 
     axios({
@@ -472,30 +463,38 @@ function luckydrawvalidationcheck(tm){
               .then((response)=>{
                 //console.log(response);
                 console.log("good");
-                resolve("Success");
+                //onSiteStatusCheck(true);
+                resolve("This is true");
             })
             }
         )
         .catch(err=>{                  
            console.log("errro1",err);
-           reject("Failed");
+           //onSiteStatusCheck(false);
+           reject("This is false1");
         })
     })
     .catch(err=>{
         console.log("errro2",err);
-        reject("Failed");
+        //onSiteStatusCheck(false);
+        reject("This is false2");
     })
-})
+});
 
-p.then(result=>{
-    console.log("result",result);
-    return true;
-})
-.catch((result=>{
-    console.log("result",result);
-    return false;
-}))
+
+
+//return onSiteStatusCheck(status)
+  
+    
 }
+
+function onSiteStatusCheck(status)
+{
+    console.log("OnsiteStatusCheck",status);
+    return status
+}
+
+
 
 
 app.listen(3000);
