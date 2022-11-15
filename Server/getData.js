@@ -257,8 +257,16 @@ app.post("/api/manualcheck/:tmnm",(req,res)=>{
         {   
             OnSitecheckin(nm).then((message)=>{
                 console.log(message);
+                return res.json({
+                    status: 200,
+                    success: true
+                });
             }).catch((message)=>{
                 console.log(message);
+                return res.json({
+                    status: 400,
+                    success: false
+                });
             })
         }
         catch{
@@ -376,14 +384,48 @@ function luckydrawvalidationcheck(tm){
 
   function uploadFiles(req,res)
   {
-      //console.log(req.body);
-      //console.log(req.file);
-      scan(req.file.path);
-      res.json({message:"Successfully upload files"});
+    
+    // var output = scan(req.file.path);
+    // console.log(output);
+
+    scan(req.file.path).then((message)=>
+    {
+        //console.log(message);
+        try
+        {   
+          OnSitecheckin(message).then((message)=>{
+                console.log(message);
+                return res.json({
+                    status: 200,
+                    success: true
+                });
+            }).catch((message)=>{
+                console.log(message);
+                return res.json({
+                    status: 400,
+                    success: false
+                });
+            })
+        }
+        catch{
+            return res.json({
+                status: 400,
+                success: false
+            });
+        }
+
+    })
+  
+
+    
   }
   
   
-  async function scan(dataurl) {
+async function scan(dataurl) {
+   
+    
+    
+        
     // Imports the Google Cloud client library
     const vision = require('@google-cloud/vision');
   
@@ -392,6 +434,8 @@ function luckydrawvalidationcheck(tm){
   
     // Performs label detection on the image file
     const [result] = await client.textDetection(dataurl);
+    return new Promise(function (resolve,reject){
+
     const detection = result.textAnnotations;
     //console.log('Text:');
     //detection.forEach(text => console.log(text.description));
@@ -399,19 +443,22 @@ function luckydrawvalidationcheck(tm){
     var output = detection[0].description;
     var cleanoutput = output.replace(output[0],"");
     console.log("cleanedoutput",cleanoutput);
-
-    OnSitecheckin(cleanoutput);
+    //OnSitecheckin(cleanoutput);
 
     //delete image data file
     try {
         fs.unlinkSync(dataurl);
-            } catch (error) {
+            } 
+    catch (error) {
         console.log(error);
+        
       }
+    resolve(cleanoutput);
 
 
-    
-  }
+    })
+  
+}
   
 
 
@@ -421,19 +468,6 @@ function luckydrawvalidationcheck(tm){
 
     return new Promise(function (resolve,reject){
         
- 
-    
-    //check checkin list prevent multiple check in
-
-    axios({
-        method: "GET",
-        url: `https://api.baserow.io/api/database/rows/table/109802/?user_field_names=true&filter__field_692434__contains=${output}`,
-        headers: {
-          Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
-        }
-      })
-      .then(json=>{
-
     //get info from regsiter list
     axios({
         method: "GET",
@@ -442,56 +476,57 @@ function luckydrawvalidationcheck(tm){
           Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
         }
       })
-        .then(json => {
-            //console.log(json.data)
-         
-            axios({
-                method: "POST",
-                url: "https://api.baserow.io/api/database/rows/table/109802/?user_field_names=true",
-                headers: {
-                  Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua",
-                  "Content-Type": "application/json"
-                },
-                data: {
-                  "TeamMember": output,
-                  "Name": json.data.results[0].Name,
-                  "PhoneNo": json.data.results[0].PhoneNo,
-                  "Email": json.data.results[0].Email,
-                  "Department": json.data.results[0].Department
-                }
-              })
-              .then((response)=>{
-                //console.log(response);
-                console.log("good");
-                //onSiteStatusCheck(true);
-                resolve("This is true");
-            })
+        .then(regjson => {          
+            // if results is empty
+            if(!regjson.data.results.length)
+            {
+                reject("cannot find in reg list");
             }
-        )
-        .catch(err=>{                  
-           console.log("errro1",err);
-           //onSiteStatusCheck(false);
-           reject("This is false1");
+            else{
+                
+            //check if in the checkin table
+            axios({
+                method: "GET",
+                url: `https://api.baserow.io/api/database/rows/table/109802/?user_field_names=true&filter__field_692434__contains=${output}`,
+                headers: {
+                Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
+                }
+            })
+            .then(json=>{
+                // if result is empty
+                if(!json.data.results.length)
+                {
+                    axios({
+                        method: "POST",
+                        url: "https://api.baserow.io/api/database/rows/table/109802/?user_field_names=true",
+                        headers: {
+                          Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua",
+                          "Content-Type": "application/json"
+                        },
+                        data: {
+                          "TeamMember": output,
+                          "Name": regjson.data.results[0].Name,
+                          "PhoneNo": regjson.data.results[0].PhoneNo,
+                          "Email": regjson.data.results[0].Email,
+                          "Department": regjson.data.results[0].Department
+                        }
+                      })
+                      .then((response)=>{
+                
+                        resolve("User checked in");
+                    })
+                }
+                else{
+
+                    reject("multiple checked in");
+                }
+                }
+            )
+            }
+
+
         })
     })
-    .catch(err=>{
-        console.log("errro2",err);
-        //onSiteStatusCheck(false);
-        reject("This is false2");
-    })
-});
-
-
-
-//return onSiteStatusCheck(status)
-  
-    
-}
-
-function onSiteStatusCheck(status)
-{
-    console.log("OnsiteStatusCheck",status);
-    return status
 }
 
 

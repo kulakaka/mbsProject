@@ -322,23 +322,18 @@ const axios = require('axios').default;
 
 // })
 
-function one(a,b){
-  c = a+b;
-  return two(c);
+var output = 8450100;
+axios({
+  method: "GET",
+  url: `https://api.baserow.io/api/database/rows/table/109802/?user_field_names=true&filter__field_692434__contains=${output}`,
+  headers: {
+  Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
+  }
+})
+.then(json=>{
+  console.log(!json.data.results.length)
   
-}
-
-function two(a)
-{
-  d = c+1;
-  return d;
-
-}
-
-
-function good(status)
-{
-  return !status
-}
-//console.log(one(1,2))
-console.log(good(false))
+})
+.catch(err=>{
+  console.log("errro2");
+})
