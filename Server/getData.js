@@ -248,6 +248,7 @@ app.post("/api/luckydraw",  (req, res) => {
 
 app.put("/api/tmdetection", upload.single("tmcard"),uploadFiles);
 
+app.put("/api/tmdetectionredemption", upload.single("tmcard"),uploadFilesRedemption);
 
 
 app.post("/api/manualcheck/:tmnm",(req,res)=>{
@@ -259,26 +260,120 @@ app.post("/api/manualcheck/:tmnm",(req,res)=>{
                 console.log(message);
                 return res.json({
                     status: 200,
-                    success: true
+                    success: true,
+                    body:message
                 });
             }).catch((message)=>{
                 console.log(message);
                 return res.json({
                     status: 400,
-                    success: false
+                    success: false,
+                    body:message
                 });
             })
         }
         catch{
             return res.json({
                 status: 400,
-                success: false
+                success: false,
+                body:"Error Has Occur"
             });
         }
  
   
 })
 
+app.post("/api/redmeption/:tmnm",(req,res)=>{
+    var nm = req.params.tmnm;
+    
+    try{
+        RedemptionCheck(nm).then((message)=>{
+            console.log(message);
+            return res.json({
+                status: 200,
+                success: true,
+                body:message
+            });
+        }).catch((message)=>{
+            return res.json({
+                status: 400,
+                success: false,
+                body:message
+            });
+        })
+
+    }
+    catch{
+        return res.json({
+            status: 400,
+            success: false
+        });
+    }
+    }
+
+
+)
+
+
+function RedemptionCheck(nm)
+{
+    
+    return new Promise(function (resolve,reject){
+
+        axios({
+            method: "GET",
+            url: `https://api.baserow.io/api/database/rows/table/109802/?user_field_names=true&filter__field_692434__contains=${nm}`,
+            headers: {
+              Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
+            }
+          })
+          .then(getjson=>{
+            if(getjson.data.results.length)
+            {
+                var nmofdrink =  parseInt(getjson.data.results[0].NumberOfDrink);
+                var rowid = getjson.data.results[0].id
+                console.log("nmofdrink",nmofdrink);
+                if (nmofdrink>0)
+                {
+                  var currentdrink = nmofdrink-1;
+                    axios({
+                        method: "PATCH",
+                        url: `https://api.baserow.io/api/database/rows/table/109802/${rowid}/?user_field_names=true`,
+                        headers: {
+                          Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua",
+                          "Content-Type": "application/json"
+                        },
+                        data: {
+                          "NumberOfDrink": currentdrink
+                        }
+                      })
+                      .then(
+                        resolve(currentdrink)
+                      )
+                }
+                else
+                {
+                    reject("run out of chances");
+                  //console.log("run out of chances");
+                }
+          
+            }
+            else
+            {   
+            
+                reject('User not exist');
+              //console.log('User not exist');
+            }
+          
+          })
+          .catch(err=>{
+            //console.log('err:',err);
+            reject('Error occur');
+          })
+
+    })
+
+}
 
 
 var totalnum;
@@ -419,6 +514,38 @@ function luckydrawvalidationcheck(tm){
 
     
   }
+
+  function uploadFilesRedemption(req,res)
+  {
+    
+    scan(req.file.path).then((message)=>
+    {
+        try{
+            RedemptionCheck(message).then((message)=>{
+                console.log(message);
+                return res.json({
+                    status: 200,
+                    success: true,
+                    body:message
+                });
+            }).catch((message)=>{
+                return res.json({
+                    status: 400,
+                    success: false,
+                    body:message
+                });
+            })
+    
+        }
+        catch{
+            return res.json({
+                status: 400,
+                success: false
+            });
+        }
+
+    })
+  }
   
   
 async function scan(dataurl) {
@@ -480,7 +607,7 @@ async function scan(dataurl) {
             // if results is empty
             if(!regjson.data.results.length)
             {
-                reject("cannot find in reg list");
+                reject("Cannot find user in reg list");
             }
             else{
                 
@@ -513,12 +640,12 @@ async function scan(dataurl) {
                       })
                       .then((response)=>{
                 
-                        resolve("User checked in");
+                        resolve("User Check In Comfirmed!");
                     })
                 }
                 else{
 
-                    reject("multiple checked in");
+                    reject("Multiple Checked In");
                 }
                 }
             )

@@ -323,99 +323,144 @@ const axios = require('axios').default;
 // })
 
 
-      //GET TOTAL COUNT OF USERS FROM CEHCKIN TABLE AND GET RAMDOM INDEX NUMBER
-      axios({
-        method: "GET",
-        url: "https://api.baserow.io/api/database/rows/table/109802/?user_field_names=true",
-        headers: {
-            Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq"
-        }
-        }).then(json=>{
-        console.log(json.data.count)
+//       //GET TOTAL COUNT OF USERS FROM CEHCKIN TABLE AND GET RAMDOM INDEX NUMBER
+//       axios({
+//         method: "GET",
+//         url: "https://api.baserow.io/api/database/rows/table/109802/?user_field_names=true",
+//         headers: {
+//             Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq"
+//         }
+//         }).then(json=>{
+//         console.log(json.data.count)
 
-        totalnum = json.data.count;
+//         totalnum = json.data.count;
 
-        winnerindex = Math.floor(Math.random()*totalnum-1) + 1;
+//         winnerindex = Math.floor(Math.random()*totalnum-1) + 1;
 
-        console.log("This is the winner",winnerindex);
-        //GET WINNER INFO 
-        axios({
-            method: "GET",
-            url: `https://api.baserow.io/api/database/rows/table/109802/${winnerindex}/?user_field_names=true`,
-            headers: {
-            Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq"
-            }
-        }).then(
-            json =>{
-                //console.log(json.data);
-                winnername = json.data.Name;
-                winnertm = json.data.TeamMember;
-                winnerDep = json.data.Department;
-                winnerEmail = json.data.Email;
-                luckydrawvalidationcheck(winnertm)
-                //Check user if they are belong to hr department
-                if (winnerDep == "Human Resources" || winnerDep =="HR" || winnerDep =="Human Resource")
-                {
-                    draw()
-                } 
-                else{
-                    axios({
-                        method: "POST",
-                        url: "https://api.baserow.io/api/database/rows/table/112691/?user_field_names=true",
-                        headers: {
-                        Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq",
-                        "Content-Type": "application/json"
-                        },
-                        data: { 
-                        "TeamMember": winnertm,
-                        "Name": winnername,
-                        "Department": winnerDep,
-                        "Email": winnerEmail
-                        }
-                    })
-                    .catch(err=>{
-                        console.log(err);
-                    })   
-                }
-            }
-        )
-        .catch(err=>{
-            console.log(err);
-        })   
-    }
-  )
-  .catch(err=>{
-      console.log(err);
-  })        
+//         console.log("This is the winner",winnerindex);
+//         //GET WINNER INFO 
+//         axios({
+//             method: "GET",
+//             url: `https://api.baserow.io/api/database/rows/table/109802/${winnerindex}/?user_field_names=true`,
+//             headers: {
+//             Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq"
+//             }
+//         }).then(
+//             json =>{
+//                 //console.log(json.data);
+//                 winnername = json.data.Name;
+//                 winnertm = json.data.TeamMember;
+//                 winnerDep = json.data.Department;
+//                 winnerEmail = json.data.Email;
+//                 luckydrawvalidationcheck(winnertm)
+//                 //Check user if they are belong to hr department
+//                 if (winnerDep == "Human Resources" || winnerDep =="HR" || winnerDep =="Human Resource")
+//                 {
+//                     draw()
+//                 } 
+//                 else{
+//                     axios({
+//                         method: "POST",
+//                         url: "https://api.baserow.io/api/database/rows/table/112691/?user_field_names=true",
+//                         headers: {
+//                         Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq",
+//                         "Content-Type": "application/json"
+//                         },
+//                         data: { 
+//                         "TeamMember": winnertm,
+//                         "Name": winnername,
+//                         "Department": winnerDep,
+//                         "Email": winnerEmail
+//                         }
+//                     })
+//                     .catch(err=>{
+//                         console.log(err);
+//                     })   
+//                 }
+//             }
+//         )
+//         .catch(err=>{
+//             console.log(err);
+//         })   
+//     }
+//   )
+//   .catch(err=>{
+//       console.log(err);
+//   })        
 
 
 
-  //CHECK USER IF WIN BEFORE
-function luckydrawvalidationcheck(tm){
-  var tmn = tm;
-  axios({
-    method: "GET",
-    url: "https://api.baserow.io/api/database/rows/table/112691/?user_field_names=true",
-    headers: {
-      Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq"
-    }
-  }).then(
-    json=>{
-      //console.log(json.data.results)
+//   //CHECK USER IF WIN BEFORE
+// function luckydrawvalidationcheck(tm){
+//   var tmn = tm;
+//   axios({
+//     method: "GET",
+//     url: "https://api.baserow.io/api/database/rows/table/112691/?user_field_names=true",
+//     headers: {
+//       Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq"
+//     }
+//   }).then(
+//     json=>{
+//       //console.log(json.data.results)
 
-      winnerlist = json.data.results
+//       winnerlist = json.data.results
     
-      for (var i =0; i<winnerlist.length;i++)
+//       for (var i =0; i<winnerlist.length;i++)
+//       {
+//         if (tmn == winnerlist[i].TeamMember)
+//         {
+//           draw();
+//           break;
+//         }
+//       } 
+
+
+//     }
+//   )
+
+// }
+
+var nm = 845000;
+axios({
+  method: "GET",
+  url: `https://api.baserow.io/api/database/rows/table/109802/?user_field_names=true&filter__field_692434__contains=${nm}`,
+  headers: {
+    Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
+  }
+})
+.then(getjson=>{
+  if(getjson.data.results.length)
+  {
+      var nmofdrink =  parseInt(getjson.data.results[0].NumberOfDrink);
+      var rowid = getjson.data.results[0].id
+      console.log("nmofdrink",nmofdrink);
+      if (nmofdrink>0)
       {
-        if (tmn == winnerlist[i].TeamMember)
-        {
-          draw();
-          break;
-        }
-      } 
+        var currentdrink = nmofdrink-1;
+          axios({
+              method: "PATCH",
+              url: `https://api.baserow.io/api/database/rows/table/109802/${rowid}/?user_field_names=true`,
+              headers: {
+                Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua",
+                "Content-Type": "application/json"
+              },
+              data: {
+                "NumberOfDrink": currentdrink
+              }
+            })
+      }
+      else
+      {
+        console.log("run out of chances");
+      }
 
+  }
+  else
+  {   
+    console.log('User not exist');
+  }
 
-    }
-  )
-
-}
+})
+.catch(err=>{
+  console.log('err:',err);
+})

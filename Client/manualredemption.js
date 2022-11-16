@@ -1,8 +1,9 @@
-function manualcheckin(){
+
+function RedemptionCheck(){
 
     var tm_nm = document.getElementById("tm_numebr").value;
 
-    fetch(`http://localhost:3000/api/manualcheck/${tm_nm}`,{
+    fetch(`http://localhost:3000/api/redmeption/${tm_nm}`,{
         method:"POST",
         headers: {"Content-type": "application/json; charset=UTF-8"}
 
@@ -12,22 +13,24 @@ function manualcheckin(){
         console.log('Success:', result);
         if(result.success)
         {
-        alert(result.body);
-        window.location.href = "manualcheckin.html";
+            alert(`Number Of Drinks Can be Reedemed : ${result.body}`);
+            
         }
         else{
             alert(result.body);
-            window.location.href = "manualcheckin.html";
         }
     })
     .catch(err=>{
         console.log(err)
-        alert("User not register!")
+        alert("User Cannot Redeem Drink");
+        window.location.href = "scanredemption.html";
+
     });
 
 }
 
 
-function gobackscancheck(){
-    window.location.href = "checkin.html";
+function ScanToRedeem(){
+
+    window.location.href="scanredemption.html";
 }
