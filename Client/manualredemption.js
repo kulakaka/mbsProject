@@ -14,20 +14,20 @@ function RedemptionCheck(){
         if(result.success)
         {
             alert(`Number Of Drinks Can be Reedemed : ${result.body}`);
-            window.location.href = "scanredemption.html";
+            window.location.href = "manualredemption.html";
 
             
         }
         else{
             alert(result.body);
-            window.location.href = "scanredemption.html";
+            window.location.href = "manualredemption.html";
 
         }
     })
     .catch(err=>{
         console.log(err)
         alert("User Cannot Redeem Drink");
-        window.location.href = "scanredemption.html";
+        window.location.href = "manualredemption.html";
 
     });
 
