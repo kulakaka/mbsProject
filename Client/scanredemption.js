@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', (ev)=>{
             formData.append('tmcard',input.files[0])
             console.log(formData);
             //console.log(window.URL.createObjectURL(input.files[0]))
-            fetch('http://localhost:3000/api/tmdetectionredemption',{
+            fetch('https://onepartyonembs.com.sg/api/tmdetectionredemption',{
                 method:"PUT",
                 body:formData
             })
@@ -21,20 +21,26 @@ document.addEventListener('DOMContentLoaded', (ev)=>{
                 if(result.success)
                 {
                     alert(`Number Of Drinks Can be Reedemed : ${result.body}`);
+                    window.location.href = "scanredemption.html";
+
                     
                 }
                 else{
                     alert(result.body);
+                    window.location.href = "scanredemption.html";
+
                 }
 
             })
               .catch((error) => {
                 console.error('Error:', error);
                 alert("User Cannot Redeem Drink");
-
                 window.location.href = "scanredemption.html";
+
         
-        });
+        }
+        
+        );
         
         
     })

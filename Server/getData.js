@@ -322,7 +322,7 @@ function RedemptionCheck(nm)
 
         axios({
             method: "GET",
-            url: `https://api.baserow.io/api/database/rows/table/109802/?user_field_names=true&filter__field_692434__contains=${nm}`,
+            url: `https://api.baserow.io/api/database/rows/table/110076/?user_field_names=true&filter__field_695204__contains=${nm}`,
             headers: {
               Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
             }
@@ -338,7 +338,7 @@ function RedemptionCheck(nm)
                   var currentdrink = nmofdrink-1;
                     axios({
                         method: "PATCH",
-                        url: `https://api.baserow.io/api/database/rows/table/109802/${rowid}/?user_field_names=true`,
+                        url: `https://api.baserow.io/api/database/rows/table/110076/${rowid}/?user_field_names=true`,
                         headers: {
                           Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua",
                           "Content-Type": "application/json"
@@ -384,7 +384,7 @@ function draw()
             //GET TOTAL COUNT OF USERS FROM CEHCKIN TABLE AND GET RAMDOM INDEX NUMBER
             axios({
             method: "GET",
-            url: "https://api.baserow.io/api/database/rows/table/109802/?user_field_names=true",
+            url: "https://api.baserow.io/api/database/rows/table/110076/?user_field_names=true",
             headers: {
                 Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq"
             }
@@ -399,7 +399,7 @@ function draw()
             //GET WINNER INFO 
             axios({
                 method: "GET",
-                url: `https://api.baserow.io/api/database/rows/table/109802/${winnerindex}/?user_field_names=true`,
+                url: `https://api.baserow.io/api/database/rows/table/110076/${winnerindex}/?user_field_names=true`,
                 headers: {
                 Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq"
                 }
@@ -614,7 +614,7 @@ async function scan(dataurl) {
             //check if in the checkin table
             axios({
                 method: "GET",
-                url: `https://api.baserow.io/api/database/rows/table/109802/?user_field_names=true&filter__field_692434__contains=${output}`,
+                url: `https://api.baserow.io/api/database/rows/table/110076/?user_field_names=true&filter__field_695204__contains=${output}`,
                 headers: {
                 Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
                 }
@@ -625,7 +625,7 @@ async function scan(dataurl) {
                 {
                     axios({
                         method: "POST",
-                        url: "https://api.baserow.io/api/database/rows/table/109802/?user_field_names=true",
+                        url: "https://api.baserow.io/api/database/rows/table/110076/?user_field_names=true",
                         headers: {
                           Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua",
                           "Content-Type": "application/json"
