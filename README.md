@@ -220,21 +220,18 @@ Redeploy the server by executing the `redeploy_server.sh` script:
 ```commandline
 ./redeploy_server.sh 
 ```
-4. Add google detection environment variable to server.
 
-For PowerShell:
+# Add google text detection api environment variable to server.
+
+*For PowerShell*
 ```commandline
 $env:GOOGLE_APPLICATION_CREDENTIALS="KEY_PATH"
 ```
-For Linux or macOs
+*For Linux or macOs*
 ```commandline
 export GOOGLE_APPLICATION_CREDENTIALS="KEY_PATH"
 ```
-# Issue Tracker
-*ToDo*
-1. - Check-in system
-2. - Lucky draw system
-3. - Alcohol Redempetion System
+
 
 # Combine Old & New Databse for SelectedSession
 *Steps*
