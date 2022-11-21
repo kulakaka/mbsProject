@@ -1,4 +1,5 @@
-
+// http://localhost:3000/
+// https://onepartyonembs.com.sg/
 document.addEventListener('DOMContentLoaded', (ev)=>{
     const formData = new FormData();
     let form = document.getElementById('form');
@@ -16,28 +17,22 @@ document.addEventListener('DOMContentLoaded', (ev)=>{
                 body:formData
                 
             })
-            .then((response) =>response.text())
+            .then((response) =>response.json())
             .then((result) => {
-                try{
-                    var res = JSON.parse(result);
-                    console.log(res);
-                }
-                catch (err){
-                    console.log('Error parsing JSON:', err, result);
-                }
+                console.log("this is result",result)
                
-                if(res.success)
-                {
-                    alert(`Number Of Drinks Can be Reedemed : ${res.body}`);
-                    window.location.href = "scanredemption.html";
+                // if(res.success)
+                // {
+                //     alert(`Number Of Drinks Can be Reedemed : ${res.body}`);
+                //     window.location.href = "scanredemption.html";
 
                     
-                }   
-                else{
-                    alert(res.body);
-                    window.location.href = "scanredemption.html";
+                // }   
+                // else{
+                //     alert(res.body);
+                //     window.location.href = "scanredemption.html";
 
-                }
+                // }
 
             })
               .catch((error) => {
