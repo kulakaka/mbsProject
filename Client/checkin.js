@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', (ev)=>{
             .then((result) => {
                 //console.log('Success:', result);
                 const res = JSON.parse(result);
-                if(res.status == '200')
+                if(res.status == 200)
                 {
                 alert("User checkIn Confirmed");
                 window.location.href = "checkin.html";

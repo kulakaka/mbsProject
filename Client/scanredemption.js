@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', (ev)=>{
             })
             .then((response) =>response.text())
             .then((result) => {
-                const res = JSON.parse(result);
+                var res = JSON.parse(result);
                 console.log(res)
                 if(res.success)
                 {
