@@ -11,20 +11,22 @@ document.addEventListener('DOMContentLoaded', (ev)=>{
             formData.append('tmcard',input.files[0])
             console.log(formData);
             //console.log(window.URL.createObjectURL(input.files[0]))
-            fetch('https://onepartyonembs.com.sg/api/tmdetectionredemption',{
+            fetch('http://localhost:3000/api/tmdetectionredemption',{
                 method:"PUT",
                 body:formData
+                
             })
             .then((response) =>response.text())
             .then((result) => {
                 const res = JSON.parse(result);
+                console.log(res)
                 if(res.success)
                 {
                     alert(`Number Of Drinks Can be Reedemed : ${res.body}`);
                     window.location.href = "scanredemption.html";
 
                     
-                }
+                }   
                 else{
                     alert(res.body);
                     window.location.href = "scanredemption.html";
