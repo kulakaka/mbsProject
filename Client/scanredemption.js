@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', (ev)=>{
                 method:"PUT",
                 body:formData
             })
-            .then((response) => response.text())
+            //.then((response) => {})
             .then((result) => {
                 console.log('Success:',result);
                 if(result.success)
