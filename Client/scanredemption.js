@@ -17,8 +17,8 @@ document.addEventListener('DOMContentLoaded', (ev)=>{
             })
             .then((response) =>response.text())
             .then((result) => {
-                console.log('Success:',result);
-                if(result.success)
+                const res = JSON.parse(result);
+                if(res.success)
                 {
                     alert(`Number Of Drinks Can be Reedemed : ${result.body}`);
                     window.location.href = "scanredemption.html";
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', (ev)=>{
                     
                 }
                 else{
-                    alert(result.body);
+                    alert(res.body);
                     window.location.href = "scanredemption.html";
 
                 }

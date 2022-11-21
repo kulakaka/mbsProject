@@ -15,10 +15,11 @@ document.addEventListener('DOMContentLoaded', (ev)=>{
                 method:"PUT",
                 body:formData
             })
-            .then((response) => response.json())
+            .then((response) => response.text())
             .then((result) => {
-                console.log('Success:', result);
-                if(result.status == 200)
+                //console.log('Success:', result);
+                const res = JSON.parse(result);
+                if(res.status == '200')
                 {
                 alert("User checkIn Confirmed");
                 window.location.href = "checkin.html";
