@@ -18,8 +18,14 @@ document.addEventListener('DOMContentLoaded', (ev)=>{
             })
             .then((response) =>response.text())
             .then((result) => {
-                var res = JSON.parse(result);
-                console.log(res)
+                try{
+                    var res = JSON.parse(result);
+                    console.log(res);
+                }
+                catch (err){
+                    console.log('Error parsing JSON:', err, result);
+                }
+               
                 if(res.success)
                 {
                     alert(`Number Of Drinks Can be Reedemed : ${res.body}`);
