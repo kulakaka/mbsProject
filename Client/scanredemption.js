@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', (ev)=>{
                 method:"PUT",
                 body:formData
             })
-            .then((response) => {console("uploading")})
+            .then((response) => {console.log("uploading")})
             .then((result) => {
                 console.log('Success:',result);
                 if(result.success)
