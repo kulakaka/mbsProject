@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', (ev)=>{
             formData.append('tmcard',input.files[0])
             console.log(formData);
             //console.log(window.URL.createObjectURL(input.files[0]))
-            fetch('http://localhost:3000/api/tmdetectionredemption',{
+            fetch('https://onepartyonembs.com.sg/api/tmdetectionredemption',{
                 method:"PUT",
                 body:formData
                 
