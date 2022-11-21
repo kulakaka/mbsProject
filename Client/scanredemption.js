@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', (ev)=>{
                 const res = JSON.parse(result);
                 if(res.success)
                 {
-                    alert(`Number Of Drinks Can be Reedemed : ${result.body}`);
+                    alert(`Number Of Drinks Can be Reedemed : ${res.body}`);
                     window.location.href = "scanredemption.html";
 
                     
