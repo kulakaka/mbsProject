@@ -17,22 +17,24 @@ document.addEventListener('DOMContentLoaded', (ev)=>{
                 body:formData
                 
             })
-            .then((response) =>response.json())
+            .then((response) =>response.text())
             .then((result) => {
-                console.log("this is result",result)
-               
-                // if(res.success)
-                // {
-                //     alert(`Number Of Drinks Can be Reedemed : ${res.body}`);
-                //     window.location.href = "scanredemption.html";
+                console.log("this is result",result);
+                var res = JSON.parse(result);
+                console.log(res);
+                console.log("status:",res.success)
+                if(res.success)
+                {
+                    alert(`Number Of Drinks Can be Reedemed : ${res.body}`);
+                    window.location.href = "scanredemption.html";
 
                     
-                // }   
-                // else{
-                //     alert(res.body);
-                //     window.location.href = "scanredemption.html";
+                }   
+                else{
+                    alert(res.body);
+                    window.location.href = "scanredemption.html";
 
-                // }
+                }
 
             })
               .catch((error) => {
