@@ -230,7 +230,7 @@ app.get("/api/sms/:phno/:name/:val", (req, res) => {
     }
 )
 
-
+// lucky draw api 
 app.post("/api/luckydraw",  (req, res) => {
 
     try{
@@ -245,7 +245,7 @@ app.post("/api/luckydraw",  (req, res) => {
     }
 })
 
-
+// tm detection api use uploadfile function to use "tmcard" key value to recived 
 app.put("/api/tmdetection", upload.single("tmcard"),uploadFiles);
 
 app.put("/api/tmdetectionredemption", upload.single("tmcard"),uploadFilesRedemption);
@@ -317,9 +317,11 @@ app.post("/api/redmeption/:tmnm",(req,res)=>{
 
 function RedemptionCheck(nm)
 {
-    
+
+    // use promise to force it run synchronise
     return new Promise(function (resolve,reject){
 
+        // to check if user checked in before
         axios({
             method: "GET",
             url: `https://api.baserow.io/api/database/rows/table/110076/?user_field_names=true&filter__field_695204__contains=${nm}`,
@@ -328,6 +330,7 @@ function RedemptionCheck(nm)
             }
           })
           .then(getjson=>{
+            // if user in the check in list.
             if(getjson.data.results.length)
             {
                 var nmofdrink =  parseInt(getjson.data.results[0].NumberOfDrink);
@@ -336,6 +339,7 @@ function RedemptionCheck(nm)
                 if (nmofdrink>0)
                 {
                   var currentdrink = nmofdrink-1;
+                  //update user drink 
                     axios({
                         method: "PATCH",
                         url: `https://api.baserow.io/api/database/rows/table/110076/${rowid}/?user_field_names=true`,
@@ -480,9 +484,9 @@ function luckydrawvalidationcheck(tm){
   function uploadFiles(req,res)
   {
     
-    // var output = scan(req.file.path);
-    // console.log(output);
-
+  
+    //use promise to run synchronisely 
+    //use scan funciton to get output 
     scan(req.file.path).then((message)=>
     {
         //console.log(message);
