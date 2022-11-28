@@ -1,0 +1,1135 @@
+#success_message {
+    display: none;
+}
+
+.maintenance {
+    font-family: Bahnschrift;
+    color: white;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.main_page {
+    background-image: url("KV_Website_Separated_BG-min.jpg");
+    background-size: 100% 100%;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.registration_page {
+    background-image: url("KV_Website_Separated_BG-min.jpg");
+    background-size: 100% 100%;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+}
+
+.confirmation_page {
+    background-image: url("KV_Website_Separated_BG-min.jpg");
+    background-size: 100% 100%;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.container {
+    font-family: Bahnschrift;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
+}
+
+.main {
+    top: 40%;
+    left: 50%;
+}
+
+.main .button {
+
+    font-family: Bahnschrift;
+    font-size: 24px;
+    background-color: #29a8df;
+    border: none;
+    color: black;
+    padding: 8px 55px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 12px;
+}
+
+.main #tm_numebr {
+    font-family: Bahnschrift;
+    font-size: 24px;
+    color: black;
+    text-align: center;
+    border-radius: 12px;
+    padding: 9px 180px;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.main .logo {
+    width: 80%;
+    height: 20%;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.main .logo2 {
+    width: 70%;
+    height: 7%;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.registration {
+    top: 65%;
+    left: 50%;
+}
+
+.registration .logo {
+    width: 75%;
+    height: 20%;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.registration .logo2 {
+    width: 70%;
+    height: 7%;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.registration input {
+    font-family: Bahns chrift;
+    font-size: 18px;
+    color: black;
+    text-align: center;
+    border-radius: 12px;
+    padding: 9px 40px;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.registration label {
+    font-family: Bahnschrift;
+    font-size: 18px;
+}
+
+.registration .reminder {
+    font-size: 10px;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+
+}
+
+.registration .button {
+    font-family: Bahnschrift;
+    font-size: 24px;
+    background-color: #29a8df;
+    border: none;
+    color: black;
+    padding: 8px 55px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 12px;
+}
+
+.confirm {
+    top: 45%;
+    left: 50%;
+    font-family: Bahnschrift;
+    font-size: 24px;
+    color: white;
+    text-align: center;
+
+}
+
+.confirm .logo {
+    width: 85%;
+    height: 20%;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.confirm .logo2 {
+    width: 70%;
+    height: 7%;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+
+.img {
+    width: 600px;
+    height: 300px;
+}
+
+
+.button {
+    font-size: 32px;
+}
+
+.box {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.capture{
+    flex-direction: column;
+    margin-top: 30%;
+}
+
+.containercallout {
+    font-family: Bahnschrift;
+    margin: 0;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
+}
+
+.callout {
+    position: relative;
+    top: -20px;
+    padding: 45px 20px;
+    text-align: center;
+    opacity: 0;
+    border-radius: 5px;
+    background: #1f2532;
+    margin-right: 80px;
+    margin-left: 80px;
+    margin-top: 20px;
+    opacity: 0;
+    top: 0px;
+    color: #fff;
+  }
+  h5 {
+    font: 700 13px/18px 'Source Sans Pro',sans-serif;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 15px;
+    margin-bottom: 10px;
+    color:#29a8df;
+  }
+
+  .btn {
+    line-height: 25px;
+    margin: 20px auto 0;
+    color: #fff;
+    background: #00bff3;
+    font-size: 15px;
+    max-width: 400px;
+    margin: 20px auto 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 25px;
+    padding-left: 25px;
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+  }
+
+
+
+
+/** 27 inch screen **/
+@media only screen and (min-width: 1740px) {
+    .confirm {
+        display: flex;
+        width: 1740px;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+
+    .main_page {
+        background-image: url("KV_Website_Separated_BG-min.jpg");
+        background-size: 100% 100%;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .registration_page {
+        background-image: url("KV_Website_Separated_BG-min.jpg");
+        background-size: 100% 100%;
+        background-position: center;
+        background-attachment: fixed;
+        color: white;
+    }
+
+    .confirmation_page {
+        background-image: url("KV_Website_Separated_BG-min.jpg");
+        background-size: 100% 100%;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .container {
+        font-family: Bahnschrift;
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+
+    }
+
+    .main {
+        top: 40%;
+        left: 50%;
+    }
+
+    .main .button {
+
+        font-family: Bahnschrift;
+        font-size: 24px;
+        background-color: #29a8df;
+        border: none;
+        color: black;
+        padding: 8px 55px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        border-radius: 12px;
+    }
+
+    .main #tm_numebr {
+        font-family: Bahnschrift;
+        font-size: 24px;
+        color: black;
+        text-align: center;
+        border-radius: 12px;
+        padding: 9px 180px;
+        background: rgba(255, 255, 255, 0.5);
+    }
+
+    .main .logo {
+        width: 80%;
+        height: 22%;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .main .logo2 {
+        width: 70%;
+        height: 7%;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .registration {
+        top: 65%;
+        left: 50%;
+    }
+
+    .registration .logo {
+        width: 75%;
+        height: 20%;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .registration .logo2 {
+        width: 70%;
+        height: 7%;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .registration input {
+        font-family: Bahnschrift;
+        font-size: 18px;
+        color: black;
+        text-align: center;
+        border-radius: 12px;
+        padding: 9px 40px;
+        background: rgba(255, 255, 255, 0.5);
+    }
+
+    .registration label {
+        font-family: Bahnschrift;
+        font-size: 18px;
+    }
+
+    .registration .reminder {
+        font-size: 10px;
+        text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+        top: 5%;
+
+    }
+
+    .registration .button {
+        font-family: Bahnschrift;
+        font-size: 24px;
+        background-color: #29a8df;
+        border: none;
+        color: black;
+        padding: 8px 55px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        border-radius: 12px;
+    }
+
+    .confirm {
+        top: 45%;
+        left: 50%;
+        font-family: Bahnschrift;
+        font-size: 24px;
+        color: white;
+        text-align: center;
+
+    }
+
+
+    .confirm .logo {
+        width: 60%;
+        height: 13%;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .confirm .logo2 {
+        width: 50%;
+        height: 3%;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+
+    .img {
+        width: 600px;
+        height: 300px;
+    }
+
+
+    .button {
+        font-size: 32px;
+    }
+
+    .box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+        flex-direction: column;
+        font-size: 32px;
+
+    }
+
+
+}
+
+/** samsung z filp **/
+@media only screen and (max-width: 413px) {
+    .container {
+        font-family: Bahnschrift;
+        margin: 0;
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+
+    .img {
+        width: 300px;
+        height: 200px;
+    }
+
+    .main {
+        top: 30%;
+        left: 50%;
+        position: relative;
+        width: 80%;
+    }
+
+    .main #tm_numebr {
+        padding: 9px 23px;
+    }
+
+    .main .logo {
+        width: 100%;
+        height: 20% !important;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .main .logo2 {
+        width: 80%;
+        height: 7% !important;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .registration {
+        position: relative;
+        width: 85%;
+    }
+
+    .registration input {
+        font-family: Bahnschrift;
+        font-size: 18px;
+        color: black;
+        text-align: center;
+        border-radius: 12px;
+        padding: 9px 23px;
+        background: rgba(255, 255, 255, 0.5);
+    }
+
+    .registration .box input {
+        padding: 5px 0px;
+    }
+
+    .registration .logo {
+        width: 100%;
+        height: 20% !important;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .registration .logo2 {
+        width: 80%;
+        height: 7% !important;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+
+    .confirm {
+        top: 35%;
+        left: 50%;
+        font-size: 17px;
+        position: relative;
+        width: 85%;
+
+    }
+
+    .confirm .logo {
+        width: 80%;
+        height: 16% !important;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .confirm .logo2 {
+        width: 70%;
+        height: 7% !important;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+        flex-direction: column;
+        font-size: 14px;
+
+    }
+
+}
+
+
+/** iphone11 **/
+@media only screen and (max-width: 415px) {
+    .container {
+        font-family: Bahnschrift;
+        margin: 0;
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+
+    .img {
+        width: 300px;
+        height: 200px;
+    }
+
+    .main {
+        top: 30%;
+        left: 50%;
+        position: relative;
+        width: 85%;
+    }
+
+    .main #tm_numebr {
+        padding: 9px 23px;
+    }
+
+    .main ::placeholder {
+        color: #000;
+        font-size: small;
+    }
+
+    .main .logo {
+        width: 100%;
+        height: 20% !important;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .main .logo2 {
+        width: 80%;
+        height: 7% !important;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    /* .registration .box input[type=radio]{
+
+        margin-right:10%;
+    } */
+    .registration {
+        position: relative;
+        width: 85%;
+    }
+
+    .registration input {
+        font-family: Bahnschrift;
+        font-size: 18px;
+        color: black;
+        text-align: center;
+        border-radius: 12px;
+        padding: 9px 23px;
+        background: rgba(255, 255, 255, 0.5);
+    }
+
+    .registration .box input {
+        padding: 5px 0px;
+    }
+
+    .registration .logo {
+        width: 100%;
+        height: 20% !important;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .registration .logo2 {
+        width: 80%;
+        height: 7% !important;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+
+    .confirm {
+        top: 35%;
+        left: 50%;
+        font-size: 17px;
+        position: relative;
+        width: 80%;
+
+    }
+
+    .confirm .logo {
+        width: 100%;
+        height: 20% !important;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .confirm .logo2 {
+        width: 80%;
+        height: 7% !important;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+        flex-direction: column;
+        font-size: 14px;
+
+    }
+
+}
+
+
+/** iphone 12/13 max **/
+@media only screen and (max-width: 429px) {
+    .container {
+        font-family: Bahnschrift;
+        margin: 0;
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+
+    .img {
+        width: 300px;
+        height: 200px;
+    }
+
+    .main {
+        top: 30%;
+        left: 50%;
+        position: relative;
+        width: 85%;
+    }
+
+    .main #tm_numebr {
+        padding: 9px 23px;
+    }
+
+    .main ::placeholder {
+        color: #000;
+        font-size: small;
+    }
+
+    .main .logo {
+        width: 100%;
+        height: 20% !important;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .main .logo2 {
+        width: 80%;
+        height: 7% !important;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+
+    .registration {
+        position: relative;
+        width: 85%;
+    }
+
+    .registration input {
+        font-family: Bahnschrift;
+        font-size: 18px;
+        color: black;
+        text-align: center;
+        border-radius: 12px;
+        padding: 9px 23px;
+        background: rgba(255, 255, 255, 0.5);
+    }
+
+    .registration .box input {
+        padding: 5px 0px;
+    }
+
+    .registration .logo {
+        width: 100%;
+        height: 20% !important;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .registration .logo2 {
+        width: 80%;
+        height: 7% !important;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+
+    .confirm {
+        top: 35%;
+        left: 50%;
+        font-size: 17px;
+        position: relative;
+        width: 80%;
+
+    }
+
+    .confirm .logo {
+        width: 100%;
+        height: 20% !important;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .confirm .logo2 {
+        width: 80%;
+        height: 7% !important;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+        flex-direction: column;
+        font-size: 16px;
+
+    }
+
+}
+
+
+/** ipad pro **/
+@media only screen and (max-width: 1024px) and (orientation: landscape) {
+    .container {
+        font-family: Bahnschrift;
+        margin: 0;
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+
+    .img {
+        width: 300px;
+        height: 200px;
+    }
+
+    .main {
+        top: 30%;
+        left: 50%;
+        position: relative;
+        width: 85%;
+    }
+
+    .main #tm_numebr {
+        padding: 9px 23px;
+    }
+
+    .main ::placeholder {
+        color: #000;
+
+    }
+
+    .main .logo {
+        width: 80%;
+        height: 20% !important;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .main .logo2 {
+        width: 70%;
+        height: 7% !important;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+
+    .registration {
+        position: relative;
+        width: 85%;
+    }
+
+    .registration input {
+        font-family: Bahnschrift;
+        font-size: 18px;
+        color: black;
+        text-align: center;
+        border-radius: 12px;
+        padding: 9px 23px;
+        background: rgba(255, 255, 255, 0.5);
+    }
+
+    .registration .box input {
+        padding: 5px 0px;
+    }
+
+    .registration .logo {
+        width: 75%;
+        height: 20% !important;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .registration .logo2 {
+        width: 65%;
+        height: 7% !important;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+
+    .confirm {
+        top: 35%;
+        left: 50%;
+        font-size: 17px;
+        position: relative;
+        width: 80%;
+
+    }
+
+    .confirm .logo {
+        width: 80%;
+        height: 20% !important;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .confirm .logo2 {
+        width: 70%;
+        height: 7% !important;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+        flex-direction: column;
+        font-size: 32px;
+
+    }
+
+
+}
+
+
+/** ipad pro **/
+@media only screen and (max-width: 1366px) and (orientation: portrait) {
+    .container {
+        font-family: Bahnschrift;
+        margin: 0;
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+
+    .img {
+        width: 300px;
+        height: 200px;
+    }
+
+    .main {
+        top: 30%;
+        left: 50%;
+        position: relative;
+        width: 85%;
+    }
+
+    .main #tm_numebr {
+        padding: 9px 23px;
+    }
+
+    .main ::placeholder {
+        color: #000;
+
+    }
+
+    .main .logo {
+        width: 80%;
+        height: 20% !important;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .main .logo2 {
+        width: 70%;
+        height: 7% !important;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+
+    .registration {
+        position: relative;
+        width: 85%;
+    }
+
+    .registration input {
+        font-family: Bahnschrift;
+        font-size: 18px;
+        color: black;
+        text-align: center;
+        border-radius: 12px;
+        padding: 9px 23px;
+        background: rgba(255, 255, 255, 0.5);
+    }
+
+    .registration .box input {
+        padding: 5px 0px;
+    }
+
+    .registration .logo {
+        width: 75%;
+        height: 20% !important;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .registration .logo2 {
+        width: 65%;
+        height: 7% !important;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+
+    .confirm {
+        top: 35%;
+        left: 50%;
+        font-size: 17px;
+        position: relative;
+        width: 80%;
+
+    }
+
+    .confirm .logo {
+        width: 80%;
+        height: 20% !important;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .confirm .logo2 {
+        width: 70%;
+        height: 7% !important;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+        flex-direction: column;
+        font-size: 32px;
+
+    }
+
+
+}
+
+
+/** other **/
+@media only screen and (max-width: 560px) {
+    .container {
+        font-family: Bahnschrift;
+        margin: 0;
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+
+    .img {
+        width: 300px;
+        height: 200px;
+    }
+
+    .main {
+        top: 30%;
+        left: 50%;
+        position: relative;
+        width: 80%;
+    }
+
+    .main #tm_numebr {
+        padding: 9px 23px;
+    }
+
+    .main ::placeholder {
+        color: #000;
+        font-size: small;
+    }
+
+    .main .logo {
+        width: 100%;
+        height: 20% !important;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .main .logo2 {
+        width: 80%;
+        height: 7% !important;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .registration {
+        position: relative;
+        width: 85%;
+    }
+
+    .registration input {
+        font-family: Bahnschrift;
+        font-size: 18px;
+        color: black;
+        text-align: center;
+        border-radius: 12px;
+        padding: 9px 23px;
+        background: rgba(255, 255, 255, 0.5);
+    }
+
+    .registration .box input {
+        padding: 5px 0px;
+    }
+
+    .registration .logo {
+        width: 100%;
+        height: 20% !important;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .registration .logo2 {
+        width: 80%;
+        height: 7% !important;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+
+    .confirm {
+        top: 35%;
+        left: 50%;
+        font-size: 17px;
+        position: relative;
+        width: 85%;
+
+    }
+
+    .confirm .logo {
+        width: 80%;
+        height: 16% !important;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .confirm .logo2 {
+        width: 70%;
+        height: 7% !important;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+        flex-direction: column;
+        font-size: 14px;
+
+    }
+
+}
+
+

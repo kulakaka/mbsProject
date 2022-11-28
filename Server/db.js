@@ -420,47 +420,108 @@ const axios = require('axios').default;
 
 // }
 
-var nm = 845000;
+// var nm = 845000;
+// axios({
+//   method: "GET",
+//   url: `https://api.baserow.io/api/database/rows/table/109802/?user_field_names=true&filter__field_692434__contains=${nm}`,
+//   headers: {
+//     Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
+//   }
+// })
+// .then(getjson=>{
+//   if(getjson.data.results.length)
+//   {
+//       var nmofdrink =  parseInt(getjson.data.results[0].NumberOfDrink);
+//       var rowid = getjson.data.results[0].id
+//       console.log("nmofdrink",nmofdrink);
+//       if (nmofdrink>0)
+//       {
+//         var currentdrink = nmofdrink-1;
+//           axios({
+//               method: "PATCH",
+//               url: `https://api.baserow.io/api/database/rows/table/109802/${rowid}/?user_field_names=true`,
+//               headers: {
+//                 Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua",
+//                 "Content-Type": "application/json"
+//               },
+//               data: {
+//                 "NumberOfDrink": currentdrink
+//               }
+//             })
+//       }
+//       else
+//       {
+//         console.log("run out of chances");
+//       }
+
+//   }
+//   else
+//   {   
+//     console.log('User not exist');
+//   }
+
+// })
+// .catch(err=>{
+//   console.log('err:',err);
+// })
+
+var hs = 231348;
+
 axios({
   method: "GET",
-  url: `https://api.baserow.io/api/database/rows/table/109802/?user_field_names=true&filter__field_692434__contains=${nm}`,
+  url: `https://api.baserow.io/api/database/rows/table/104714/?user_field_names=true&filter__field_656871__contains=${hs}`,
   headers: {
     Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
   }
-})
-.then(getjson=>{
-  if(getjson.data.results.length)
+}).then(regjson => {          
+  // if results is empty
+  if(!regjson.data.results.length)
   {
-      var nmofdrink =  parseInt(getjson.data.results[0].NumberOfDrink);
-      var rowid = getjson.data.results[0].id
-      console.log("nmofdrink",nmofdrink);
-      if (nmofdrink>0)
-      {
-        var currentdrink = nmofdrink-1;
+      reject("Cannot find user in reg list");
+  }
+  else{
+          console.log(regjson.data.results);
+
+          let tnm = regjson.data.results.TeamMember;
           axios({
-              method: "PATCH",
-              url: `https://api.baserow.io/api/database/rows/table/109802/${rowid}/?user_field_names=true`,
-              headers: {
-                Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua",
-                "Content-Type": "application/json"
-              },
-              data: {
-                "NumberOfDrink": currentdrink
-              }
-            })
-      }
-      else
-      {
-        console.log("run out of chances");
-      }
+            method: "GET",
+            url: `https://api.baserow.io/api/database/rows/table/110076/?user_field_names=true&filter__field_695204__contains=${tnm}`,
+            headers: {
+            Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
+            }
+        })
+        .then(json=>{
+            if(!json.data.results.length)
+            {
+                axios({
+                    method: "POST",
+                    url: "https://api.baserow.io/api/database/rows/table/110076/?user_field_names=true",
+                    headers: {
+                      Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua",
+                      "Content-Type": "application/json"
+                    },
+                    data: {
+                      "TeamMember": regjson.data.results[0].TeamMember,
+                      "Name": regjson.data.results[0].Name,
+                      "PhoneNo": regjson.data.results[0].PhoneNo,
+                      "Email": regjson.data.results[0].Email,
+                      "Department": regjson.data.results[0].DepartmentName,
+                      "Hotstamp":regjson.data.results[0].Hotstamp
+                    }
+                  })
+                  .then(()=>{
+                    console.log("successfully checked in");
+                    //resolve("User Check In Comfirmed!");
+                })
+            }
+            else{
+                console.log("check in failed");
+                //reject("Multiple Checked In");
+            }
 
-  }
-  else
-  {   
-    console.log('User not exist');
-  }
+          
+        })
 
-})
-.catch(err=>{
-  console.log('err:',err);
-})
+
+      }
+  })

@@ -283,6 +283,46 @@ app.post("/api/manualcheck/:tmnm",(req,res)=>{
   
 })
 
+app.post("/api/tapcheck/:hotstamp",(req,res)=>{
+   
+    var hs = req.params.hotstamp;
+    try
+    {   
+        OnSiteScancheckin(hs).then((message)=>{
+            console.log(message);
+            return res.json({
+                status: 200,
+                success: true,
+                body:message
+            });
+        }).catch((message)=>{
+            console.log(message);
+            return res.json({
+                status: 400,
+                success: false,
+                body:message
+            });
+        })
+    }
+    catch{
+        return res.json({
+            status: 400,
+            success: false,
+            body:"Error Has Occur"
+        });
+    }
+
+
+})
+
+
+
+
+
+
+
+
+
 app.post("/api/redmeption/:tmnm",(req,res)=>{
     var nm = req.params.tmnm;
     
@@ -661,7 +701,82 @@ async function scan(dataurl) {
 }
 
 
+function OnSiteScancheckin(hs)
+{
+    return new Promise(function (resolve,reject){
+    
+
+        axios({
+            method: "GET",
+            url: `https://api.baserow.io/api/database/rows/table/104714/?user_field_names=true&filter__field_656871__contains=${hs}`,
+            headers: {
+              Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
+            }
+          }).then(regjson => {          
+            // if results is empty
+            if(!regjson.data.results.length)
+            {
+                reject("Cannot find user in reg list");
+            }
+            else{
+                    //console.log(regjson.data.results);
+          
+                    let tnm = regjson.data.results.TeamMember;
+                    axios({
+                      method: "GET",
+                      url: `https://api.baserow.io/api/database/rows/table/110076/?user_field_names=true&filter__field_695204__contains=${tnm}`,
+                      headers: {
+                      Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
+                      }
+                  })
+                  .then(json=>{
+                      if(!json.data.results.length)
+                      {
+                          axios({
+                              method: "POST",
+                              url: "https://api.baserow.io/api/database/rows/table/110076/?user_field_names=true",
+                              headers: {
+                                Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua",
+                                "Content-Type": "application/json"
+                              },
+                              data: {
+                                "TeamMember": regjson.data.results[0].TeamMember,
+                                "Name": regjson.data.results[0].Name,
+                                "PhoneNo": regjson.data.results[0].PhoneNo,
+                                "Email": regjson.data.results[0].Email,
+                                "Department": regjson.data.results[0].DepartmentName,
+                                "Hotstamp":regjson.data.results[0].Hotstamp
+                              }
+                            })
+                            .then(()=>{
+                                let output = 
+                                {
+                                    "TeamMember":regjson.data.results[0].TeamMember,
+                                    "Name":regjson.data.results[0].Name,
+                                    "Department":regjson.data.results[0].DepartmentName
+                                }
+                              //resolve("User Check In Comfirmed!");
+                              resolve(output)
+                          })
+                      }
+                      else{
+                          //console.log("check in failed");
+                          reject("Multiple Checked In");
+                      }
+          
+                    
+                  })
+          
+          
+                }
+            })    
+    
+    })
+
+
+
+}
+
 
 
 app.listen(3000);
-    
