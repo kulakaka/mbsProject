@@ -1,7 +1,7 @@
-function draw50()
+function draw10()
 {
     
-    fetch(`http://localhost:3000/api/luckydraw50/`,{
+    fetch(`http://localhost:3000/api/luckydraw10/`,{
         method:"POST",
         headers: {"Content-type": "application/json; charset=UTF-8"}
     })

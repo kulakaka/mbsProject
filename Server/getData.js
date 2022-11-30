@@ -231,11 +231,11 @@ app.get("/api/sms/:phno/:name/:val", (req, res) => {
 )
 
 // lucky draw api 
-app.post("/api/luckydraw50",  (req, res) => {
+app.post("/api/luckydraw10",  (req, res) => {
 
     try{
        
-        draw50().then(()=>
+        draw().then(()=>
         {
             return res.json({status: 200, success: true});    
         })
@@ -434,108 +434,118 @@ function RedemptionCheck(nm)
 
 var totalnum;
 let winnerindex;
-function draw50()
+var winnerlist =[];
+function draw()
 { 
-
+    let tempwinlist = [];
     return new Promise(function (resolve,reject){
-          //GET TOTAL COUNT OF USERS FROM CEHCKIN TABLE AND GET RAMDOM INDEX NUMBER
+    axios({
+  method: "GET",
+  //url: "https://api.baserow.io/api/database/rows/table/110076/?user_field_names=true",
+  url: "https://api.baserow.io/api/database/rows/table/112685/?user_field_names=true", //get data from regtest
+  headers: {
+      Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq"
+  }
+  })
+  .then(json=>{
+  console.log(json.data.count)
+
+  totalnum = json.data.count;
+
+  let count =0
+    while(true)
+    {
+    if(count<10)
+    {
+      winnerindex = Math.floor(Math.random()*totalnum-1) + 1;
+      tempwinlist.push(winnerindex);
+      
+      if (tempwinlist.length == new Set(tempwinlist).size) {
+        count++;
+      }
+      
+
+
+    }
+    else
+    {
+      break
+    }
+    }
+    console.log(tempwinlist);
+
+    for(let i=0;i<tempwinlist.length;i++)
+    {
+      while(true)
+      {
+      if(winnerlist.includes(tempwinlist[i]))
+      { 
+        console.log("same");
+        // if has the same value as winnerlist
+        let tempindex = Math.floor(Math.random()*totalnum-1) + 1; //gen a new num
+        //check if the new number if same
+        tempwinlist[i] = tempindex; // replace the number
+      }
+      else
+      {  
+        winnerlist.push(tempwinlist[i]);
+        break;
+      }
+      }
+    }
+    //draw10(tempwinlist)
+    console.log(tempwinlist);
+    //draw10(tempwinlist)
+    //var tmpli = [123,321,33,20];
+    axios.all(tempwinlist.map((winnerindex)=>
+    {
+    //GET WINNER INFO 
+    axios({
+      method: "GET",
+      //url: `https://api.baserow.io/api/database/rows/table/110076/${winnerindex}/?user_field_names=true`,
+      url: `https://api.baserow.io/api/database/rows/table/112685/${winnerindex}/?user_field_names=true`,
+      headers: {
+      Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq"
+      }
+  }).then(
+      json =>{
+          //console.log(json.data);
+          var winnername = json.data.Name;
+          var winnertm = json.data.TeamMember;
+          var winnerDep = json.data.Department;
+          var winnerEmail = json.data.Email;
           axios({
-            method: "GET",
-            //url: "https://api.baserow.io/api/database/rows/table/110076/?user_field_names=true",
-            url: "https://api.baserow.io/api/database/rows/table/112685/?user_field_names=true", //get data from regtest
+            method: "POST",
+            url: "https://api.baserow.io/api/database/rows/table/112691/?user_field_names=true",
             headers: {
-                Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq"
+            Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq",
+            "Content-Type": "application/json"
+            },
+            data: { 
+            "TeamMember": winnertm,
+            "Name": winnername,
+            "Department": winnerDep,
+            "Email": winnerEmail
             }
-            }).then(json=>{
-            console.log(json.data.count)
-  
-            totalnum = json.data.count;
-  
-            winnerindex = Math.floor(Math.random()*totalnum-1) + 1;
-  
-            console.log("This is the winner",winnerindex);
-            //GET WINNER INFO 
-            axios({
-                method: "GET",
-                //url: `https://api.baserow.io/api/database/rows/table/110076/${winnerindex}/?user_field_names=true`,
-                url: `https://api.baserow.io/api/database/rows/table/112685/${winnerindex}/?user_field_names=true`,
-                headers: {
-                Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq"
-                }
-            }).then(
-                json =>{
-                    //console.log(json.data);
-                    winnername = json.data.Name;
-                    winnertm = json.data.TeamMember;
-                    winnerDep = json.data.Department;
-                    winnerEmail = json.data.Email;
-        
-                        axios({
-                            method: "GET",
-                            url: "https://api.baserow.io/api/database/rows/table/112691/?user_field_names=true",
-                            headers: {
-                              Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq"
-                            }
-                          }).then(
-                            json=>{
-                              //console.log(json.data.results)
-                        
-                              winnerlist = json.data.results
-                            
-                              for (var i =0; i<winnerlist.length;i++)
-                              {
-                                if (winnertm == winnerlist[i].TeamMember)
-                                {
-                                  console.log("Same");// do it again
-                                  draw50();
-                                  
-                                }
-                              }
-                              console.log("Name:",winnername); 
-                        
-                            //   axios({
-                            //     method: "POST",
-                            //     url: "https://api.baserow.io/api/database/rows/table/112691/?user_field_names=true",
-                            //     headers: {
-                            //     Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq",
-                            //     "Content-Type": "application/json"
-                            //     },
-                            //     data: { 
-                            //     "TeamMember": winnertm,
-                            //     "Name": winnername,
-                            //     "Department": winnerDep,
-                            //     "Email": winnerEmail
-                            //     }
-                            // })
-                            // .then(res=>{
-                                
-                            //     // count++;
-                            //     // console.log("count:",count);
-                            //     resolve("good");
-                            // })
-                            // .catch(err=>{
-                            //     console.log(err);
-                            //     reject("bad");
-                            // })  
-                            }
-                          )
-                    // }
-                }
-            )
-            .catch(err=>{
-                console.log(err);
-                reject("bad");
+        })
+        .then(resolve("Good"))
+        .catch(err=>{
+            console.log(err);
+            reject("Bad")
+        })  
+            })
+          }))
+   
 
-            })   
-        }
-    )
-    .catch(err=>{
-        console.log(err);
-        reject("bad");
+})
+.catch(err=>{
 
-    })        
-  
-    })
+console.log(err);
+reject("Bad")
+})        
+
+})
+
 }
 
 
