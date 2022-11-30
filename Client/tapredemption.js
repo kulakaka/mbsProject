@@ -1,11 +1,11 @@
 
 
-function tapcheckin(){
+function tapredemption(){
 
 
     var tm_nm = document.getElementById("tm_numebr").value;
 
-    fetch(`https://onepartyonembs.com.sg/api/redmeption/${tm_nm}`,{
+    fetch(`http://localhost:3000/api/redmeption/${tm_nm}`,{
         method:"POST",
         headers: {"Content-type": "application/json; charset=UTF-8"}
 
@@ -15,21 +15,25 @@ function tapcheckin(){
         console.log('Success:', result);
         if(result.success)
         {
-            alert(`Number Of Drinks Can be Reedemed : ${result.body}`);
-            window.location.href = "manualredemption.html";
+            document.getElementById('drink').innerText = result.body; 
+            //alert(`Number Of Drinks Can be Reedemed : ${result.body}`);
+            //window.location.href = "tapredemption.html";
 
             
         }
         else{
-            alert(result.body);
-            window.location.href = "manualredemption.html";
+            document.getElementById('drink').innerText = '\nFully Redeemed!';
+            document.getElementById('drink').style.color = 'red';
+            //alert(result.body);
+            //window.location.href = "tapredemption.html";
 
         }
-    })
+    })  
     .catch(err=>{
         console.log(err)
-        alert("User Cannot Redeem Drink");
-        window.location.href = "manualredemption.html";
+        //alert("User Cannot Redeem Drink");
+        document.getElementById('drink').innerText = "NOT VALID USER!";
+        //window.location.href = "tapredemption.html";
 
     });
 
@@ -41,14 +45,12 @@ function tapcheckin(){
 function messagebtn()
 {
     document.getElementById('callout').style.opacity=0;
-    console.log("yes")
-    window.location.href = "tapcheckin.html";
-
-
+    
+    window.location.href = "tapredemption.html";
 
 }
 
 
-function gomanualcheckin(){
-    window.location.href = "manualcheckin.html";
+function gomanualRedemption(){
+    window.location.href = "manualredemption.html";
 }

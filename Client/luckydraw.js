@@ -1,7 +1,34 @@
-function draw()
+function draw50()
+{
+    
+    fetch(`http://localhost:3000/api/luckydraw50/`,{
+        method:"POST",
+        headers: {"Content-type": "application/json; charset=UTF-8"}
+    })
+    .then(response=>{
+        
+        response.json()
+    
+    })
+    .then(
+        alert("Winner has been update into database please refer from there!")
+
+    )
+    .catch(err=>{
+        console.log(err);
+        alert("Please inform web developer to check");
+        window.location.href = "luckydraw.html";
+    });
+}
+
+
+
+
+
+function draw20()
 {
 
-    fetch(`https://onepartyonembs.com.sg/api/luckydraw/`,{
+    fetch(`https://onepartyonembs.com.sg/api/luckydraw50/`,{
         method:"POST",
         headers: {"Content-type": "application/json; charset=UTF-8"}
     })
@@ -18,7 +45,4 @@ function draw()
         alert("Please info web developer to check");
         window.location.href = "luckydraw.html";
     });
-
-    
-
 }

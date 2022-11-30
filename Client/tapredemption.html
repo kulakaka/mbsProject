@@ -18,24 +18,22 @@
                 <input id="tm_numebr" name="tm_numebr" placeholder="Enter TM Number" type="text" value="" required/>
                 <br><br>
 
-                <button class="button" type="button" id="sendemail" onclick="tapcheckin()">Confirm
+                <button class="button" type="button" id="sendemail" onclick="tapredemption()">Confirm
                 </button>
             </form>  
             <br>
             <br>
             <br>
             <br>
-            <button class="button" type="button" id="sendemail" onclick="gomanualcheckin()">manual CheckIn
+            <button class="button" type="button" id="sendemail" onclick="gomanualRedemption()">manual CheckIn
             </button>
 
             <div class="containercallout"> 
                 <div class="callout" id="callout">
-                  <h5>  Staff Information Check </h5>
-                    <label>TeamMember: </label> <label id="tm"></label>
+                  <h5>  Staff Redemption Status </h5>
+
                     <br>
-                    <label>Name: </label> <label id="name"></label>
-                    <br>
-                    <label>Department: </label> <label id="dep"></label>
+                    <label>Drink Status: </label> <Label id="drink"></Label>
                     <br>
                   <button class="btn" type="button" onclick="messagebtn()">OK</button>
                 </div>

@@ -465,63 +465,201 @@ const axios = require('axios').default;
 //   console.log('err:',err);
 // })
 
-var hs = 231348;
+// var hs = 231348;
 
-axios({
-  method: "GET",
-  url: `https://api.baserow.io/api/database/rows/table/104714/?user_field_names=true&filter__field_656871__contains=${hs}`,
-  headers: {
-    Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
-  }
-}).then(regjson => {          
-  // if results is empty
-  if(!regjson.data.results.length)
-  {
-      reject("Cannot find user in reg list");
-  }
-  else{
-          console.log(regjson.data.results);
+// axios({
+//   method: "GET",
+//   url: `https://api.baserow.io/api/database/rows/table/104714/?user_field_names=true&filter__field_656871__contains=${hs}`,
+//   headers: {
+//     Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
+//   }
+// }).then(regjson => {          
+//   // if results is empty
+//   if(!regjson.data.results.length)
+//   {
+//       reject("Cannot find user in reg list");
+//   }
+//   else{
+//           console.log(regjson.data.results);
 
-          let tnm = regjson.data.results.TeamMember;
-          axios({
-            method: "GET",
-            url: `https://api.baserow.io/api/database/rows/table/110076/?user_field_names=true&filter__field_695204__contains=${tnm}`,
-            headers: {
-            Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
-            }
-        })
-        .then(json=>{
-            if(!json.data.results.length)
-            {
-                axios({
-                    method: "POST",
-                    url: "https://api.baserow.io/api/database/rows/table/110076/?user_field_names=true",
-                    headers: {
-                      Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua",
-                      "Content-Type": "application/json"
-                    },
-                    data: {
-                      "TeamMember": regjson.data.results[0].TeamMember,
-                      "Name": regjson.data.results[0].Name,
-                      "PhoneNo": regjson.data.results[0].PhoneNo,
-                      "Email": regjson.data.results[0].Email,
-                      "Department": regjson.data.results[0].DepartmentName,
-                      "Hotstamp":regjson.data.results[0].Hotstamp
-                    }
-                  })
-                  .then(()=>{
-                    console.log("successfully checked in");
-                    //resolve("User Check In Comfirmed!");
-                })
-            }
-            else{
-                console.log("check in failed");
-                //reject("Multiple Checked In");
-            }
+//           let tnm = regjson.data.results.TeamMember;
+//           axios({
+//             method: "GET",
+//             url: `https://api.baserow.io/api/database/rows/table/110076/?user_field_names=true&filter__field_695204__contains=${tnm}`,
+//             headers: {
+//             Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
+//             }
+//         })
+//         .then(json=>{
+//             if(!json.data.results.length)
+//             {
+//                 axios({
+//                     method: "POST",
+//                     url: "https://api.baserow.io/api/database/rows/table/110076/?user_field_names=true",
+//                     headers: {
+//                       Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua",
+//                       "Content-Type": "application/json"
+//                     },
+//                     data: {
+//                       "TeamMember": regjson.data.results[0].TeamMember,
+//                       "Name": regjson.data.results[0].Name,
+//                       "PhoneNo": regjson.data.results[0].PhoneNo,
+//                       "Email": regjson.data.results[0].Email,
+//                       "Department": regjson.data.results[0].DepartmentName,
+//                       "Hotstamp":regjson.data.results[0].Hotstamp
+//                     }
+//                   })
+//                   .then(()=>{
+//                     console.log("successfully checked in");
+//                     //resolve("User Check In Comfirmed!");
+//                 })
+//             }
+//             else{
+//                 console.log("check in failed");
+//                 //reject("Multiple Checked In");
+//             }
 
           
-        })
+//         })
 
 
-      }
+//       }
+//   })
+
+
+var tempwinlist = [];
+axios({
+  method: "GET",
+  //url: "https://api.baserow.io/api/database/rows/table/110076/?user_field_names=true",
+  url: "https://api.baserow.io/api/database/rows/table/112685/?user_field_names=true", //get data from regtest
+  headers: {
+      Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq"
+  }
   })
+  .then(json=>{
+  console.log(json.data.count)
+
+  totalnum = json.data.count;
+
+  let count =0
+    while(true)
+    {
+    if(count<30)
+    {
+      winnerindex = Math.floor(Math.random()*totalnum-1) + 1;
+      tempwinlist.push(winnerindex);
+      
+      if (tempwinlist.length == new Set(tempwinlist).size) {
+        count++;
+      }
+    }
+    else{
+      break
+    }
+    }
+    console.log(tempwinlist)
+
+    axios.all(tempwinlist.map((winnerindex)=>
+    {
+        //GET WINNER INFO 
+        axios({
+          method: "GET",
+          //url: `https://api.baserow.io/api/database/rows/table/110076/${winnerindex}/?user_field_names=true`,
+          url: `https://api.baserow.io/api/database/rows/table/112685/${winnerindex}/?user_field_names=true`,
+          headers: {
+          Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq"
+          }
+      }).then(
+          json =>{
+              //console.log(json.data);
+              var winnername = json.data.Name;
+              var winnertm = json.data.TeamMember;
+              var winnerDep = json.data.Department;
+              var winnerEmail = json.data.Email;
+
+              // check validation
+              axios({
+                method: "GET",
+                url: "https://api.baserow.io/api/database/rows/table/112691/?user_field_names=true",
+                headers: {
+                  Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq"
+                }
+              }).then(
+                json=>{
+                 let winnerlist = json.data.results
+                
+                  for (var i =0; i<winnerlist.length;i++)
+                  {
+                    if (winnertm == winnerlist[i].TeamMember) //same as winnerlist
+                    {
+                      
+                      //do it again once
+                      console.log("same");
+                      axios({
+                        method: "GET",
+                        //url: `https://api.baserow.io/api/database/rows/table/110076/${winnerindex}/?user_field_names=true`,
+                        url: `https://api.baserow.io/api/database/rows/table/112685/${winnerindex-1}/?user_field_names=true`,
+                        headers: {
+                        Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq"
+                        }
+                    }).then(
+                        json =>{
+                            //console.log(json.data);
+                            var winnername = json.data.Name;
+                            var winnertm = json.data.TeamMember;
+                            var winnerDep = json.data.Department;
+                            var winnerEmail = json.data.Email;
+                            axios({
+                              method: "POST",
+                              url: "https://api.baserow.io/api/database/rows/table/112691/?user_field_names=true",
+                              headers: {
+                              Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq",
+                              "Content-Type": "application/json"
+                              },
+                              data: { 
+                              "TeamMember": winnertm,
+                              "Name": winnername,
+                              "Department": winnerDep,
+                              "Email": winnerEmail
+                              }
+                          })
+                          .catch(err=>{
+                              console.log(err);
+                              
+                          })
+                        }
+                    )
+
+
+                    }
+                  } 
+                    axios({
+                      method: "POST",
+                      url: "https://api.baserow.io/api/database/rows/table/112691/?user_field_names=true",
+                      headers: {
+                      Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq",
+                      "Content-Type": "application/json"
+                      },
+                      data: { 
+                      "TeamMember": winnertm,
+                      "Name": winnername,
+                      "Department": winnerDep,
+                      "Email": winnerEmail
+                      }
+                  })
+                  .catch(err=>{
+                      console.log(err);
+                      
+                  })  
+            
+                }
+              )
+              })
+    }));
+}
+)
+.catch(err=>{
+console.log(err);
+
+})        
+
