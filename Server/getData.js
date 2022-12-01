@@ -327,7 +327,36 @@ app.post("/api/tapcheck/:hotstamp",(req,res)=>{
 
 })
 
+app.post("/api/tapredmeption/:tmnm",(req,res)=>{
+    var hs = req.params.tmnm;
+    
+    try{
+        TapRedemptionCheck(hs).then((message)=>{
+            console.log(message);
+            return res.json({
+                status: 200,
+                success: true,
+                body:message
+            });
+        }).catch((message)=>{
+            return res.json({
+                status: 400,
+                success: false,
+                body:message
+            });
+        })
 
+    }
+    catch{
+        return res.json({
+            status: 400,
+            success: false
+        });
+    }
+    }
+
+
+)
 
 
 
@@ -366,7 +395,69 @@ app.post("/api/redmeption/:tmnm",(req,res)=>{
 
 )
 
+function TapRedemptionCheck(hs)
+{
 
+    // use promise to force it run synchronise
+    return new Promise(function (resolve,reject){
+
+        // to check if user checked in before
+        axios({
+            method: "GET",
+            url: `https://api.baserow.io/api/database/rows/table/110076/?user_field_names=true&filter__field_753233__contains=${hs}`,
+            headers: {
+              Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
+            }
+          })
+          .then(getjson=>{
+            // if user in the check in list.
+            if(getjson.data.results.length)
+            {
+                var nmofdrink =  parseInt(getjson.data.results[0].NumberOfDrink);
+                var rowid = getjson.data.results[0].id
+                console.log("nmofdrink",nmofdrink);
+                if (nmofdrink>0)
+                {
+                  var currentdrink = nmofdrink-1;
+                  //update user drink 
+                    axios({
+                        method: "PATCH",
+                        url: `https://api.baserow.io/api/database/rows/table/110076/${rowid}/?user_field_names=true`,
+                        headers: {
+                          Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua",
+                          "Content-Type": "application/json"
+                        },
+                        data: {
+                          "NumberOfDrink": currentdrink
+                        }
+                      })
+                      .then(
+                        resolve(currentdrink+1)
+                      )
+                }
+                else
+                {
+                    reject("run out of chances");
+                  //console.log("run out of chances");
+                }
+          
+            }
+            else
+            {   
+            
+                reject('User not exist');
+              //console.log('User not exist');
+            }
+          
+          })
+          .catch(err=>{
+            //console.log('err:',err);
+            reject('Error occur');
+          })
+
+    })
+
+}
 function RedemptionCheck(nm)
 {
 
@@ -461,11 +552,11 @@ function draw()
       tempwinlist.push(winnerindex);
       
       if (tempwinlist.length == new Set(tempwinlist).size) {
-        count++;
+        if (luckydrawvalidationcheck(winnerindex))
+        {
+            count++;
+        }
       }
-      
-
-
     }
     else
     {
@@ -552,32 +643,15 @@ reject("Bad")
 
 
 //CHECK USER IF WIN BEFORE
-function luckydrawvalidationcheck(tm){
-    var tmn = tm;
-    axios({
-      method: "GET",
-      url: "https://api.baserow.io/api/database/rows/table/112691/?user_field_names=true",
-      headers: {
-        Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq"
-      }
-    }).then(
-      json=>{
-        //console.log(json.data.results)
-  
-        winnerlist = json.data.results
-      
-        for (var i =0; i<winnerlist.length;i++)
+function luckydrawvalidationcheck(index){
+    for(let i=0; i<loserlist.length;i++)
+    {
+        if(index=parseInt(loserlist[i]))
         {
-          if (tmn == winnerlist[i].TeamMember)
-          {
-            draw();
-            break;
-          }
-        } 
-  
-  
-      }
-    )
+            return true
+        }
+        return false
+    }
   
   }
 
@@ -653,9 +727,6 @@ function luckydrawvalidationcheck(tm){
   
   
 async function scan(dataurl) {
-   
-    
-    
         
     // Imports the Google Cloud client library
     const vision = require('@google-cloud/vision');
@@ -840,3 +911,44 @@ function OnSiteScancheckin(hs)
 
 
 app.listen(3000);
+
+
+let loserlist = [
+    2136,
+    3050,
+    1275,
+    2944,
+    814,
+    620,
+    1606,
+    2309,
+    1563,
+    1576,
+    1967,
+    3101,
+    1871,
+    175,
+    2613,
+    1532,
+    2631,
+    1745,
+    1618,
+    720,
+    2449,
+    1276,
+    2937,
+    846,
+    2251,
+    1244,
+    2860,
+    811,
+    1528,
+    854,
+    1960,
+    623,
+    548,
+    1861,
+    2873,
+    2323,
+    1212
+]

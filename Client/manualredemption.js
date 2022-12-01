@@ -34,7 +34,7 @@ function RedemptionCheck(){
 }
 
 
-function ScanToRedeem(){
+function TapToRedeem(){
 
-    window.location.href="scanredemption.html";
+    window.location.href="tapredemption.html";
 }

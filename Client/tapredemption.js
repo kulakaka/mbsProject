@@ -5,7 +5,7 @@ function tapredemption(){
 
     var tm_nm = document.getElementById("tm_numebr").value;
 
-    fetch(`http://localhost:3000/api/redmeption/${tm_nm}`,{
+    fetch(`https://onepartyonembs.com.sg/api/tapredmeption/${tm_nm}`,{
         method:"POST",
         headers: {"Content-type": "application/json; charset=UTF-8"}
 

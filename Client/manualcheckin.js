@@ -30,6 +30,6 @@ function manualcheckin(){
 }
 
 
-function gobackscancheck(){
-    window.location.href = "checkin.html";
+function gobacktapcheck(){
+    window.location.href = "tapcheckin.html";
 }
