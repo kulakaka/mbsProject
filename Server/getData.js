@@ -300,7 +300,7 @@ app.post("/api/tapcheck/:hotstamp",(req,res)=>{
     var hs = req.params.hotstamp;
     try
     {   
-        OnSiteScancheckin(hs).then((message)=>{
+        OnSiteTapheckin(hs).then((message)=>{
             console.log(message);
             return res.json({
                 status: 200,
@@ -810,12 +810,19 @@ async function scan(dataurl) {
                           "Name": regjson.data.results[0].Name,
                           "PhoneNo": regjson.data.results[0].PhoneNo,
                           "Email": regjson.data.results[0].Email,
-                          "Department": regjson.data.results[0].Department
+                          "Department": regjson.data.results[0].Department,
+                          "Hotstamp":regjson.data.results[0].Hotstamp                        
                         }
                       })
-                      .then((response)=>{
-                
-                        resolve("User Check In Comfirmed!");
+                      .then(()=>{
+                        let output = 
+                                {
+                                    "TeamMember":regjson.data.results[0].TeamMember,
+                                    "Name":regjson.data.results[0].Name,
+                                    "Department":regjson.data.results[0].Department
+                                }
+                              //resolve("User Check In Comfirmed!");
+                              resolve(output)
                     })
                 }
                 else{
@@ -832,7 +839,7 @@ async function scan(dataurl) {
 }
 
 
-function OnSiteScancheckin(hs)
+function OnSiteTapheckin(hs)
 {
     return new Promise(function (resolve,reject){
     
@@ -843,16 +850,30 @@ function OnSiteScancheckin(hs)
             headers: {
               Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
             }
-          }).then(regjson => {          
+          }).then(dbjson => {          
             // if results is empty
-            if(!regjson.data.results.length)
+            if(!dbjson.data.results.length)
             {
-                reject("Cannot find user in reg list");
+                reject("Cannot find user in database");
             }
             else{
-                    //console.log(regjson.data.results);
-          
-                    let tnm = regjson.data.results.TeamMember;
+                //console.log(dbjson.data.results[0].TeamMember)
+                //check register list  
+                axios({
+                    method: "GET",
+                    url: `https://api.baserow.io/api/database/rows/table/110728/?user_field_names=true&filter__field_699773__contains=${dbjson.data.results[0].TeamMember}`,
+                    headers: {
+                    Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
+                    }
+                }).then(regjson=>{
+                    if(!regjson.data.results.length)
+                    {
+                        reject("Cannot find user in registerlist");
+                    }
+                    else
+                    {
+                    // check checkin table
+                    let tnm = regjson.data.results[0].TeamMember;
                     axios({
                       method: "GET",
                       url: `https://api.baserow.io/api/database/rows/table/110076/?user_field_names=true&filter__field_695204__contains=${tnm}`,
@@ -861,6 +882,8 @@ function OnSiteScancheckin(hs)
                       }
                   })
                   .then(json=>{
+                    //console.log(json.data.results.length)
+                        //if checkin table dont have
                       if(!json.data.results.length)
                       {
                           axios({
@@ -871,20 +894,20 @@ function OnSiteScancheckin(hs)
                                 "Content-Type": "application/json"
                               },
                               data: {
-                                "TeamMember": regjson.data.results[0].TeamMember,
-                                "Name": regjson.data.results[0].Name,
-                                "PhoneNo": regjson.data.results[0].PhoneNo,
-                                "Email": regjson.data.results[0].Email,
-                                "Department": regjson.data.results[0].DepartmentName,
-                                "Hotstamp":regjson.data.results[0].Hotstamp
+                                "TeamMember": dbjson.data.results[0].TeamMember,
+                                "Name": dbjson.data.results[0].Name,
+                                "PhoneNo": dbjson.data.results[0].PhoneNo,
+                                "Email": dbjson.data.results[0].Email,
+                                "Department": dbjson.data.results[0].DepartmentName,
+                                "Hotstamp":dbjson.data.results[0].Hotstamp
                               }
                             })
                             .then(()=>{
                                 let output = 
                                 {
-                                    "TeamMember":regjson.data.results[0].TeamMember,
-                                    "Name":regjson.data.results[0].Name,
-                                    "Department":regjson.data.results[0].DepartmentName
+                                    "TeamMember":dbjson.data.results[0].TeamMember,
+                                    "Name":dbjson.data.results[0].Name,
+                                    "Department":dbjson.data.results[0].DepartmentName
                                 }
                               //resolve("User Check In Comfirmed!");
                               resolve(output)
@@ -897,6 +920,11 @@ function OnSiteScancheckin(hs)
           
                     
                   })
+                    }
+
+                })
+
+
           
           
                 }

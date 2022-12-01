@@ -44,9 +44,6 @@ function messagebtn()
     document.getElementById('callout').style.opacity=0;
     console.log("yes")
     window.location.href = "tapcheckin.html";
-
-
-
 }
 
 

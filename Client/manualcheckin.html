@@ -3,7 +3,7 @@
  <html class="main_page" lang="en">
     <head>
         <title>One Party One MBS</title>
-        <link rel="stylesheet" href="mbs_registration.css">
+        <link rel="stylesheet" href="tapcheckin.css">
         <script type="text/javascript" src="manualcheckin.js"></script>
     </head>
     <body>
@@ -27,6 +27,19 @@
             <br>
             <button class="button" type="button" id="sendemail" onclick="gobacktapcheck()">Tap CheckIn
             </button>
+
+            <div class="containercallout"> 
+                <div class="callout" id="callout">
+                  <h5>  Staff Information Check </h5>
+                    <label>TeamMember: </label> <label id="tm"></label>
+                    <br>
+                    <label>Name: </label> <label id="name"></label>
+                    <br>
+                    <label>Department: </label> <label id="dep"></label>
+                    <br>
+                  <button class="btn" type="button" onclick="messagebtn()">OK</button>
+                </div>
+              </div>
         </center>
     </div>
     </body>

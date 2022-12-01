@@ -3,7 +3,7 @@
  <html class="main_page" lang="en">
     <head>
         <title>One Party One MBS Redemption</title>
-        <link rel="stylesheet" href="mbs_registration.css">
+        <link rel="stylesheet" href="tapredemption.css">
         <script type="text/javascript" src="manualredemption.js"></script>
     </head>
     <body>
@@ -26,7 +26,20 @@
             <br>
             <br>
             <button class="button" type="button" id="sendemail" onclick="TapToRedeem()">Tap To Redeem
+
+
             </button>
+
+            <div class="containercallout"> 
+                <div class="callout" id="callout">
+                  <h5>  Staff Redemption Status </h5>
+
+                    <br>
+                    <label>Drink Status: </label> <Label id="drink"></Label>
+                    <br>
+                  <button class="btn" type="button" onclick="messagebtn()">OK</button>
+                </div>
+              </div>
         </center>
     </div>
     </body>
