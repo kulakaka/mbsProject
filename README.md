@@ -243,3 +243,11 @@ export GOOGLE_APPLICATION_CREDENTIALS="KEY_PATH"
 ```commandline
 python combine.py
 ```
+
+# Get All Cannot win people index nunmber by using TM number
+*Steps*
+1. Download All stuff database file with filter of management intern and tempo 
+2. Copy paste 30 lines of data into pplcannotwincsv.csv file. (Baserow api only accpect 30 time api request.)
+3. Run node convert.js under Server folder
+4. Copy past the result from the termial into the a text file.
+5. After finish all data. Copy past the result into loserlist array. 

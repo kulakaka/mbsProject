@@ -644,9 +644,10 @@ reject("Bad")
 
 //CHECK USER IF WIN BEFORE
 function luckydrawvalidationcheck(index){
+    let ind = index;
     for(let i=0; i<loserlist.length;i++)
     {
-        if(index=parseInt(loserlist[i]))
+        if(ind=parseInt(loserlist[i]))
         {
             return true
         }
