@@ -848,8 +848,8 @@ async function scan(dataurl) {
                             data: {
                             "TeamMember": dbjson.data.results[0].TeamMember,
                             "Name": dbjson.data.results[0].Name,
-                            // "PhoneNo": dbjson.data.results[0].PhoneNo,
-                            // "Email": dbjson.data.results[0].Email,
+                             "PhoneNo": "",
+                             "Email": "",
                             "Department": dbjson.data.results[0].DepartmentName,
                             "Hotstamp":dbjson.data.results[0].Hotstamp                      
                             }
@@ -944,8 +944,8 @@ function OnSiteTapheckin(hs)
                               data: {
                                 "TeamMember": dbjson.data.results[0].TeamMember,
                                 "Name": dbjson.data.results[0].Name,
-                                // "PhoneNo": dbjson.data.results[0].PhoneNo,
-                                // "Email": dbjson.data.results[0].Email,
+                                "PhoneNo": "",
+                                "Email": "",
                                 "Department": dbjson.data.results[0].DepartmentName,
                                 "Hotstamp":dbjson.data.results[0].Hotstamp
                               }

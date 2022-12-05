@@ -20,12 +20,12 @@ function manualcheckin(){
             document.getElementById('dep').innerText = "Department: "+result.body.Department;
             document.getElementById('checked').innerText = "Checked in before: Yes";
             document.getElementById('callout').style.opacity=1;
-    }
+        }
         else{
             document.getElementById('header').innerText = "Staff Information Check ";
-            document.getElementById('tm').innerText = "TM No. :",result.body.TeamMember;
-            document.getElementById('name').innerText = "Name :",result.body.Name;
-            document.getElementById('dep').innerText = "Department :",result.body.Department;
+            document.getElementById('tm').innerText = "TM No. :"+result.body.TeamMember;
+            document.getElementById('name').innerText = "Name :"+result.body.Name;
+            document.getElementById('dep').innerText = "Department :"+result.body.Department;
             document.getElementById('checked').innerText = "Checked in before: No"; 
             document.getElementById('callout').style.opacity=1; 
         }
@@ -35,7 +35,9 @@ function manualcheckin(){
             document.getElementById('header').innerText = "Warning!";
             document.getElementById('dep').innerText = result.body;
             document.getElementById('callout').style.opacity=1;
-            }})
+        }
+    
+    })
     .catch(err=>{
         console.log(err)
         alert("Please approch to helpdev for assistance!")
