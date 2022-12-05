@@ -458,7 +458,7 @@ function TapRedemptionCheck(hs)
             else
             {   
     
-                reject('User not exist');
+                reject('User Not Found');
               //console.log('User not exist');
             }
           
@@ -533,7 +533,7 @@ function RedemptionCheck(nm)
             else
             {   
             
-                reject('User not exist');
+                reject('User Not Found');
               //console.log('User not exist');
             }
           
