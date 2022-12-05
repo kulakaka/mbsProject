@@ -14,27 +14,46 @@ function tapcheckin(){
     .then((result) => {
         console.log('Success:', result);
         if(result.success)
-        {
-        //alert(result.body);
-        //var tmn  =result.body.
-        console.log(result.body);
-        document.getElementById('tm').innerText = result.body.TeamMember;
-        document.getElementById('name').innerText = result.body.Name;
-        document.getElementById('dep').innerText = result.body.Department;
+        {   
+            if(result.body.Checked)
+            {
+                document.getElementById('header').innerText = "Staff Information Check ";
+                document.getElementById('tm').innerText = "TM No. : "+result.body.TeamMember;
+                document.getElementById('name').innerText = "Name: "+result.body.Name;
+                document.getElementById('dep').innerText = "Department: "+result.body.Department;
+                document.getElementById('checked').innerText = "Checked in before: Yes";
+                document.getElementById('callout').style.opacity=1;
+            }
+            else
+            {
+                document.getElementById('header').innerText = "Staff Information Check ";
+                document.getElementById('tm').innerText = "TM No. :",result.body.TeamMember;
+                document.getElementById('name').innerText = "Name :",result.body.Name;
+                document.getElementById('dep').innerText = "Department :",result.body.Department;
+                document.getElementById('checked').innerText = "Checked in before: No"; 
+                document.getElementById('callout').style.opacity=1; 
+            }
+        console.log(result.body.TeamMember);
+
+
         }
         else{
-            alert(result.body);
-            window.location.href = "tapcheckin.html";
+            document.getElementById('header').innerText = "Warning!";
+            document.getElementById('dep').innerText = result.body;
+            document.getElementById('callout').style.opacity=1;
+
+
         }
     })
     .catch(err=>{
         console.log(err)
-        alert("User not register!")
+        alert("Please approch to helpdev for assistance!")
         window.location.href = "tapcheckin.html";
+
+
 
     });
 
-    document.getElementById('callout').style.opacity=1;
 
 
 }
@@ -45,6 +64,7 @@ function messagebtn()
     console.log("yes")
     window.location.href = "tapcheckin.html";
 }
+
 
 
 function gomanualcheckin(){

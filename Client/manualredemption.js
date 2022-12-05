@@ -12,30 +12,29 @@ function RedemptionCheck(){
     .then((result) => {
         console.log('Success:', result);
         if(result.success)
-        {
-            document.getElementById('drink').innerText = result.body; 
-            //alert(`Number Of Drinks Can be Reedemed : ${result.body}`);
-            //window.location.href = "tapredemption.html";
+        {   
+            document.getElementById('header').innerText = "TM Alcohol Redemption"
+            document.getElementById('tm').innerText = "TM No. : "+result.body.TeamMember;
+            document.getElementById('name').innerText = "Name: "+result.body.Name;
+            document.getElementById('dep').innerText = "Department: "+result.body.Department;
+            document.getElementById('drink').innerText = "Drink status: "+result.body.Drink;       
+            document.getElementById('callout').style.opacity=1;         
 
-            
         }
         else{
-            document.getElementById('drink').innerText = '\nFully Redeemed!';
-            document.getElementById('drink').style.color = 'red';
-            //alert(result.body);
-            //window.location.href = "tapredemption.html";
+            document.getElementById('header').innerText = "Warning!";
+            document.getElementById('dep').innerText = result.body;
+            document.getElementById('callout').style.opacity=1;         
 
         }
     })  
     .catch(err=>{
         console.log(err)
-        //alert("User Cannot Redeem Drink");
-        document.getElementById('drink').innerText = "NOT VALID USER!";
-        //window.location.href = "tapredemption.html";
-
+        alert("Please Approch to Devdesk for assistance!");
+        //document.getElementById('drink').innerText = "NOT VALID USER!";
+        window.location.href = "manualredemption.html";
     });
 
-    document.getElementById('callout').style.opacity=1;
 
 }
 
