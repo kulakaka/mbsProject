@@ -18,7 +18,7 @@ function tapredemption(){
 
     var tm_nm = document.getElementById("tm_numebr").value;
 
-    fetch(`https://onepartyonembs.com.sg/api/tapredmeption/${tm_nm}`,{
+    fetch(`http://localhost:3000/api/tapredmeption/${tm_nm}`,{
         method:"POST",
         headers: {"Content-type": "application/json; charset=UTF-8"}
 
@@ -38,7 +38,7 @@ function tapredemption(){
             document.getElementById('drinkcheck').innerText = result.body.Drink;
             document.getElementById('drinkcheck').style.color = "red";
             document.getElementById('callout').style.opacity=1;         
-            document.getElementById('callout').style.textAlign="left";
+            //document.getElementById('callout').style.textAlign="left";
 
 
 
@@ -52,7 +52,7 @@ function tapredemption(){
             document.getElementById('drink').innerText = "Available Beer/Wine Redemption: "+result.body.Drink;  
 
             document.getElementById('callout').style.opacity=1;    
-            document.getElementById('callout').style.textAlign="left";
+            //document.getElementById('callout').style.textAlign="left";
      
 
             }

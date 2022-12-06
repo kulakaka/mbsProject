@@ -188,29 +188,33 @@
     font-family: Bahnschrift;
     margin: 0;
     position: absolute;
-    top: 30%;
+    top: 38%;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    
+    width: 600px;
+    height: 250px;
+   
 
 }
-
+.outputtext{
+    text-align: left;
+}
 .callout {
     position: relative;
     top: -20px;
     padding: 25px 10px;
-    text-align: center;
     opacity: 0;
     border-radius: 5px;
+    text-align: center;
     background: #1f2532;
     margin-right: 10px;
     margin-left: 10px;
-    margin-top: -120px;
+    
     opacity: 0;
-    top: 0px;   
+
     color: #fff;
-    font-size: 19px;
+    font-size: 29px;
   }
   .label
   {
@@ -240,7 +244,21 @@
   }
 
 
+ 
 
+  .buttonswitch
+  {
+    font-family: Bahnschrift;
+    font-size: 24px;
+    background-color: #ff9900;
+    border: none;
+    color: black;
+    padding: 8px 55px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 12px;
+  }
 
 /** 27 inch screen **/
 @media only screen and (min-width: 1740px) {

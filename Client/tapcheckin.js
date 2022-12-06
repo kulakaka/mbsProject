@@ -21,7 +21,7 @@ function tapcheckin(){
 
     var hotstamp = document.getElementById("tm_numebr").value;
 
-    fetch(`https://onepartyonembs.com.sg/api/tapcheck/${hotstamp}`,{
+    fetch(`http://localhost:3000/api/tapcheck/${hotstamp}`,{
         method:"POST",
         headers: {"Content-type": "application/json; charset=UTF-8"}
 
