@@ -1,5 +1,21 @@
 
+var input = [];
+    document.getElementById('tm_numebr').addEventListener("input",(evt)=>{
+        input.push(evt.data)
+        // console.log(input);
+        // console.log(input.length)
+        if(input.length>5)
+        {
+            tapcheckin()
 
+        }
+        else{
+            console.log("wait");
+        }
+    });
+
+
+  
 function tapcheckin(){
 
 
@@ -18,11 +34,12 @@ function tapcheckin(){
             if(result.body.Checked)
             {
                 document.getElementById('header').innerText = "Staff Information Check ";
-                document.getElementById('tm').innerText = "TM No. : "+result.body.TeamMember;
+                document.getElementById('tm').innerText = "TM No.: "+result.body.TeamMember;
                 document.getElementById('name').innerText = "Name: "+result.body.Name;
                 document.getElementById('dep').innerText = "Department: "+result.body.Department;
-                document.getElementById('checked').innerText = "Checked in before: Yes";
+                document.getElementById('checked').innerText = "Check-in Before: Yes";
                 document.getElementById('callout').style.opacity=1;
+                document.getElementById('callout').style.textAlign="left";
             }
             else
             {
@@ -32,6 +49,8 @@ function tapcheckin(){
                 document.getElementById('dep').innerText = "Department :"+result.body.Department;
                 document.getElementById('checked').innerText = "Checked in before: No"; 
                 document.getElementById('callout').style.opacity=1; 
+                document.getElementById('callout').style.textAlign="left";
+
             }
         console.log(result.body.TeamMember);
 
@@ -41,14 +60,21 @@ function tapcheckin(){
             document.getElementById('header').innerText = "Warning!";
             document.getElementById('dep').innerText = result.body;
             document.getElementById('callout').style.opacity=1;
+            document.getElementById('callout').style.textAlign="center";
+
 
 
         }
     })
     .catch(err=>{
         console.log(err)
-        alert("Please approch to helpdev for assistance!")
-        window.location.href = "tapcheckin.html";
+        //alert("Please approch to helpdev for assistance!")
+        document.getElementById('header').innerText = "Warning!";
+        document.getElementById('dep').innerText = "Network Issue! ";
+        document.getElementById('callout').style.opacity=1;
+        document.getElementById('callout').style.textAlign="center";
+
+        //window.location.href = "tapcheckin.html";
 
 
 
@@ -70,3 +96,5 @@ function messagebtn()
 function gomanualcheckin(){
     window.location.href = "manualcheckin.html";
 }
+
+

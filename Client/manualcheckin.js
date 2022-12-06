@@ -15,10 +15,10 @@ function manualcheckin(){
             if(result.body.Checked)
             {
             document.getElementById('header').innerText = "Staff Information Check ";
-            document.getElementById('tm').innerText = "TM No. : "+result.body.TeamMember;
+            document.getElementById('tm').innerText = "TM No.: "+result.body.TeamMember;
             document.getElementById('name').innerText = "Name: "+result.body.Name;
             document.getElementById('dep').innerText = "Department: "+result.body.Department;
-            document.getElementById('checked').innerText = "Checked in before: Yes";
+            document.getElementById('checked').innerText = "Check-in Before: Yes";
             document.getElementById('callout').style.opacity=1;
         }
         else{
@@ -26,7 +26,7 @@ function manualcheckin(){
             document.getElementById('tm').innerText = "TM No. :"+result.body.TeamMember;
             document.getElementById('name').innerText = "Name :"+result.body.Name;
             document.getElementById('dep').innerText = "Department :"+result.body.Department;
-            document.getElementById('checked').innerText = "Checked in before: No"; 
+            document.getElementById('checked').innerText = "Check-in Before: No"; 
             document.getElementById('callout').style.opacity=1; 
         }
         }
@@ -40,8 +40,9 @@ function manualcheckin(){
     })
     .catch(err=>{
         console.log(err)
-        alert("Please approch to helpdev for assistance!")
-        window.location.href = "manualcheckin.html";
+        document.getElementById('header').innerText = "Warning!";
+        document.getElementById('dep').innerText = "Network Issue! ";
+        document.getElementById('callout').style.opacity=1;
 
     });
 

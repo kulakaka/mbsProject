@@ -10,8 +10,7 @@
 
 .main_page {
     background-image: url("KV_Website_Separated_BG-min.jpg");
-    background-size: 100% 100%;
-    background-position: center;
+    background-size: 100% 100%; 
     background-attachment: fixed;
 }
 
@@ -193,23 +192,10 @@
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+    
 
 }
-.callouterr {
-    position: relative;
-    top: -20px;
-    padding: 25px 10px;
-    text-align: center;
-    opacity: 0;
-    border-radius: 5px;
-    background: #1f2532;
-    margin-right: 10px;
-    margin-left: 10px;
-    margin-top: 10px;
-    opacity: 1;
-    top: 0px;
-    color: #fff;
-  }
+
 .callout {
     position: relative;
     top: -20px;

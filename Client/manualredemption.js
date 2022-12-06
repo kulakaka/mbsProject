@@ -30,9 +30,9 @@ function RedemptionCheck(){
     })  
     .catch(err=>{
         console.log(err)
-        alert("Please Approch to Devdesk for assistance!");
-        //document.getElementById('drink').innerText = "NOT VALID USER!";
-        window.location.href = "manualredemption.html";
+        document.getElementById('header').innerText = "Warning!";
+        document.getElementById('dep').innerText = "Network Issue! ";
+        document.getElementById('callout').style.opacity=1;
     });
 
 

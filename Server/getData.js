@@ -437,7 +437,8 @@ function TapRedemptionCheck(hs)
                             "TeamMember":getjson.data.results[0].TeamMember,
                             "Name":getjson.data.results[0].Name,
                             "Department":getjson.data.results[0].Department,
-                            "Drink":currentdrink+1
+                            "Drink":currentdrink+1,
+                            "Done":false
                         }
                         resolve(output)
                     })
@@ -448,7 +449,8 @@ function TapRedemptionCheck(hs)
                     "TeamMember":getjson.data.results[0].TeamMember,
                     "Name":getjson.data.results[0].Name,
                     "Department":getjson.data.results[0].Department,
-                    "Drink":"Fully Redeemed!"
+                    "Drink":"Fully Redeemed!",
+                    "Done":true
                     }
                     resolve(output);
                   //console.log("run out of chances");
@@ -458,7 +460,7 @@ function TapRedemptionCheck(hs)
             else
             {   
     
-                reject('User Not Found');
+                reject('TM records could not be found! Contact xxxxxxxx for assistance');
               //console.log('User not exist');
             }
           
@@ -513,7 +515,8 @@ function RedemptionCheck(nm)
                             "TeamMember":getjson.data.results[0].TeamMember,
                             "Name":getjson.data.results[0].Name,
                             "Department":getjson.data.results[0].Department,
-                            "Drink":currentdrink+1
+                            "Drink":currentdrink+1,
+                            "Done":false
                         }
                         resolve(output)
                     })
@@ -524,7 +527,8 @@ function RedemptionCheck(nm)
                         "TeamMember":getjson.data.results[0].TeamMember,
                         "Name":getjson.data.results[0].Name,
                         "Department":getjson.data.results[0].Department,
-                        "Drink":"Fully Redeemed!"
+                        "Drink":"FULLY REDEEMED!",
+                        "Done":true
                         }
                         resolve(output);
                 }
@@ -533,7 +537,7 @@ function RedemptionCheck(nm)
             else
             {   
             
-                reject('User Not Found');
+                reject('TM records could not be found! Contact xxxxxxxx for assistance');
               //console.log('User not exist');
             }
           
@@ -792,7 +796,7 @@ async function scan(dataurl) {
 
   function OnSitecheckin(output)
   {
-    var status;
+    let RegShow;
 
     return new Promise(function (resolve,reject){
         
@@ -822,10 +826,11 @@ async function scan(dataurl) {
                 // if results is empty
                 if(!regjson.data.results.length)
                 {
-                    reject("User Not Found in Registration List");
+                    RegShow = false;
                 }
                 else{
-                    
+                    RegShow = true;
+                }
                 //check if in the checkin table
                 axios({
                     method: "GET",
@@ -851,7 +856,8 @@ async function scan(dataurl) {
                              "PhoneNo": "",
                              "Email": "",
                             "Department": dbjson.data.results[0].DepartmentName,
-                            "Hotstamp":dbjson.data.results[0].Hotstamp                      
+                            "Hotstamp":dbjson.data.results[0].Hotstamp,
+                            "RegAndShow":RegShow                      
                             }
                         })
                         .then(()=>{
@@ -877,7 +883,7 @@ async function scan(dataurl) {
                     }
                     }
                 )
-            }
+            
         })
             }
 
@@ -889,6 +895,7 @@ async function scan(dataurl) {
 
 function OnSiteTapheckin(hs)
 {
+    let regshow;
     return new Promise(function (resolve,reject){
     
 
@@ -916,10 +923,13 @@ function OnSiteTapheckin(hs)
                 }).then(regjson=>{
                     if(!regjson.data.results.length)
                     {
-                        reject("User Not Found in Registration List");
+                       regshow = false;
                     }
                     else
                     {
+                        regshow = true;
+                    }
+                        
                     // check checkin table
                     let tnm = regjson.data.results[0].TeamMember;
                     axios({
@@ -947,7 +957,8 @@ function OnSiteTapheckin(hs)
                                 "PhoneNo": "",
                                 "Email": "",
                                 "Department": dbjson.data.results[0].DepartmentName,
-                                "Hotstamp":dbjson.data.results[0].Hotstamp
+                                "Hotstamp":dbjson.data.results[0].Hotstamp,
+                                "RegAndShow": regshow
                               }
                             })
                             .then(()=>{
@@ -958,7 +969,6 @@ function OnSiteTapheckin(hs)
                                     "Department":dbjson.data.results[0].DepartmentName,
                                     "Checked":false
                                 }
-                              //resolve("User Check In Comfirmed!");
                               resolve(output)
                           })
                       }
@@ -974,7 +984,7 @@ function OnSiteTapheckin(hs)
           
                     
                   })
-                    }
+                    
 
                 })
 
