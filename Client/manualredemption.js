@@ -35,11 +35,9 @@ function RedemptionCheck(){
             document.getElementById('name').innerText = "Name: "+result.body.Name;
             document.getElementById('dep').innerText = "Department: "+result.body.Department;
             document.getElementById('drink').innerText = "Available Beer/Wine Redemption: "+result.body.Drink;  
-
             document.getElementById('callout').style.opacity=1;    
             document.getElementById('callout').style.textAlign="left";
      
-
             }        
 
         }
@@ -58,8 +56,6 @@ function RedemptionCheck(){
         document.getElementById('callout').style.opacity=1;
         document.getElementById('callout').style.textAlign="center";
     });
-
-
 }
 
 
@@ -67,7 +63,7 @@ function messagebtn()
 {
     document.getElementById('callout').style.opacity=0;
     
-    window.location.href = "tapredemption.html";
+    window.location.href = "manualredemption.html";
 
 }
 
