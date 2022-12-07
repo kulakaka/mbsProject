@@ -199,6 +199,8 @@
 }
 .outputtext{
     text-align: left;
+    font-size: 30px;
+
 }
 .callout {
     position: relative;
@@ -212,7 +214,7 @@
     margin-left: 10px;
     opacity: 0;
     color: #fff;
-    font-size: 35px;
+    
   }
   .label
   {

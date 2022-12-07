@@ -15,7 +15,7 @@
     
             <form action="#" id="form"  method="post" >
                 <label class="col-md-4 control-label" style="color:#fff ; font-size: 20px;">TM Number</label><br>
-                <input id="tm_numebr" name="tm_numebr" placeholder="Enter TM Number" type="text" value="" required/>
+                <input id="tm_numebr" name="tm_numebr" placeholder="Enter TM Number" type="text" value="" required autofocus/>
                 <br><br>
 
                 <button class="button" type="button" id="" onclick="RedemptionCheck()">Redeem Drink
@@ -32,7 +32,7 @@
 
             <div class="containercallout"> 
                 <div class="callout" id="callout">
-                  <h5 id="header"></h5>
+                  <div class="outputtext">
                     <label></label> <label id="tm"></label>
                     <br>
                     <label></label> <label id="name"></label>
@@ -41,6 +41,8 @@
                     <br>
                     <label></label> <Label id="drink"></Label><label id="drinkcheck"></label>
                     <br>
+                  </div>
+                    
                   <button class="btn" type="button" onclick="messagebtn()">OK</button>
                 </div>
               </div>
