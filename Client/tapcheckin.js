@@ -7,7 +7,6 @@ var input = [];
         if(input.length>5)
         {
             tapcheckin()
-
         }
         else{
             console.log("wait");
