@@ -10,7 +10,7 @@
 
 .main_page {
     background-image: url("KV_Website_Separated_BG-min.jpg");
-    background-size: 100% 100%; 
+    background-size: 100% 100%;
     background-attachment: fixed;
 }
 
@@ -77,7 +77,7 @@
 }
 
 .main .logo2 {
-    width: 70%;
+    width: 50%;
     height: 7%;
     background-position: center;
     background-attachment: fixed;
@@ -194,7 +194,7 @@
     transform: translate(-50%, -50%);
     width: 800px;
     height: 280px;
-   
+
 
 }
 .outputtext{
@@ -209,7 +209,7 @@
     text-align: center;
     background: #1f2532;
     margin-right: 10px;
-    margin-left: 10px; 
+    margin-left: 10px;
     opacity: 0;
     color: #fff;
     font-size: 35px;
@@ -242,7 +242,7 @@
   }
 
 
- 
+
 
   .buttonswitch
   {
@@ -339,7 +339,7 @@
     }
 
     .main .logo2 {
-        width: 70%;
+        width: 50%;
         height: 7%;
         background-position: center;
         background-attachment: fixed;
@@ -840,7 +840,7 @@
     }
 
     .main .logo2 {
-        width: 70%;
+        width: 50%;
         height: 7% !important;
         background-position: center;
         background-attachment: fixed;
@@ -959,7 +959,7 @@
     }
 
     .main .logo2 {
-        width: 70%;
+        width: 50%;
         height: 7% !important;
         background-position: center;
         background-attachment: fixed;
@@ -1078,7 +1078,7 @@
     }
 
     .main .logo2 {
-        width: 80%;
+        width: 50%;
         height: 7% !important;
         background-position: center;
         background-attachment: fixed;
