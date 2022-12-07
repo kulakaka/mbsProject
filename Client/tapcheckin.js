@@ -41,9 +41,9 @@ function tapcheckin(){
             }
             else
             {
-                document.getElementById('tm').innerText = "TM No. :"+result.body.TeamMember;
-                document.getElementById('name').innerText = "Name :"+result.body.Name;
-                document.getElementById('dep').innerText = "Department :"+result.body.Department;
+                document.getElementById('tm').innerText = "TM No.: "+result.body.TeamMember;
+                document.getElementById('name').innerText = "Name: "+result.body.Name;
+                document.getElementById('dep').innerText = "Department: "+result.body.Department;
                 document.getElementById('checked').innerText = "Checked in before: No"; 
                 document.getElementById('callout').style.opacity=1; 
                 document.getElementById('callout').style.textAlign="center";
