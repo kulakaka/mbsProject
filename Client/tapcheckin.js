@@ -1,25 +1,37 @@
 
-var input = [];
-    document.getElementById('tm_numebr').addEventListener("input",(evt)=>{
-        input.push(evt.data)
-        // console.log(input);
-        // console.log(input.length)
-        if(input.length>5)
-        {
-            tapcheckin()
-        }
-        else{
-            console.log("wait");
-        }
-    });
+// var input = [];
+//     document.getElementById('tm_numebr').addEventListener("input",(evt)=>{
+//         input.push(evt.data)
+//         // console.log(input);
+//         // console.log(input.length)
+//         if(input.length>5)
+//         {
+//             tapcheckin()
+//         }
+//         else{
+//             console.log("wait");
+//         }
+//     });
 
+document.getElementById('tm_numebr').addEventListener('keypress',function(event)
+{
+    if (event.key === "Enter")
+    {
+        //tapcheckin()
+        //console.log(document.getElementById("tm_numebr").value)
+        var nm = document.getElementById("tm_numebr").value
 
+        tapcheckin(nm)
+        event.preventDefault()
+    }
+})
   
-function tapcheckin(){
+function tapcheckin(nm){
 
 
-    var hotstamp = document.getElementById("tm_numebr").value;
-
+    //var hotstamp = document.getElementById("tm_numebr").value;
+    var hotstamp = nm;
+    
     fetch(`https://onepartyonembs.com.sg/api/tapcheck/${hotstamp}`,{
         method:"POST",
         headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -70,12 +82,7 @@ function tapcheckin(){
         document.getElementById('callout').style.opacity=1;
         document.getElementById('callout').style.textAlign="center";
         document.getElementById('dep').style.fontSize='20px';
-
-
         //window.location.href = "tapcheckin.html";
-
-
-
     });
 
 

@@ -1,28 +1,44 @@
-var input = [];
-    document.getElementById('tm_numebr').addEventListener("input",(evt)=>{
-        input.push(evt.data)
-        // console.log(input);
-        // console.log(input.length)
-        if(input.length>5)
-        {
-            tapredemption()
-
-        }
-        else{
-            console.log("wait");
-        }
-    });
-
-function tapredemption(){
+// var input = [];
+//     document.getElementById('tm_numebr').addEventListener("input",(evt)=>{
+//         input.push(evt.data)
+//         // console.log(input);
+//         // console.log(input.length)
+//         if(input.length>5)
+//         {
+//             tapredemption()
 
 
-    var tm_nm = document.getElementById("tm_numebr").value;
+//         }
+//         else{
+//             console.log("wait");
+//         }    
+//     });
+document.getElementById('tm_numebr').addEventListener('keypress',function(event)
+{
+    
+    if (event.key === "Enter")
+    {
+        //tapcheckin()
+        //console.log(document.getElementById("tm_numebr").value)
+        var nm = document.getElementById("tm_numebr").value
+
+        tapredemption(nm)
+        event.preventDefault()
+    }
+})
+  
+function tapredemption(nm){
+
+
+    //var tm_nm = document.getElementById("tm_numebr").value;
+    var tm_nm = nm;
 
     fetch(`https://onepartyonembs.com.sg/api/tapredmeption/${tm_nm}`,{
         method:"POST",
         headers: {"Content-type": "application/json; charset=UTF-8"}
 
     })
+    
     .then(response=>response.json())
     .then((result) => {
         console.log('Success:', result);
