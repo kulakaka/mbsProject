@@ -166,7 +166,12 @@
     height: 300px;
 }
 
-
+.redemptionlogo
+{
+    background-position: center;
+    font-size: 34px;
+    color: #fff;
+}
 .button {
     font-size: 32px;
 }
