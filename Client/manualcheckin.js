@@ -30,10 +30,10 @@ function manualcheckin(){
         }
 
         else{
-            document.getElementById('dep').innerText = result.body;
+            document.getElementById('dep').innerText = 'TM records could not be found!\nPlease proceed to the helpdesk for assistance';
             document.getElementById('callout').style.opacity=1;
-            document.getElementById('callout').style.textAlign="center";
-            document.getElementById('dep').style.fontSize='20px';
+            document.getElementById('outputtext').style.textAlign="center";
+            document.getElementById('dep').style.fontSize='31px';
 
         }
     
@@ -42,8 +42,8 @@ function manualcheckin(){
         console.log(err)
         document.getElementById('dep').innerText = "Network Issue! ";
         document.getElementById('callout').style.opacity=1;
-        document.getElementById('callout').style.textAlign="center";
-        document.getElementById('dep').style.fontSize='20px';
+        document.getElementById('outputtext').style.textAlign="center";
+        document.getElementById('dep').style.fontSize='31px';
 
     });
 

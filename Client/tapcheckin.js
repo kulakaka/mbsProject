@@ -56,7 +56,7 @@ function tapcheckin(nm){
                 document.getElementById('tm').innerText = "TM No.: "+result.body.TeamMember;
                 document.getElementById('name').innerText = "Name: "+result.body.Name;
                 document.getElementById('dep').innerText = "Department: "+result.body.Department;
-                document.getElementById('checked').innerText = "Checked in before: No"; 
+                document.getElementById('checked').innerText = "Check-in before: No"; 
                 document.getElementById('callout').style.opacity=1; 
                 document.getElementById('callout').style.textAlign="center";
 
@@ -66,10 +66,10 @@ function tapcheckin(nm){
 
         }
         else{
-            document.getElementById('dep').innerText = result.body;
+            document.getElementById('dep').innerText = 'TM records could not be found!\nPlease proceed to the helpdesk for assistance';
             document.getElementById('callout').style.opacity=1;
-            document.getElementById('callout').style.textAlign="center";
-            document.getElementById('dep').style.fontSize='20px';
+            document.getElementById('outputtext').style.textAlign="center";
+            document.getElementById('dep').style.fontSize='31px';
 
 
 
@@ -80,8 +80,8 @@ function tapcheckin(nm){
         console.log(err)
         document.getElementById('dep').innerText = "Network Issue! ";
         document.getElementById('callout').style.opacity=1;
-        document.getElementById('callout').style.textAlign="center";
-        document.getElementById('dep').style.fontSize='20px';
+        document.getElementById('outputtext').style.textAlign="center";
+        document.getElementById('dep').style.fontSize='31px';
         //window.location.href = "tapcheckin.html";
     });
 

@@ -17,7 +17,7 @@
 
             <form action="#" id="form" enctype="multipart/form-data">
                 <label class="col-md-4 control-label" style="color:#fff ; font-size: 20px;">Hotstamp Number</label><br>
-                <input id="tm_numebr" name="tm_numebr" placeholder="Enter Hotstamp Number" type="text" required autofocus/>
+                <input id="tm_numebr" name="tm_numebr" placeholder="Scan your TM ID" type="text" required autofocus/>
                 <br><br>
 
 
@@ -27,13 +27,13 @@
             <br>
             <br>
             <br>
-            <button class="button" type="button" id="sendemail" onclick="gomanualcheckin()">Manual Check-in
+            <button class="buttonswitch" type="button" id="sendemail" onclick="gomanualcheckin()">Manual Check-in
             </button>
 
             <div class="containercallout">
                 <div class="callout" id="callout">
 
-                  <div class="outputtext">
+                  <div class="outputtext" id="outputtext">
                     <label></label> <label id="tm"></label>
                     <br>
                     <label></label> <label id="name"></label>
