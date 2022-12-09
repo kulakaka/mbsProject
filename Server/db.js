@@ -678,11 +678,11 @@ const axios = require('axios').default;
 //           }))
 // };
 
-let output = 123123;
-axios({
-  method: "GET",
-  url: `https://api.baserow.io/api/database/rows/table/120410/?user_field_names=true&filter__field_769032__contains=${output}`,
-  headers: {
-    Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
-  }
-}).then(dbjson => { console.log(dbjson.data.results)})
+// let output = 123123;
+// axios({
+//   method: "GET",
+//   url: `https://api.baserow.io/api/database/rows/table/120410/?user_field_names=true&filter__field_769032__contains=${output}`,
+//   headers: {
+//     Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
+//   }
+// }).then(dbjson => { console.log(dbjson.data.results)})
