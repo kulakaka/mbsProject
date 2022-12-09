@@ -211,7 +211,7 @@
     position: relative;
     top: -20px;
     padding: 25px 10px;
-    opacity: 0;
+    opacity: 1;
     border-radius: 5px;
     text-align: center;
     background: #1f2532;
@@ -221,6 +221,39 @@
     color: #fff;
     
   }
+
+  .admincontainercallout {
+    font-family: Bahnschrift;
+    margin: 0;
+    position: absolute;
+    top: 146%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 280px;
+
+
+}
+.adminoutputtext{
+    text-align: center;
+    font-size: 30px;
+
+}
+.admincallout {
+    position: relative;
+    top: -20px;
+    padding: 25px 10px;
+    opacity: 1;
+    border-radius: 5px;
+    text-align: center;
+    background: #1f2532;
+    margin-right: 10px;
+    margin-left: 10px;
+    color: #fff;
+    
+  }
+
   .label
   {
     font-size: medium;

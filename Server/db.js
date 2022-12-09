@@ -686,3 +686,40 @@ const axios = require('axios').default;
 //     Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
 //   }
 // }).then(dbjson => { console.log(dbjson.data.results)})
+// let tempwinlist=[];
+// var drwatime = 8;
+// let count =0;
+// var totalnum = 100;
+// while(true)
+// {
+// if(count<drwatime)
+// {
+//   let winnerindex = Math.floor(Math.random()*totalnum-1) + 1;
+//   tempwinlist.push(winnerindex);
+  
+//   if (tempwinlist.length == new Set(tempwinlist).size) {
+//         count++;
+//   }
+//   else{
+//     console.log('same')
+//     tempwinlist.pop();
+//   }
+// }
+// else
+// {
+//   break
+// }
+// }
+
+// console.log(tempwinlist);
+
+var winnerTM = 820257;
+axios({
+    method: "GET",
+    url: `https://api.baserow.io/api/database/rows/table/120410/?user_field_names=true&filter__field_769032__contains=${winnerTM}`,
+    headers: {
+    Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq"
+    }
+}).then(json=>{
+    console.log(json.data.results[0].Name)
+})

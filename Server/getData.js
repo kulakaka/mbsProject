@@ -231,11 +231,11 @@ app.get("/api/sms/:phno/:name/:val", (req, res) => {
 )
 
 // lucky draw api 
-app.post("/api/luckydraw10",  (req, res) => {
+app.post("/api/luckydraw",  (req, res) => {
 
     try{
        
-        draw().then(()=>
+        draw(5).then(()=>
         {
             return res.json({status: 200, success: true});    
         })
@@ -256,6 +256,35 @@ app.post("/api/luckydraw10",  (req, res) => {
         });
     }
 })
+
+app.get("/api/checkattendance",  (req, res) => {
+    
+        axios({
+            method: "GET",
+            url: "https://api.baserow.io/api/database/rows/table/120390/?user_field_names=true", 
+            headers: {
+                Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq"
+            }
+            })
+            .then(json=>{
+            var totalnum = json.data.count;
+            console.log('total: ',totalnum);
+            return res.json({
+                status:200,
+                success:true,
+                totalnum:totalnum
+            })
+                
+            })
+            .catch(err=>{
+                return res.json({
+                    status: 400,
+                    success: false,
+                });
+            })      
+      
+})
+
 
 // tm detection api use uploadfile function to use "tmcard" key value to recived 
 app.put("/api/tmdetection", upload.single("tmcard"),uploadFiles);
@@ -323,10 +352,7 @@ app.post("/api/tapcheck/:hotstamp",(req,res)=>{
             body:"Error Has Occur"
         });
     }
-
-
 })
-
 app.post("/api/tapredmeption/:tmnm",(req,res)=>{
     var hs = req.params.tmnm;
     
@@ -391,8 +417,6 @@ app.post("/api/redmeption/:tmnm",(req,res)=>{
         });
     }
     }
-
-
 )
 
 function TapRedemptionCheck(hs)
@@ -554,37 +578,40 @@ function RedemptionCheck(nm)
 
 var totalnum;
 let winnerindex;
-var winnerlist =[];
-function draw()
+function draw(drwatime)
 { 
     let tempwinlist = [];
+    let tempwinertmlist = [];
     return new Promise(function (resolve,reject){
+
+//get total number of row in check-in table for lucky draw (now using staffRegTest table)
     axios({
   method: "GET",
-  //url: "https://api.baserow.io/api/database/rows/table/110076/?user_field_names=true",
-  url: "https://api.baserow.io/api/database/rows/table/112685/?user_field_names=true", //get data from regtest
+  url: "https://api.baserow.io/api/database/rows/table/112685/?user_field_names=true", 
   headers: {
       Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq"
   }
   })
   .then(json=>{
   console.log(json.data.count)
-
   totalnum = json.data.count;
 
+  //check if ramdom number are same in tempwinlist 
   let count =0
     while(true)
     {
-    if(count<10)
+    if(count<drwatime)
     {
       winnerindex = Math.floor(Math.random()*totalnum-1) + 1;
       tempwinlist.push(winnerindex);
       
       if (tempwinlist.length == new Set(tempwinlist).size) {
-        if (luckydrawvalidationcheck(winnerindex))
-        {
             count++;
-        }
+      }
+      else{
+        console.log('same in ramdom generator');
+
+        tempwinlist.pop();
       }
     }
     else
@@ -592,98 +619,109 @@ function draw()
       break
     }
     }
+
     console.log(tempwinlist);
 
-    for(let i=0;i<tempwinlist.length;i++)
-    {
-      while(true)
-      {
-      if(winnerlist.includes(tempwinlist[i]))
-      { 
-        console.log("same");
-        // if has the same value as winnerlist
-        let tempindex = Math.floor(Math.random()*totalnum-1) + 1; //gen a new num
-        //check if the new number if same
-        tempwinlist[i] = tempindex; // replace the number
-      }
-      else
-      {  
-        winnerlist.push(tempwinlist[i]);
-        break;
-      }
-      }
-    }
-    //draw10(tempwinlist)
-    console.log(tempwinlist);
-    //draw10(tempwinlist)
-    //var tmpli = [123,321,33,20];
+  
+    var valicount=0;
+     // update winner infomation
     axios.all(tempwinlist.map((winnerindex)=>
     {
-    //GET WINNER INFO 
-    axios({
-      method: "GET",
-      //url: `https://api.baserow.io/api/database/rows/table/110076/${winnerindex}/?user_field_names=true`,
-      url: `https://api.baserow.io/api/database/rows/table/112685/${winnerindex}/?user_field_names=true`,
-      headers: {
-      Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq"
-      }
-  }).then(
-      json =>{
-          //console.log(json.data);
-          var winnername = json.data.Name;
-          var winnertm = json.data.TeamMember;
-          var winnerDep = json.data.Department;
-          var winnerEmail = json.data.Email;
-          axios({
-            method: "POST",
-            url: "https://api.baserow.io/api/database/rows/table/112691/?user_field_names=true",
-            headers: {
-            Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq",
-            "Content-Type": "application/json"
-            },
-            data: { 
-            "TeamMember": winnertm,
-            "Name": winnername,
-            "Department": winnerDep,
-            "Email": winnerEmail
+      //get tm number from checkin table
+      axios({
+        method: "GET",
+        url: `https://api.baserow.io/api/database/rows/table/112685/${winnerindex}/?user_field_names=true`,
+        headers: {
+          Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
+        }
+      }).then(checkinjson=>{
+        var winnerTM = checkinjson.data.TeamMember;
+        //check winner validation
+        axios({
+          method: "GET",
+          url: `https://api.baserow.io/api/database/rows/table/119254/?user_field_names=true&filter__field_759615__contains=${winnerTM}`,
+          headers: {
+          Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
+          }
+      }).then(validationjson=>{
+          if(!validationjson.data.results.length)
+          {
+            //check winner has won before
+            axios({
+              method: "GET",
+              url: `https://api.baserow.io/api/database/rows/table/112691/?user_field_names=true&filter__field_713214__contains=${winnerTM}`,
+              headers: {
+              Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
+              }
+          }).then(winbeforejson=>{
+            if(!winbeforejson.data.results.length)
+            {
+              //GET WINNER INFO 
+              axios({
+                method: "GET",
+                url: `https://api.baserow.io/api/database/rows/table/120410/?user_field_names=true&filter__field_769032__contains=${winnerTM}`,
+                headers: {
+                Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq"
+                }
+            }).then(
+                json =>{
+                    //console.log(json.data);
+                    var winnername = json.data.results[0].Name;
+                    var winnerDep = json.data.results[0].DepartmentName;
+                    axios({
+                      method: "POST",
+                      url: "https://api.baserow.io/api/database/rows/table/112691/?user_field_names=true",
+                      headers: {
+                      Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq",
+                      "Content-Type": "application/json"
+                      },
+                      data: { 
+                      "TeamMember": winnerTM,
+                      "Name": winnername,
+                      "Department": winnerDep
+                      }
+                  })
+                  .then(resolve("Good"))
+                  .catch(err=>{
+                      console.log(err);
+                      reject("Bad")
+                  })  
+                })
+  
             }
-        })
-        .then(resolve("Good"))
-        .catch(err=>{
-            console.log(err);
-            reject("Bad")
-        })  
-            })
-          }))
-   
+            else{
+              console.log("User won before");
+              valicount+=1;
+  
+            }
+          })
+  
+          }
+          else{
+            console.log("cannot win staff win ");
+            valicount+=1;
+          }
+      })
 
+      })
+
+    }))
+    
+    if(!valicount==0)
+    {
+      console.log("Draw again");
+      draw(valicount)
+    }
 })
 .catch(err=>{
 
 console.log(err);
 reject("Bad")
 })        
-
 })
 
 }
 
-
-
-
-//CHECK USER IF WIN BEFORE
-function luckydrawvalidationcheck(index){
-    let ind = index;
-    for(let i=0; i<loserlist.length;i++)
-    {
-        if(ind=parseInt(loserlist[i]))
-        {
-            return true
-        }
-        return false
-    }
-  
-  }
 
   function uploadFiles(req,res)
   {

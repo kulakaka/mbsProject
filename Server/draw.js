@@ -1,7 +1,7 @@
 const { default: axios } = require("axios");
-const fs = require("fs");
-var totalnum;
+var totalnum ;
 let winnerindex;
+
 
 function draw(drwatime)
 { 
@@ -34,6 +34,8 @@ function draw(drwatime)
             count++;
       }
       else{
+        console.log('same in ramdom generator');
+
         tempwinlist.pop();
       }
     }
@@ -58,7 +60,7 @@ function draw(drwatime)
           Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
         }
       }).then(checkinjson=>{
-        var winnerTM = checkinjson.data.results.TeamMember;
+        var winnerTM = checkinjson.data.TeamMember;
         //check winner validation
         axios({
           method: "GET",
@@ -89,10 +91,8 @@ function draw(drwatime)
             }).then(
                 json =>{
                     //console.log(json.data);
-                    var winnername = json.data.Name;
-                    var winnertm = json.data.TeamMember;
-                    var winnerDep = json.data.Department;
-                    var winnerEmail = json.data.Email;
+                    var winnername = json.data.results[0].Name;
+                    var winnerDep = json.data.results[0].DepartmentName;
                     axios({
                       method: "POST",
                       url: "https://api.baserow.io/api/database/rows/table/112691/?user_field_names=true",
@@ -101,10 +101,9 @@ function draw(drwatime)
                       "Content-Type": "application/json"
                       },
                       data: { 
-                      "TeamMember": winnertm,
+                      "TeamMember": winnerTM,
                       "Name": winnername,
-                      "Department": winnerDep,
-                      "Email": winnerEmail
+                      "Department": winnerDep
                       }
                   })
                   .then(resolve("Good"))
@@ -112,10 +111,11 @@ function draw(drwatime)
                       console.log(err);
                       reject("Bad")
                   })  
-                      })
+                })
   
             }
             else{
+              console.log("User won before");
               valicount+=1;
   
             }
@@ -123,6 +123,7 @@ function draw(drwatime)
   
           }
           else{
+            console.log("cannot win staff win ");
             valicount+=1;
           }
       })
@@ -133,6 +134,7 @@ function draw(drwatime)
     
     if(!valicount==0)
     {
+      console.log("Draw again");
       draw(valicount)
     }
 })
@@ -141,8 +143,11 @@ function draw(drwatime)
 console.log(err);
 reject("Bad")
 })        
-
 })
 
 }
 
+
+
+
+draw(10);

@@ -239,7 +239,7 @@ export GOOGLE_APPLICATION_CREDENTIALS="KEY_PATH"
 1. Download old database name as staff1.csv
 2. Download new database name as staffCombine.csv
 3. Check if these two field name are the same. Make changes if not.
-4. Run the python script. 
+4. Run the python script.       
 ```commandline
 python combine.py
 ```
