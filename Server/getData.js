@@ -581,7 +581,6 @@ let winnerindex;
 function draw(drwatime)
 { 
     let tempwinlist = [];
-    let tempwinertmlist = [];
     return new Promise(function (resolve,reject){
 
 //get total number of row in check-in table for lucky draw (now using staffRegTest table)
@@ -627,6 +626,7 @@ function draw(drwatime)
      // update winner infomation
     axios.all(tempwinlist.map((winnerindex)=>
     {
+    
       //get tm number from checkin table
       axios({
         method: "GET",
@@ -656,18 +656,9 @@ function draw(drwatime)
           }).then(winbeforejson=>{
             if(!winbeforejson.data.results.length)
             {
-              //GET WINNER INFO 
-              axios({
-                method: "GET",
-                url: `https://api.baserow.io/api/database/rows/table/120410/?user_field_names=true&filter__field_769032__contains=${winnerTM}`,
-                headers: {
-                Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq"
-                }
-            }).then(
-                json =>{
-                    //console.log(json.data);
-                    var winnername = json.data.results[0].Name;
-                    var winnerDep = json.data.results[0].DepartmentName;
+          
+                    var winnername = checkinjson.data.Name;
+                    var winnerDep = checkinjson.data.Department;
                     axios({
                       method: "POST",
                       url: "https://api.baserow.io/api/database/rows/table/112691/?user_field_names=true",
@@ -686,12 +677,13 @@ function draw(drwatime)
                       console.log(err);
                       reject("Bad")
                   })  
-                })
+             
   
             }
             else{
               console.log("User won before");
-              valicount+=1;
+              //valicount+=1;
+              draw(1);
   
             }
           })
@@ -699,7 +691,8 @@ function draw(drwatime)
           }
           else{
             console.log("cannot win staff win ");
-            valicount+=1;
+            //valicount+=1;
+            draw(1);
           }
       })
 
@@ -707,11 +700,7 @@ function draw(drwatime)
 
     }))
     
-    if(!valicount==0)
-    {
-      console.log("Draw again");
-      draw(valicount)
-    }
+    
 })
 .catch(err=>{
 
