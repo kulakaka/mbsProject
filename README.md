@@ -252,26 +252,40 @@ change fields id according to the table id
 
 change validation database id 120410 to latest database
 
+
+
 change validation check-in table 120390 to 115452 for 1st session
+
 change validation check-in table 115452 to 120389 for 2nd session
 
+
+
 change Post method of check in table id 120390 to 115452 for 1st session
+
 change Post method of check in table id 115452 to 120389 for 2nd session
 
 2. RedemptionCheck function
 
 change validation check-in table from 120390 to 115452 for 1st session
+
 change validation check-in table from 115452 to 120389 for 2nd session
 
+
+
 change update drink method of check-in table from 120390 to 115452 for 1st session
+
 change update drink method of check-in table from 115452 to 120389 for 2nd session
 
 3. Draw function 
 
 Change get total number of ppl method for check-in table to 115452 for 1st session
+
 Change get total number of ppl method for check-in table to 120389 for 2nd session
 
+
+
 change get tm number method for check-in table from 112685 to 115452 for 1st session
+
 change get tm number method for check-in table from 115452 to 120389 for 2nd session
 
 
