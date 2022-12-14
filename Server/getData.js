@@ -262,7 +262,7 @@ app.get("/api/checkattendance",  (req, res) => {
     
         axios({
             method: "GET",
-            url: "https://api.baserow.io/api/database/rows/table/120390/?user_field_names=true", 
+            url: "https://api.baserow.io/api/database/rows/table/115452/?user_field_names=true", 
             headers: {
                 Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq"
             }
@@ -449,7 +449,7 @@ function TapRedemptionCheck(hs)
         // to check if user checked in 
         axios({
             method: "GET",
-            url: `https://api.baserow.io/api/database/rows/table/120390/?user_field_names=true&filter__field_768928__contains=${hs}`,
+            url: `https://api.baserow.io/api/database/rows/table/115452/?user_field_names=true&filter__field_768912__contains=${hs}`,
             headers: {
               Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
             }
@@ -467,7 +467,7 @@ function TapRedemptionCheck(hs)
                   //update user drink 
                     axios({
                         method: "PATCH",
-                        url: `https://api.baserow.io/api/database/rows/table/120390/${rowid}/?user_field_names=true`,
+                        url: `https://api.baserow.io/api/database/rows/table/115452/${rowid}/?user_field_names=true`,
                         headers: {
                           Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua",
                           "Content-Type": "application/json"
@@ -527,7 +527,7 @@ function RedemptionCheck(nm)
         // to check if user checked in before
         axios({
             method: "GET",
-            url: `https://api.baserow.io/api/database/rows/table/120390/?user_field_names=true&filter__field_768921__contains=${nm}`,
+            url: `https://api.baserow.io/api/database/rows/table/115452/?user_field_names=true&filter__field_733012__contains=${nm}`,
             headers: {
               Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
             }
@@ -546,7 +546,7 @@ function RedemptionCheck(nm)
                   //update user drink 
                     axios({
                         method: "PATCH",
-                        url: `https://api.baserow.io/api/database/rows/table/120390/${rowid}/?user_field_names=true`,
+                        url: `https://api.baserow.io/api/database/rows/table/115452/${rowid}/?user_field_names=true`,
                         headers: {
                           Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua",
                           "Content-Type": "application/json"
@@ -607,7 +607,7 @@ function draw(drwatime)
 //get total number of row in check-in table for lucky draw (now using staffRegTest table)
     axios({
   method: "GET",
-  url: "https://api.baserow.io/api/database/rows/table/112685/?user_field_names=true", 
+  url: "https://api.baserow.io/api/database/rows/table/115452/?user_field_names=true", 
   headers: {
       Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq"
   }
@@ -651,7 +651,7 @@ function draw(drwatime)
       //get tm number from checkin table
       axios({
         method: "GET",
-        url: `https://api.baserow.io/api/database/rows/table/112685/${winnerindex}/?user_field_names=true`,
+        url: `https://api.baserow.io/api/database/rows/table/115452/${winnerindex}/?user_field_names=true`,
         headers: {
           Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
         }
@@ -853,7 +853,7 @@ async function scan(dataurl) {
             url: `https://api.baserow.io/api/database/rows/table/120410/?user_field_names=true&filter__field_769032__contains=${output}`,
             headers: {
               Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
-            }
+            }   
           }).then(dbjson => {          
             // if results is empty
             if(!dbjson.data.results.length)
@@ -882,7 +882,7 @@ async function scan(dataurl) {
                 //check if in the checkin table
                 axios({
                     method: "GET",
-                    url: `https://api.baserow.io/api/database/rows/table/120390/?user_field_names=true&filter__field_768921__contains=${output}`,
+                    url: `https://api.baserow.io/api/database/rows/table/115452/?user_field_names=true&filter__field_733012__contains=${output}`,
                     headers: {
                     Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
                     }
@@ -893,7 +893,7 @@ async function scan(dataurl) {
                     {
                         axios({
                             method: "POST",
-                            url: "https://api.baserow.io/api/database/rows/table/120390/?user_field_names=true",
+                            url: "https://api.baserow.io/api/database/rows/table/115452/?user_field_names=true",
                             headers: {
                             Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua",
                             "Content-Type": "application/json"
@@ -982,7 +982,7 @@ function OnSiteTapheckin(hs)
                     let tnm = regjson.data.results[0].TeamMember;
                     axios({
                       method: "GET",
-                      url: `https://api.baserow.io/api/database/rows/table/120390/?user_field_names=true&filter__field_768921__contains=${tnm}`,
+                      url: `https://api.baserow.io/api/database/rows/table/115452/?user_field_names=true&filter__field_768912__contains=${tnm}`,
                       headers: {
                       Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
                       }
@@ -994,7 +994,7 @@ function OnSiteTapheckin(hs)
                       {
                           axios({
                               method: "POST",
-                              url: "https://api.baserow.io/api/database/rows/table/120390/?user_field_names=true",
+                              url: "https://api.baserow.io/api/database/rows/table/115452/?user_field_names=true",
                               headers: {
                                 Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua",
                                 "Content-Type": "application/json"
