@@ -38,7 +38,7 @@ function RedemptionCheck(){
 
         }
         else{
-            document.getElementById('dep').innerText = 'TM records could not be found!\nContact xxxxxxxx for assistance';
+            document.getElementById('dep').innerText = 'TM records could not be found!\nPlease proceed to the helpdesk for assistance';
             document.getElementById('callout').style.opacity=1;         
             document.getElementById('outputtext').style.textAlign="center";      
             document.getElementById('dep').style.fontSize='31px';

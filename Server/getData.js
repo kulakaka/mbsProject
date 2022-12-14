@@ -231,11 +231,12 @@ app.get("/api/sms/:phno/:name/:val", (req, res) => {
 )
 
 // lucky draw api 
-app.post("/api/luckydraw",  (req, res) => {
+app.post("/api/luckydraw/:time",  (req, res) => {
+    var time = req.params.time;
 
     try{
        
-        draw(5).then(()=>
+        draw(time).then(()=>
         {
             return res.json({status: 200, success: true});    
         })
