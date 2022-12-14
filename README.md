@@ -288,6 +288,10 @@ change get tm number method for check-in table from 112685 to 115452 for 1st ses
 
 change get tm number method for check-in table from 115452 to 120389 for 2nd session
 
+4. Admin Panel function
+
+change attendance for session 1 check in table to 115452
+
 
 
 

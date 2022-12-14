@@ -266,14 +266,34 @@ app.get("/api/checkattendance",  (req, res) => {
                 Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq"
             }
             })
-            .then(json=>{
-            var totalnum = json.data.count;
-            console.log('total: ',totalnum);
-            return res.json({
-                status:200,
-                success:true,
-                totalnum:totalnum
-            })
+            .then(s1json=>{
+            var s1totalnum = s1json.data.count;
+            axios({
+                method: "GET",
+                url: "https://api.baserow.io/api/database/rows/table/120389/?user_field_names=true", 
+                headers: {
+                    Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq"
+                }
+                }).then(s2json=>{
+                    var s2totalnum = s2json.data.count;
+                    var total = s2totalnum +s1totalnum;
+                    return res.json({
+                        status:200,
+                        success:true,
+                        s1num:s1totalnum,
+                        s2num:s2totalnum,
+                        totalnum:total
+                    })
+                })
+                .catch(err=>
+                    {
+                        return res.json({
+                            status: 400,
+                            success: false,
+                        });
+                    })
+           
+          
                 
             })
             .catch(err=>{

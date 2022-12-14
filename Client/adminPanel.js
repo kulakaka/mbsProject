@@ -11,7 +11,10 @@ function Refreshbtn()
     )
     .then(json=>{
         //console.log(json)
-        document.getElementById('dep').innerText = "Current Attendance: "+json.totalnum;
+        document.getElementById('count1').innerText = "Session1 Attendance: "+json.s1num;
+        document.getElementById('count2').innerText = "Session2 Attendance: "+json.s2num;
+        document.getElementById('total').innerText = "Total Attendance: "+json.totalnum;
+
         
     })
 
