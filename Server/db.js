@@ -711,25 +711,18 @@ const axios = require('axios').default;
 // }
 // }
 
+var tnm= 
 // console.log(tempwinlist);
-var tmnumber = 844300;
 axios({
     method: "GET",
-    url: `https://api.baserow.io/api/database/rows/table/110728/?user_field_names=true&filter__field_699773__contains=${tmnumber}`,
+    url: `https://api.baserow.io/api/database/rows/table/115452/?user_field_names=true&filter__field_768912__contains=${tnm}`,
     headers: {
     Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
     }
-}).then(regjson=>{
-    if(!regjson.data.results.length)
-    {
-       regshow = false;
-    }
-    else
-    {
-        regshow = true;
-    }
-    console.log(regjson.data.results)
-    // check checkin table
-    let tnm = regjson.data.results[0].TeamMember;
-    console.log(tnm);
+})
+.then(json=>{
+  //console.log(json.data.results.length)
+      //if checkin table dont have
+    //if(!json.data.results.length)
+    console.log(json.data.results.length);
 })
