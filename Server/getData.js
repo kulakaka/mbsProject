@@ -977,9 +977,9 @@ function OnSiteTapheckin(hs)
                     {
                         regshow = true;
                     }
-                        
+                    
                     // check checkin table
-                    let tnm = regjson.data.results[0].TeamMember;
+                    let tnm = dbjson.data.results[0].TeamMember;
                     axios({
                       method: "GET",
                       url: `https://api.baserow.io/api/database/rows/table/115452/?user_field_names=true&filter__field_768912__contains=${tnm}`,

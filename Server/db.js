@@ -712,14 +712,24 @@ const axios = require('axios').default;
 // }
 
 // console.log(tempwinlist);
-
-var winnerTM = 820257;
+var tmnumber = 844300;
 axios({
     method: "GET",
-    url: `https://api.baserow.io/api/database/rows/table/120410/?user_field_names=true&filter__field_769032__contains=${winnerTM}`,
+    url: `https://api.baserow.io/api/database/rows/table/110728/?user_field_names=true&filter__field_699773__contains=${tmnumber}`,
     headers: {
-    Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq"
+    Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
     }
-}).then(json=>{
-    console.log(json.data.results[0].Name)
+}).then(regjson=>{
+    if(!regjson.data.results.length)
+    {
+       regshow = false;
+    }
+    else
+    {
+        regshow = true;
+    }
+    console.log(regjson.data.results)
+    // check checkin table
+    let tnm = regjson.data.results[0].TeamMember;
+    console.log(tnm);
 })
