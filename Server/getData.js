@@ -890,7 +890,7 @@ async function scan(dataurl) {
                 }
                 axios({
                     method: "GET",
-                    url: `https://api.baserow.io/api/database/rows/table/122962/?user_field_names=true&filter__field_791438__contains=${tnm}`,
+                    url: `https://api.baserow.io/api/database/rows/table/122962/?user_field_names=true&filter__field_791438__contains=${output}`,
                     headers: {
                     Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
                     }
