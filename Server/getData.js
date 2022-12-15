@@ -446,15 +446,7 @@ function TapRedemptionCheck(hs)
     // use promise to force it run synchronise
     return new Promise(function (resolve,reject){
 
-        axios({
-            method: "GET",
-            url: `https://api.baserow.io/api/database/rows/table/122962/?user_field_names=true&filter__field_791443__contains=${hs}`,
-            headers: {
-              Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
-            }
-          }).then(session1json=>{
-            if(!session1json.data.results.length)
-            {
+        
         // to check if user checked in 
         axios({
             method: "GET",
@@ -523,31 +515,17 @@ function TapRedemptionCheck(hs)
                 //console.log('err:',err);
                 reject('Error occur');
             })
-            }
-            else{
-                reject('Member Cannot Redeemd!')
-
-            }
-
-
-
         })
-          })
+            
+
+
 
         
 
 }
 function RedemptionCheck(nm)
 {
-    axios({
-        method: "GET",
-        url: `https://api.baserow.io/api/database/rows/table/122962/?user_field_names=true&filter__field_791438__contains=${nm}`,
-        headers: {
-          Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
-        }
-      }).then(session1json=>{
-        if(!session1json.data.results.length)
-        {   
+    
     // use promise to force it run synchronise
     return new Promise(function (resolve,reject){
 
@@ -620,13 +598,11 @@ function RedemptionCheck(nm)
           })
 
     })
-}else{
-    reject("Members Cannot Redeemed!")
-}
 
-    })
 
-}
+    }
+
+
 
 
 
@@ -912,6 +888,15 @@ async function scan(dataurl) {
                 else{
                     RegShow = true;
                 }
+                axios({
+                    method: "GET",
+                    url: `https://api.baserow.io/api/database/rows/table/122962/?user_field_names=true&filter__field_791438__contains=${tnm}`,
+                    headers: {
+                    Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
+                    }
+                }).then(session1json2=>{
+                    if(!session1json2.data.results.length)
+                    {
                 //check if in the checkin table
                 axios({
                     method: "GET",
@@ -964,6 +949,64 @@ async function scan(dataurl) {
                     }
                     }
                 )
+                    }
+                    else{
+                                        //check if in the checkin table
+                axios({
+                    method: "GET",
+                    url: `https://api.baserow.io/api/database/rows/table/120389/?user_field_names=true&filter__field_768913__contains=${output}`,
+                    headers: {
+                    Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
+                    }   
+                })
+                .then(json=>{
+                    // if result is empty
+                    if(!json.data.results.length)
+                    {
+                        axios({
+                            method: "POST",
+                            url: "https://api.baserow.io/api/database/rows/table/120389/?user_field_names=true",
+                            headers: {
+                            Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua",
+                            "Content-Type": "application/json"
+                            },
+                            data: {
+                            "TeamMember": dbjson.data.results[0].TeamMember,
+                            "Name": dbjson.data.results[0].Name,
+                             "PhoneNo": "",
+                             "Email": "",
+                            "Department": dbjson.data.results[0].DepartmentName,
+                            "Hotstamp":dbjson.data.results[0].Hotstamp,
+                            "RegAndShow":RegShow,
+                            "NumberOfDrink":session1json2.data.results[0].NumberOfDrink                      
+                            }
+                        })
+                        .then(()=>{
+                            let output = 
+                                    {
+                                        "TeamMember":dbjson.data.results[0].TeamMember,
+                                        "Name":dbjson.data.results[0].Name,
+                                        "Department":dbjson.data.results[0].DepartmentName,
+                                        "Checked":false
+                                    }
+                                //resolve("User Check In Comfirmed!");
+                                resolve(output)
+                        })
+                    }
+                    else{
+                        let badoutput = {
+                            "TeamMember":dbjson.data.results[0].TeamMember,
+                            "Name":dbjson.data.results[0].Name,
+                            "Department":dbjson.data.results[0].DepartmentName,
+                            "Checked":true
+                        }
+                        resolve(badoutput);
+                    }
+                    }
+                )
+                    }
+                })
+
             
         })
             }
@@ -979,6 +1022,7 @@ function OnSiteTapheckin(hs)
     let regshow;
     return new Promise(function (resolve,reject){
     
+
         //find in database
         axios({
             method: "GET",
@@ -1014,57 +1058,124 @@ function OnSiteTapheckin(hs)
                     // check checkin table
                     let tnm = dbjson.data.results[0].TeamMember;
                     axios({
-                      method: "GET",
-                      url: `https://api.baserow.io/api/database/rows/table/120389/?user_field_names=true&filter__field_768913__contains=${tnm}`,
-                      headers: {
-                      Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
-                      }
-                  })
-                  .then(json=>{
-                    //console.log(json.data.results.length)
-                        //if checkin table dont have
-                      if(!json.data.results.length)
-                      {
-                          axios({
-                              method: "POST",
-                              url: "https://api.baserow.io/api/database/rows/table/120389/?user_field_names=true",
-                              headers: {
-                                Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua",
-                                "Content-Type": "application/json"
-                              },
-                              data: {
-                                "TeamMember": dbjson.data.results[0].TeamMember,
-                                "Name": dbjson.data.results[0].Name,
-                                "PhoneNo": "",
-                                "Email": "",
-                                "Department": dbjson.data.results[0].DepartmentName,
-                                "Hotstamp":dbjson.data.results[0].Hotstamp,
-                                "RegAndShow": regshow
-                              }
-                            })
-                            .then(()=>{
-                                let output = 
-                                {
-                                    "TeamMember":dbjson.data.results[0].TeamMember,
-                                    "Name":dbjson.data.results[0].Name,
-                                    "Department":dbjson.data.results[0].DepartmentName,
-                                    "Checked":false
-                                }
-                              resolve(output)
-                          })
-                      }
-                      else{
-                        let badoutput = {
-                            "TeamMember":dbjson.data.results[0].TeamMember,
-                            "Name":dbjson.data.results[0].Name,
-                            "Department":dbjson.data.results[0].DepartmentName,
-                            "Checked":true
+                        method: "GET",
+                        url: `https://api.baserow.io/api/database/rows/table/122962/?user_field_names=true&filter__field_791438__contains=${tnm}`,
+                        headers: {
+                        Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
                         }
-                        resolve(badoutput);
-                      }
-          
+                    }).then(session1json=>{
+                        if(!session1json.data.results.length)
+                        {
+                            axios({
+                                method: "GET",
+                                url: `https://api.baserow.io/api/database/rows/table/120389/?user_field_names=true&filter__field_768913__contains=${tnm}`,
+                                headers: {
+                                Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
+                                }
+                            })
+                            .then(json=>{
+                              //console.log(json.data.results.length)
+                                  //if checkin table dont have
+                                if(!json.data.results.length)
+                                {
+                                    axios({
+                                        method: "POST",
+                                        url: "https://api.baserow.io/api/database/rows/table/120389/?user_field_names=true",
+                                        headers: {
+                                          Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua",
+                                          "Content-Type": "application/json"
+                                        },
+                                        data: {
+                                          "TeamMember": dbjson.data.results[0].TeamMember,
+                                          "Name": dbjson.data.results[0].Name,
+                                          "PhoneNo": "",
+                                          "Email": "",
+                                          "Department": dbjson.data.results[0].DepartmentName,
+                                          "Hotstamp":dbjson.data.results[0].Hotstamp,
+                                          "RegAndShow": regshow
+                                        }
+                                      })
+                                      .then(()=>{
+                                          let output = 
+                                          {
+                                              "TeamMember":dbjson.data.results[0].TeamMember,
+                                              "Name":dbjson.data.results[0].Name,
+                                              "Department":dbjson.data.results[0].DepartmentName,
+                                              "Checked":false
+                                          }
+                                        resolve(output)
+                                    })
+                                }
+                                else{
+                                  let badoutput = {
+                                      "TeamMember":dbjson.data.results[0].TeamMember,
+                                      "Name":dbjson.data.results[0].Name,
+                                      "Department":dbjson.data.results[0].DepartmentName,
+                                      "Checked":true
+                                  }
+                                  resolve(badoutput);
+                                }
                     
-                  })
+                              
+                            })
+                        }
+                        else{
+                            axios({
+                                method: "GET",
+                                url: `https://api.baserow.io/api/database/rows/table/120389/?user_field_names=true&filter__field_768913__contains=${tnm}`,
+                                headers: {
+                                Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
+                                }
+                            })
+                            .then(json=>{
+                              //console.log(json.data.results.length)
+                                  //if checkin table dont have
+                                if(!json.data.results.length)
+                                {
+                                    axios({
+                                        method: "POST",
+                                        url: "https://api.baserow.io/api/database/rows/table/120389/?user_field_names=true",
+                                        headers: {
+                                          Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua",
+                                          "Content-Type": "application/json"
+                                        },
+                                        data: {
+                                          "TeamMember": dbjson.data.results[0].TeamMember,
+                                          "Name": dbjson.data.results[0].Name,
+                                          "PhoneNo": "",
+                                          "Email": "",
+                                          "Department": dbjson.data.results[0].DepartmentName,
+                                          "Hotstamp":dbjson.data.results[0].Hotstamp,
+                                          "RegAndShow": regshow,
+                                          "NumberOfDrink":session1json.data.results[0].NumberOfDrink
+                                        }
+                                      })
+                                      .then(()=>{
+                                          let output = 
+                                          {
+                                              "TeamMember":dbjson.data.results[0].TeamMember,
+                                              "Name":dbjson.data.results[0].Name,
+                                              "Department":dbjson.data.results[0].DepartmentName,
+                                              "Checked":false
+                                          }
+                                        resolve(output)
+                                    })
+                                }
+                                else{
+                                  let badoutput = {
+                                      "TeamMember":dbjson.data.results[0].TeamMember,
+                                      "Name":dbjson.data.results[0].Name,
+                                      "Department":dbjson.data.results[0].DepartmentName,
+                                      "Checked":true
+                                  }
+                                  resolve(badoutput);
+                                }
+                    
+                              
+                            })
+                        }
+                    })
+     
                     
 
                 })
