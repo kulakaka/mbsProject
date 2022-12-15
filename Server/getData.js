@@ -446,15 +446,24 @@ function TapRedemptionCheck(hs)
     // use promise to force it run synchronise
     return new Promise(function (resolve,reject){
 
-        // to check if user checked in 
         axios({
             method: "GET",
             url: `https://api.baserow.io/api/database/rows/table/122962/?user_field_names=true&filter__field_791443__contains=${hs}`,
             headers: {
               Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
             }
-          })
-          .then(getjson=>{
+          }).then(session1json=>{
+            if(!session1json.data.results.length)
+            {
+        // to check if user checked in 
+        axios({
+            method: "GET",
+            url: `https://api.baserow.io/api/database/rows/table/120389/?user_field_names=true&filter__field_768920__contains=${hs}`,
+            headers: {
+            Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
+            }
+        })
+        .then(getjson=>{
             // if user in the check in list.
             if(getjson.data.results.length)
             {
@@ -463,21 +472,21 @@ function TapRedemptionCheck(hs)
                 console.log("nmofdrink",nmofdrink);
                 if (nmofdrink>0)
                 {
-                  var currentdrink = nmofdrink-1;
-                  //update user drink 
+                var currentdrink = nmofdrink-1;
+                //update user drink 
                     axios({
                         method: "PATCH",
-                        url: `https://api.baserow.io/api/database/rows/table/122962/${rowid}/?user_field_names=true`,
+                        url: `https://api.baserow.io/api/database/rows/table/120389/${rowid}/?user_field_names=true`,
                         headers: {
-                          Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua",
-                          "Content-Type": "application/json"
+                        Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua",
+                        "Content-Type": "application/json"
                         },
                         data: {
                             
-                          "NumberOfDrink": currentdrink
+                        "NumberOfDrink": currentdrink
                         }
-                      })
-                      .then(()=>{
+                    })
+                    .then(()=>{
                         let output = {
                             "TeamMember":getjson.data.results[0].TeamMember,
                             "Name":getjson.data.results[0].Name,
@@ -498,36 +507,54 @@ function TapRedemptionCheck(hs)
                     "Done":true
                     }
                     resolve(output);
-                  //console.log("run out of chances");
+                //console.log("run out of chances");
                 }
-          
+        
             }
             else
             {   
-    
+
                 reject('TM records could not be found! Contact xxxxxxxx for assistance');
-              //console.log('User not exist');
+            //console.log('User not exist');
             }
-          
-          })
-          .catch(err=>{
-            //console.log('err:',err);
-            reject('Error occur');
+        
+        })
+        .catch(err=>{
+                //console.log('err:',err);
+                reject('Error occur');
+            })
+            }
+            else{
+                reject('Member Cannot Redeemd!')
+
+            }
+
+
+
+        })
           })
 
-    })
+        
 
 }
 function RedemptionCheck(nm)
 {
-
+    axios({
+        method: "GET",
+        url: `https://api.baserow.io/api/database/rows/table/122962/?user_field_names=true&filter__field_791438__contains=${nm}`,
+        headers: {
+          Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
+        }
+      }).then(session1json=>{
+        if(!session1json.data.results.length)
+        {   
     // use promise to force it run synchronise
     return new Promise(function (resolve,reject){
 
         // to check if user checked in before
         axios({
             method: "GET",
-            url: `https://api.baserow.io/api/database/rows/table/122962/?user_field_names=true&filter__field_791438__contains=${nm}`,
+            url: `https://api.baserow.io/api/database/rows/table/120389/?user_field_names=true&filter__field_768913__contains=${nm}`,
             headers: {
               Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
             }
@@ -546,7 +573,7 @@ function RedemptionCheck(nm)
                   //update user drink 
                     axios({
                         method: "PATCH",
-                        url: `https://api.baserow.io/api/database/rows/table/122962/${rowid}/?user_field_names=true`,
+                        url: `https://api.baserow.io/api/database/rows/table/120389/${rowid}/?user_field_names=true`,
                         headers: {
                           Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua",
                           "Content-Type": "application/json"
@@ -593,8 +620,14 @@ function RedemptionCheck(nm)
           })
 
     })
+}else{
+    reject("Members Cannot Redeemed!")
+}
+
+    })
 
 }
+
 
 
 var totalnum;
@@ -607,7 +640,7 @@ function draw(drwatime)
 //get total number of row in check-in table for lucky draw (now using staffRegTest table)
     axios({
   method: "GET",
-  url: "https://api.baserow.io/api/database/rows/table/122962/?user_field_names=true", 
+  url: "https://api.baserow.io/api/database/rows/table/120389/?user_field_names=true", 
   headers: {
       Authorization: "Token pJUmXlCIRJaP618ys13YJDdrvi3DUAGq"
   }
@@ -651,7 +684,7 @@ function draw(drwatime)
       //get tm number from checkin table
       axios({
         method: "GET",
-        url: `https://api.baserow.io/api/database/rows/table/122962/${winnerindex}/?user_field_names=true`,
+        url: `https://api.baserow.io/api/database/rows/table/120389/${winnerindex}/?user_field_names=true`,
         headers: {
           Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
         }
@@ -882,7 +915,7 @@ async function scan(dataurl) {
                 //check if in the checkin table
                 axios({
                     method: "GET",
-                    url: `https://api.baserow.io/api/database/rows/table/122962/?user_field_names=true&filter__field_791438__contains=${output}`,
+                    url: `https://api.baserow.io/api/database/rows/table/120389/?user_field_names=true&filter__field_768913__contains=${output}`,
                     headers: {
                     Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
                     }   
@@ -893,7 +926,7 @@ async function scan(dataurl) {
                     {
                         axios({
                             method: "POST",
-                            url: "https://api.baserow.io/api/database/rows/table/122962/?user_field_names=true",
+                            url: "https://api.baserow.io/api/database/rows/table/120389/?user_field_names=true",
                             headers: {
                             Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua",
                             "Content-Type": "application/json"
@@ -982,7 +1015,7 @@ function OnSiteTapheckin(hs)
                     let tnm = dbjson.data.results[0].TeamMember;
                     axios({
                       method: "GET",
-                      url: `https://api.baserow.io/api/database/rows/table/122962/?user_field_names=true&filter__field_791438__contains=${tnm}`,
+                      url: `https://api.baserow.io/api/database/rows/table/120389/?user_field_names=true&filter__field_768913__contains=${tnm}`,
                       headers: {
                       Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua"
                       }
@@ -994,7 +1027,7 @@ function OnSiteTapheckin(hs)
                       {
                           axios({
                               method: "POST",
-                              url: "https://api.baserow.io/api/database/rows/table/122962/?user_field_names=true",
+                              url: "https://api.baserow.io/api/database/rows/table/120389/?user_field_names=true",
                               headers: {
                                 Authorization: "Token GJTONGLhbwvH8cxVXGrcY5PVM323aZua",
                                 "Content-Type": "application/json"
