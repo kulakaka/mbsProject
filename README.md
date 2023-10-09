@@ -13,7 +13,7 @@ cd deployment/
 
 ### USC
 ```commandline
-ssh -i "MBS_USC.pem" ubuntu@ec2-13-214-31-19.ap-southeast-1.compute.amazonaws.com
+ssh -i "MBS_USC.pem" ubuntu@ec2-18-141-212-4.ap-southeast-1.compute.amazonaws.com
 ```
 
 ### CDSR
